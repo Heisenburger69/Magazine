@@ -10,7 +10,7 @@
       "elements": [
         {
           "type": "image",
-          "image": "englishday1.jpg",
+          "image": "assets/images/englishday1.jpg",
           "caption": "Students presenting their projects",
           "align": "full"
         },
@@ -46,7 +46,7 @@
         },
         {
           "type": "image",
-          "image": "englishday3.jpg",
+          "image": "assets/images/englishday3.jpg",
           "align": "left"
         },
         {
@@ -68,7 +68,7 @@
       "elements": [
         {
           "type": "slideshow",
-          "images": ["englishday1.jpg", "englishday2.jpg", "englishday3.jpg"],
+          "images": ["assets/images/englishday1.jpg", "assets/images/englishday2.jpg", "assets/images/englishday3.jpg"],
           "caption": "Highlights from the day"
         },
         {
@@ -114,7 +114,7 @@
       "elements": [
         {
           "type": "image",
-          "image": "englishday2.jpg",
+          "image": "assets/images/englishday2.jpg",
           "align": "full"
         },
         {

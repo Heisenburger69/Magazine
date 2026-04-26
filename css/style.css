@@ -41,7 +41,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('R.png');
+    background-image: url('../assets/images/R.png');
     background-attachment: fixed;
     background-repeat: repeat;
     pointer-events: none;
@@ -341,7 +341,7 @@ p {
     padding: 60px 20px;
     position: relative;
     background: linear-gradient(135deg, rgba(201, 168, 76, 0.1) 0%, rgba(201, 168, 76, 0.05) 100%),
-                url('598667564_1432670612202302_5971902914503656799_n.webp') center/cover no-repeat;
+                url('../assets/images/school-students.webp') center/cover no-repeat;
     background-attachment: fixed;
 }
 
