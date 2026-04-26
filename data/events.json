@@ -1,0 +1,145 @@
+{
+  "events": [
+    {
+      "id": "science-fair-2024",
+      "title": "School Hosts Annual Science Fair 2024",
+      "type": "multi",
+      "category": "Academic",
+      "featured": true,
+      "date": "2024",
+      "elements": [
+        {
+          "type": "image",
+          "image": "englishday1.jpg",
+          "caption": "Students presenting their projects",
+          "align": "full"
+        },
+        {
+          "type": "text",
+          "content": "Students showcase innovative projects and cutting-edge concepts. The event highlights our commitment to STEM education and hands-on learning experiences."
+        },
+        {
+          "type": "quote",
+          "quote": "This was an amazing experience!",
+          "author": "Ahmed Alaadin Hassan Darmelli"
+        },
+        {
+          "type": "students",
+          "students": [
+            { "name": "Youssef Ahmed Sabry", "role": "Science Representative", "achievement": "First Place - Robotics" },
+            { "name": "Ahmed Alaadin Hassan Darmelli", "role": "Event Organizer", "achievement": "Best Presentation" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "olympiad",
+      "title": "International Olympiad",
+      "type": "multi",
+      "category": "Academic",
+      "featured": false,
+      "date": "2024",
+      "elements": [
+        {
+          "type": "text",
+          "content": "Rising Stars students excel in international mathematics competition. Our team brought home multiple medals!"
+        },
+        {
+          "type": "image",
+          "image": "englishday3.jpg",
+          "align": "left"
+        },
+        {
+          "type": "students",
+          "students": [
+            { "name": "Ahmed Alaadin Hassan Darmelli", "role": "Team Captain", "achievement": "Gold Medal" },
+            { "name": "Youssef Ahmed Sabry", "role": "Team Member", "achievement": "Silver Medal" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "language-day",
+      "title": "Language Day",
+      "type": "multi",
+      "category": "Cultural",
+      "featured": false,
+      "date": "2024",
+      "elements": [
+        {
+          "type": "slideshow",
+          "images": ["englishday1.jpg", "englishday2.jpg", "englishday3.jpg"],
+          "caption": "Highlights from the day"
+        },
+        {
+          "type": "text",
+          "content": "Students showcase multilingual talents and cultural diversity through performances and exhibitions."
+        },
+        {
+          "type": "students",
+          "students": [
+            { "name": "Youssef Ahmed Sabry", "role": "MC", "achievement": "Best Performance" },
+            { "name": "Yassin Ahmed Sabry", "role": "Performer", "achievement": "Audience Choice" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "debate-championship",
+      "title": "Debate Championship",
+      "type": "multi",
+      "category": "Academic",
+      "featured": false,
+      "date": "2024",
+      "elements": [
+        {
+          "type": "text",
+          "content": "Students demonstrate oratory and critical thinking skills in our annual debate championship."
+        },
+        {
+          "type": "students",
+          "students": [
+            { "name": "Yassin Ahmed Sabry", "role": "Team Captain", "achievement": "Best Speaker" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smart-board",
+      "title": "Smart Board Technology",
+      "type": "multi",
+      "category": "Technology",
+      "featured": false,
+      "date": "2024",
+      "elements": [
+        {
+          "type": "image",
+          "image": "englishday2.jpg",
+          "align": "full"
+        },
+        {
+          "type": "text",
+          "content": "Latest teaching tech enhances interactive learning in classrooms across all grade levels."
+        }
+      ]
+    },
+    {
+      "id": "video-event",
+      "title": "Sports Day Highlights",
+      "type": "multi",
+      "category": "Sports",
+      "featured": false,
+      "date": "2024",
+      "elements": [
+        {
+          "type": "video",
+          "video": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+        },
+        {
+          "type": "text",
+          "content": "Exciting sports competition and healthy competition among students."
+        }
+      ]
+    }
+  ]
+}

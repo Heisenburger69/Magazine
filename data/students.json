@@ -1,0 +1,34 @@
+{
+  "students": [
+    {
+      "id": "youssef-ahmed-sabry",
+      "name": "Youssef Ahmed Sabry",
+      "role": "Newspaper Editor & The CSE Science rep of Secondary",
+      "quote": "working on the school magazine is such an honour for me, I will gladly try to make this magazine the best there ever was in all of futures' schools",
+      "image": "Youssef.png",
+      "star": true,
+      "class": "Secondary",
+      "achievements": ["Academic Excellence", "Science Innovation"]
+    },
+    {
+      "id": "ahmed-alaadin-hassan",
+      "name": "Ahmed Alaadin Hassan Darmelli",
+      "role": "President of Preparatory",
+      "quote": "You fell down so what? Get back up. For it is our destiny to rise, and in that there's no doubt",
+      "image": "Ahmed.png",
+      "star": true,
+      "class": "Preparatory",
+      "achievements": ["Debate Champion", "Literary Excellence"]
+    },
+    {
+      "id": "yassin-ahmed-sabry",
+      "name": "Yassin Ahmed Sabry",
+      "role": "Reporter & Channel Manager",
+      "quote": "I suppose leadership at one time meant muscles, but today it means getting along with people.",
+      "image": "Yassin.webp",
+      "star": true,
+      "class": "Secondary",
+      "achievements": ["Leadership Award", "Digital Innovation"]
+    }
+  ]
+}

@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rising Times News - Rising Stars Language School</title>
+    <style>
+        /* ================================================================
+           GLOBAL STYLES & VARIABLES
+           ================================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #c9a84c;
+            --primary-black: #000;
+            --bg-cream: #f5f4f0;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 8px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 12px 24px rgba(0,0,0,0.18);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-black);
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-color: #e3d6a5;
+        }
+
+        /* ================================================================
+           BACKGROUND: R.png style scattered stars
+           ================================================================ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('R.png');
+            background-attachment: fixed;
+            background-repeat: repeat;
+            background-position: 0 0;
+            background-size: auto;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.7;
+        }
+
+        /* ================================================================
+           NAVIGATION BAR
+           ================================================================ */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(245, 244, 240, 0.98);
+            padding: 12px 30px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-gold);
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo-nav:hover {
+            transform: scale(1.08);
+        }
+
+        .logo-nav img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* NAV CENTER BUTTONS */
+        .nav-buttons {
+            display: flex;
+            gap: 30px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-black);
+            cursor: pointer;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        nav button::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+
+        nav button:hover::after,
+        nav button.active::after {
+            width: calc(100% - 10px);
+        }
+
+        nav button:hover {
+            color: var(--primary-gold);
+        }
+
+        nav button.active {
+            color: var(--primary-gold);
+        }
+
+        /* SOCIAL BUTTONS */
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+        }
+
+        .social-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px) scale(1.08);
+        }
+
+        .social-btn img {
+            height: 24px;
+            width: 24px;
+            object-fit: contain;
+        }
+
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-black);
+            margin: 5px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-8px, -8px);
+        }
+
+        /* ================================================================
+           CONTENT WRAPPER
+           ================================================================ */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: none;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* ================================================================
+           HERO/HOME SECTION
+           ================================================================ */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 60px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1) 0%, rgba(201, 168, 76, 0.05) 100%),
+                        url('598667564_1432670612202302_5971902914503656799_n.webp') center/cover no-repeat;
+            background-attachment: fixed;
+            animation: fadeInUp 0.8s ease-out;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(245, 244, 240, 0.75);
+            z-index: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1000px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .hero-logo-container {
+            flex: 0 0 auto;
+            cursor: pointer;
+        }
+
+        .hero-logo-container img {
+            height: 220px;
+            width: auto;
+            filter: drop-shadow(var(--shadow-md));
+            transition: transform 0.3s ease;
+        }
+
+        .hero-logo-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 64px;
+            font-weight: 900;
+            color: var(--primary-black);
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            text-shadow: 2px 2px 0px rgba(201, 168, 76, 0.2);
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 40px;
+            animation: slideInRight 0.8s ease-out 0.1s both;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-gold);
+            color: var(--primary-black);
+            padding: 12px 35px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            animation: slideInRight 0.8s ease-out 0.2s both;
+            border-radius: 4px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-black);
+            color: var(--primary-gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ================================================================
+           SECTIONS
+           ================================================================ */
+        section {
+            padding: 80px 60px;
+            position: relative;
+            width: 100%;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        section h2 {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary-black);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-gold);
+            animation: expandWidth 0.6s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 40px; }
+        }
+
+        /* ================================================================
+           ARTICLES GRID SYSTEM (CSS GRID - Easy to customize)
+           ================================================================
+           HOW TO USE:
+           1. Copy entire .article-card block below
+           2. Change grid position: grid-column: 1 / 2; grid-row: 1 / 2;
+           3. Update image src, title, excerpt, and link
+           4. That's it! No coding needed.
+           
+           GRID COORDINATES:
+           - grid-column: 1/2 (column 1), 1/3 (spans 2 cols), 1/4 (spans 3 cols)
+           - grid-row: 1/2 (row 1), 1/3 (spans 2 rows), 1/4 (spans 3 rows)
+           ================================================================ */
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            gap: 25px;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        /* ================================================================
+           ARTICLE CARD - Floating Gray Gradient Style
+           Copy this entire block to add new articles!
+           ================================================================ */
+        .article-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(230,230,230,0.8) 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            overflow: hidden;
+            grid-column: 1 / 2;
+            grid-row: auto;
+        }
+
+        /* Floating effect on hover */
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+        }
+
+        /* Featured article - spans 2 columns and 2 rows */
+        .article-card.featured {
+            grid-column: 1 / 3;
+            grid-row: 1 / 3;
+            min-height: auto;
+        }
+
+        .article-card .card-image {
+            width: 100%;
+            position: relative;
+            background-color: #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            padding-bottom: 75%; /* 4:3 aspect ratio */
+            height: 0;
+        }
+
+        .article-card .card-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-card.featured .card-image {
+            padding-bottom: 75%; /* Keep 4:3 for consistency across all cards */
+        }
+
+        .article-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--primary-black);
+            text-transform: uppercase;
+            margin: 10px 0 8px 0;
+        }
+
+        .article-card.featured .article-title {
+            font-size: 22px;
+        }
+
+        .article-excerpt {
+            font-size: 12px;
+            color: #333;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .article-card.featured .article-excerpt {
+            font-size: 14px;
+        }
+
+        /* ================================================================
+           OTHER SECTIONS (Team, School)
+           ================================================================ */
+        .about-us {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            text-align: center;
+        }
+
+        .team-card .card-image {
+            height: 250px;
+            border-radius: 8px;
+        }
+
+        .team-member-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-black);
+            margin-top: 15px;
+        }
+
+        .team-member-role {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin: 5px 0 12px 0;
+        }
+
+        .quote {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(230,230,230,0.8) 100%);
+            border: none;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--primary-black);
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--primary-black);
+            position: absolute;
+            top: -5px;
+            left: 8px;
+            opacity: 0.2;
+        }
+
+        /* ================================================================
+           FOOTER
+           ================================================================ */
+        footer {
+            background-color: var(--primary-black);
+            color: var(--primary-gold);
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 2px solid var(--primary-gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 8px 0;
+        }
+
+        /* ================================================================
+           RESPONSIVE DESIGN
+           ================================================================ */
+        @media (max-width: 1024px) {
+            section {
+                padding: 60px 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            section h2 {
+                font-size: 36px;
+            }
+
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .article-card.featured {
+                grid-column: 1 / 2;
+                grid-row: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: row;
+                padding: 10px 20px;
+            }
+
+            .nav-buttons {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(245, 244, 240, 0.98);
+                flex-direction: column;
+                gap: 0;
+                justify-content: flex-start;
+                padding: 20px 0;
+                border-bottom: 2px solid var(--primary-gold);
+            }
+
+            .nav-buttons.active {
+                display: flex;
+            }
+
+            .nav-buttons button {
+                padding: 15px 30px;
+                border-bottom: 1px solid #eee;
+                font-size: 14px;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .social-buttons {
+                margin-left: 10px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .hero-logo-container img {
+                height: 150px;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .hero-text p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 50px 20px;
+            }
+
+            section h2 {
+                font-size: 24px;
+            }
+
+            .about-us {
+                grid-template-columns: 1fr;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card.featured {
+                grid-column: 1 / 2;
+                grid-row: auto;
+            }
+
+            .article-card {
+                min-height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ================================================================
+         NAVIGATION BAR
+         ================================================================ -->
+    <nav>
+        <div class="logo-nav clickable" onclick="goHome()" title="Back to home">
+            <img src="logo.png" alt="Logo">
+        </div>
+
+        <div class="nav-buttons" id="navButtons">
+            <button class="nav-btn active" data-section="home">Home</button>
+            <button class="nav-btn" data-section="articles">Latest News</button>
+            <button class="nav-btn" data-section="about">About Us</button>
+            <button class="nav-btn" onclick="goToTopStudents()">Top Students</button>
+        </div>
+        
+        <div class="social-buttons">
+            <button class="social-btn" onclick="window.open('https://www.instagram.com/risingtimesofficial', '_blank')" title="Instagram">
+                <img src="1776904803472_image.webp" alt="Instagram" style="height: 30px; width: 30px;">
+            </button>
+            </button>
+            <button class="social-btn" onclick="window.open('https://www.facebook.com/risingtimes', '_blank')" title="Facebook">
+                <img src="facebook.png" alt="Facebook" style="height: 40px; width: 40px;">
+            </button>
+        </div>
+
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- ================================================================
+         MAIN CONTENT WRAPPER
+         ================================================================ -->
+    <div class="content-wrapper">
+        <!-- ================================================================
+             HERO/HOME SECTION
+             ================================================================ -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div>
+                    <img src="logo1.png" alt="Logo" style="height: 200px; width: 250px;">
+            </button>
+                </div>
+                <div class="hero-text">
+                    <h1>The Rising Times</h1>
+                    <p>Celebrating Excellence at Rising Stars Language School</p>
+                    <button class="cta-button" onclick="scrollToSection('articles')">Read News</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             LATEST NEWS / ARTICLES SECTION
+             
+             INSTRUCTIONS: To add new article boxes:
+             1. Copy the entire <div class="article-card"> block below
+             2. Change these values:
+                - grid-column and grid-row for position/size
+                - src="image.png" to your image
+                - article-title text
+                - article-excerpt text
+                - onclick="window.location.href='article-1.html'" to your article file
+             3. Done!
+             
+             GRID POSITIONING GUIDE:
+             - grid-column: 1/2 = column 1 only
+             - grid-column: 1/3 = spans columns 1-2
+             - grid-column: 1/4 = spans columns 1-3
+             - grid-row: 1/2 = row 1 only
+             - grid-row: 1/3 = spans rows 1-2
+             ================================================================ -->
+        
+        <section id="articles">
+            <h2>Latest News</h2>
+            <div class="articles-grid">
+                
+                <!-- ARTICLE BOX 1 - FEATURED (spans 2 cols, 2 rows) -->
+                <div class="article-card featured clickable" onclick="window.location.href='article-1.html'" style="grid-column: 1/3; grid-row: 1/3;">
+                    <div class="card-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23ddd' width='100' height='100'/%3E%3C/svg%3E" alt="Article">
+                    </div>
+                    <div class="article-title">School Hosts Annual Science Fair 2024</div>
+                    <div class="article-excerpt">Students showcase innovative projects and cutting-edge concepts. The event highlights commitment to STEM education and hands-on learning experiences.</div>
+                </div>
+
+                <!-- ARTICLE BOX 2 -->
+                <div class="article-card clickable" onclick="window.location.href='article-2.html'" style="grid-column: 3/4; grid-row: 1/2;">
+                    <div class="card-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23ddd' width='100' height='100'/%3E%3C/svg%3E" alt="Article">
+                    </div>
+                    <div class="article-title">Smart Board Technology</div>
+                    <div class="article-excerpt">Latest teaching tech enhances interactive learning in classrooms.</div>
+                </div>
+
+                <!-- ARTICLE BOX 3 -->
+                <div class="article-card clickable" onclick="window.location.href='article-3.html'" style="grid-column: 3/4; grid-row: 2/3;">
+                    <div class="card-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23ddd' width='100' height='100'/%3E%3C/svg%3E" alt="Article">
+                    </div>
+                    <div class="article-title">International Olympiad</div>
+                    <div class="article-excerpt">Rising Stars students excel in international mathematics competition.</div>
+                </div>
+
+                <!-- ARTICLE BOX 4 -->
+                <div class="article-card clickable" onclick="window.location.href='article-4.html'" style="grid-column: 1/2; grid-row: 3/4;">
+                    <div class="card-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23ddd' width='100' height='100'/%3E%3C/svg%3E" alt="Article">
+                    </div>
+                    <div class="article-title">Garden Renovation</div>
+                    <div class="article-excerpt">New eco-friendly garden initiative for student learning.</div>
+                </div>
+
+                <!-- ARTICLE BOX 5 -->
+                <div class="article-card clickable" onclick="window.location.href='article-5.html'" style="grid-column: 2/3; grid-row: 3/4;">
+                    <div class="card-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23ddd' width='100' height='100'/%3E%3C/svg%3E" alt="Article">
+                    </div>
+                    <div class="article-title">Debate Championship</div>
+                    <div class="article-excerpt">Students demonstrate oratory and critical thinking skills.</div>
+                </div>
+
+                <!-- ARTICLE BOX 6 -->
+                <div class="article-card clickable" onclick="window.location.href='article-6.html'" style="grid-column: 3/4; grid-row: 3/4;">
+                    <div class="card-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23ddd' width='100' height='100'/%3E%3C/svg%3E" alt="Article">
+                    </div>
+                    <div class="article-title">Language Day</div>
+                    <div class="article-excerpt">Students showcase multilingual talents and cultural diversity.</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================================================================
+             ABOUT US SECTION
+             ================================================================ -->
+        <section id="about">
+            <h2>About Us</h2>
+            <div class="about-us">
+                <!-- TEAM MEMBER 1: YOUSSEF -->
+                <div class="team-card">
+                    <div class="quote">
+                        <img src="Youssef.png" class="card-image" alt="Youssef">
+                        <div class="team-member-name">Youssef Ahmed Sabry</div>
+                        <div class="team-member-role">Newspaper Editor & The CSE Science rep of Secondary</div>
+                        <div class="quote" style="margin-top: 12px;">"“working on the school magazine is such an honour for me, I will gladly try to make this magazine the best there ever was in all of futures’ schools”"</div>
+                    </div>
+                </div>
+
+                <!-- TEAM MEMBER 2: AHMED -->
+                <div class="team-card">
+                    <div class="quote">
+                        <img src="Ahmed.png" class="card-image" alt="Ahmed">
+                        <div class="team-member-name">Ahmed Alaadin Hassan Darmelli</div>
+                        <div class="team-member-role">President of Preparatory</div>
+                        <div class="quote" style="margin-top: 12px;">""You fell down so what? Get back up. For it is our destiny to rise, and in that there's no doubt""</div>
+                    </div>
+                </div>
+
+                <!-- TEAM MEMBER 3: YASSIN -->
+                <div class="team-card">
+                    <div class="quote">
+                        <img src="Yassin.webp" class="card-image" alt="Yassin">
+                        <div class="team-member-name">Yassin Ahmed Sabry</div>
+                        <div class="team-member-role">Reporter & Channel Manager</div>
+                        <div class="quote" style="margin-top: 12px;">"“I suppose leadership at one time meant muscles, but today it means getting along with people.”"</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             ABOUT OUR SCHOOL SECTION
+             ================================================================ -->
+        <section id="school">
+            <h2>Our School</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-top: 40px;">
+                <div class="quote">
+                    <ul style="list-style: none; font-size: 14px; color: var(--primary-black); line-height: 1.8; font-weight: 500;">
+                        <li style="text-transform: uppercase; margin-bottom: 12px; font-size: 13px;">★ Private school owned by futures education system</li>
+                        <li style="text-transform: uppercase; margin-bottom: 12px; font-size: 13px;">★ Modern school with smart boards and science labs</li>
+                        <li style="text-transform: uppercase; margin-bottom: 12px; font-size: 13px;">★ Beautiful garden for student activities</li>
+                        <li style="text-transform: uppercase; margin-bottom: 12px; font-size: 13px;">★ Committed to excellence and innovation</li>
+                    </ul>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <!-- School Building Image - 4:3 aspect ratio -->
+                    <div style="position: relative; width: 100%; padding-bottom: 75%; border: none; border-radius: 8px; overflow: hidden; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <img src="School.png" alt="School" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <!-- Group Photo - 4:3 aspect ratio -->
+                    <div style="position: relative; width: 100%; padding-bottom: 75%; border: none; border-radius: 8px; overflow: hidden; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <img src="598667564_1432670612202302_5971902914503656799_n.webp" alt="School" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
+    <footer>
+        <p><strong>THE RISING TIMES NEWS</strong></p>
+        <p>Rising Stars Language School | Futures Education System</p>
+        <p style="margin-top: 15px; font-size: 11px; opacity: 0.8;">© 2024 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        /* ================================================================
+           HAMBURGER MENU TOGGLE
+           ================================================================ */
+        function toggleMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navButtons = document.getElementById('navButtons');
+            hamburger.classList.toggle('active');
+            navButtons.classList.toggle('active');
+        }
+
+        /* ================================================================
+           NAVIGATION
+           ================================================================ */
+        const navButtons = document.querySelectorAll('.nav-btn');
+        
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const section = button.getAttribute('data-section');
+                scrollToSection(section);
+                // Close menu on mobile
+                document.getElementById('hamburger').classList.remove('active');
+                document.getElementById('navButtons').classList.remove('active');
+            });
+        });
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            let currentSection = '';
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                if (window.pageYOffset >= section.offsetTop - 100) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            navButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-section') === currentSection) {
+                    btn.classList.add('active');
+                }
+            });
+        });
+
+        function goHome() {
+            window.location.href = 'index.html#home';
+        }
+
+        function goToTopStudents() {
+            window.location.href = 'top-students.html';
+        }
+
+        console.log('✅ Website loaded!');
+    </script>
+</body>
+</html>

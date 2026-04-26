@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Rising Stars Magazine</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-login {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            background: var(--bg-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+        .admin-login h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .error-msg {
+            background: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        .tab-btn.active {
+            opacity: 1;
+            color: var(--primary-gold);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .items-list {
+            margin-bottom: 30px;
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        .item-row button {
+            padding: 6px 12px;
+            background: #ffebee;
+            border: none;
+            border-radius: 4px;
+            color: #c62828;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .add-form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .student-entry {
+            background: rgba(201, 168, 76, 0.1);
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        .student-entry.active {
+            display: block;
+        }
+        .add-student-btn {
+            background: var(--primary-gold);
+            color: var(--primary-black);
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        .slideshow-preview {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .slideshow-preview img {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-stars"></div>
+    
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="admin-login wrapper">
+        <h2>Admin Login</h2>
+        <div class="error-msg" id="loginError">Incorrect password. Try again.</div>
+        <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-input" id="passwordInput" placeholder="Enter admin password">
+        </div>
+        <button class="btn btn-primary" onclick="checkPassword()" style="width:100%">Login</button>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div id="adminPanel" style="display:none;">
+        <div class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <button class="btn btn-secondary" onclick="logout()" style="margin-left:20px">Logout</button>
+        </div>
+
+        <div class="wrapper admin-panel">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('events')">Events</button>
+                <button class="tab-btn" onclick="switchTab('students')">Students</button>
+                <button class="tab-btn" onclick="switchTab('add')">Add New</button>
+            </div>
+
+            <!-- EVENTS TAB -->
+            <div class="tab-content active" id="eventsTab">
+                <h3>All Events</h3>
+                <div class="items-list" id="eventsList"></div>
+            </div>
+
+            <!-- STUDENTS TAB -->
+            <div class="tab-content" id="studentsTab">
+                <h3>All Students</h3>
+                <div class="items-list" id="studentsList"></div>
+            </div>
+
+            <!-- ADD NEW TAB -->
+            <div class="tab-content" id="addTab">
+                <h3>Add New Event</h3>
+                <div class="add-form">
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-input" id="newTitle" placeholder="Event title">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Excerpt</label>
+                        <textarea class="form-textarea" id="newExcerpt" placeholder="Event description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Article Type</label>
+                        <select class="form-select" id="newType" onchange="toggleTypeFields()">
+                            <option value="text-only">Text Only</option>
+                            <option value="image-text">Image + Text</option>
+                            <option value="full-image">Full Image</option>
+                            <option value="text-image">Text then Image</option>
+                            <option value="slideshow">Slideshow</option>
+                            <option value="video">Video</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="imageField">
+                        <label class="form-label">Image</label>
+                        <input type="text" class="form-input" id="newImage" placeholder="Image filename">
+                    </div>
+                    <div class="form-group" id="imagePosField" style="display:none;">
+                        <label class="form-label">Image Position</label>
+                        <select class="form-select" id="newImagePos">
+                            <option value="left">Image Left</option>
+                            <option value="right">Image Right</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="videoField" style="display:none;">
+                        <label class="form-label">Video URL (YouTube embed)</label>
+                        <input type="text" class="form-input" id="newVideo" placeholder="https://www.youtube.com/embed/...">
+                    </div>
+                    <div class="form-group" id="slideshowField" style="display:none;">
+                        <label class="form-label">Slideshow Images (comma separated)</label>
+                        <input type="text" class="form-input" id="newImages" placeholder="img1.jpg, img2.jpg, img3.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Featured</label>
+                        <select class="form-select" id="newFeatured">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select class="form-select" id="newCategory">
+                            <option value="Academic">Academic</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Cultural">Cultural</option>
+                            <option value="Sports">Sports</option>
+                            <option value="School">School</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Students (optional)</label>
+                        <div id="studentFields">
+                            <button type="button" class="add-student-btn" onclick="addStudentField()">+ Add Student</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="addEvent()">Add Event</button>
+                </div>
+
+                <h3 style="margin-top:40px;">Add New Student</h3>
+                <div class="add-form">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-input" id="studentName" placeholder="Student name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Role</label>
+                        <input type="text" class="form-input" id="studentRole" placeholder="e.g., President, Editor">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Quote</label>
+                        <textarea class="form-textarea" id="studentQuote" placeholder="What they said..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Image</label>
+                        <input type="text" class="form-input" id="studentImage" placeholder="Image filename">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Class</label>
+                        <select class="form-select" id="studentClass">
+                            <option value="Preparatory">Preparatory</option>
+                            <option value="Secondary">Secondary</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Star Student</label>
+                        <select class="form-select" id="studentStar">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="addStudent()">Add Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASSWORD = 'admin123';
+        let events = { events: [] };
+        let students = { students: [] };
+        let studentCount = 0;
+
+        async function loadData() {
+            try {
+                const [e, s] = await Promise.all([
+                    fetch('data/events.json'),
+                    fetch('data/students.json')
+                ]);
+                events = await e.json();
+                students = await s.json();
+            } catch (err) {
+                console.log('Using demo data');
+            }
+            renderLists();
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            if (input === ADMIN_PASSWORD) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                loadData();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        }
+
+        function logout() {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'block';
+            document.getElementById('passwordInput').value = '';
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tab + 'Tab').classList.add('active');
+        }
+
+        function renderLists() {
+            const eventsList = document.getElementById('eventsList');
+            eventsList.innerHTML = events.events.map((e, i) => `
+                <div class="item-row">
+                    <span>${e.title}</span>
+                    <button onclick="deleteEvent(${i})">Delete</button>
+                </div>
+            `).join('') || '<p>No events yet</p>';
+
+            const studentsList = document.getElementById('studentsList');
+            studentsList.innerHTML = students.students.map((s, i) => `
+                <div class="item-row">
+                    <span>${s.name} ${s.star ? '★' : ''}</span>
+                    <button onclick="deleteStudent(${i})">Delete</button>
+                </div>
+            `).join('') || '<p>No students yet</p>';
+        }
+
+        function toggleTypeFields() {
+            const type = document.getElementById('newType').value;
+            document.getElementById('imageField').style.display = ['image-text', 'full-image', 'text-image'].includes(type) ? 'block' : 'none';
+            document.getElementById('imagePosField').style.display = type === 'image-text' ? 'block' : 'none';
+            document.getElementById('videoField').style.display = type === 'video' ? 'block' : 'none';
+            document.getElementById('slideshowField').style.display = type === 'slideshow' ? 'block' : 'none';
+        }
+
+        function addStudentField() {
+            studentCount++;
+            const container = document.getElementById('studentFields');
+            const btn = container.querySelector('.add-student-btn');
+            const div = document.createElement('div');
+            div.className = 'student-entry active';
+            div.id = 'studentEntry' + studentCount;
+            div.innerHTML = `
+                <input type="text" class="form-input" placeholder="Student name" id="eventStudent${studentCount}" style="margin-bottom:8px">
+                <input type="text" class="form-input" placeholder="Role in event" id="eventRole${studentCount}" style="margin-bottom:8px">
+                <input type="text" class="form-input" placeholder="Achievement" id="eventAchievement${studentCount}">
+            `;
+            container.insertBefore(div, btn);
+        }
+
+        function addEvent() {
+            const title = document.getElementById('newTitle').value;
+            if (!title) { alert('Title required'); return; }
+
+            const type = document.getElementById('newType').value;
+            const newEvent = {
+                id: title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+                title: title,
+                excerpt: document.getElementById('newExcerpt').value || 'Event at Rising Stars Language School.',
+                type: type,
+                featured: document.getElementById('newFeatured').value === 'true',
+                students: [],
+                date: new Date().getFullYear().toString(),
+                category: document.getElementById('newCategory').value
+            };
+
+            if (['image-text', 'full-image', 'text-image'].includes(type)) {
+                newEvent.image = document.getElementById('newImage').value;
+                newEvent.imagePosition = document.getElementById('newImagePos').value;
+            }
+            if (type === 'video') newEvent.video = document.getElementById('newVideo').value;
+            if (type === 'slideshow') newEvent.images = document.getElementById('newImages').value.split(',').map(s => s.trim());
+
+            for (let i = 1; i <= studentCount; i++) {
+                const name = document.getElementById('eventStudent' + i);
+                if (name && name.value) {
+                    newEvent.students.push({
+                        name: name.value,
+                        role: document.getElementById('eventRole' + i)?.value || '',
+                        achievement: document.getElementById('eventAchievement' + i)?.value || ''
+                    });
+                }
+            }
+
+            events.events.unshift(newEvent);
+            saveData('events');
+            
+            document.getElementById('newTitle').value = '';
+            document.getElementById('newExcerpt').value = '';
+            alert('Event added!');
+            renderLists();
+        }
+
+        function addStudent() {
+            const name = document.getElementById('studentName').value;
+            if (!name) { alert('Name required'); return; }
+
+            const newStudent = {
+                id: name.toLowerCase().replace(/\s+/g, '-'),
+                name: name,
+                role: document.getElementById('studentRole').value,
+                quote: document.getElementById('studentQuote').value,
+                image: document.getElementById('studentImage').value,
+                star: document.getElementById('studentStar').value === 'true',
+                class: document.getElementById('studentClass').value,
+                achievements: []
+            };
+
+            students.students.push(newStudent);
+            saveData('students');
+            
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentRole').value = '';
+            document.getElementById('studentQuote').value = '';
+            alert('Student added!');
+            renderLists();
+        }
+
+        function deleteEvent(index) {
+            if (confirm('Delete this event?')) {
+                events.events.splice(index, 1);
+                saveData('events');
+                renderLists();
+            }
+        }
+
+        function deleteStudent(index) {
+            if (confirm('Delete this student?')) {
+                students.students.splice(index, 1);
+                saveData('students');
+                renderLists();
+            }
+        }
+
+        function saveData(type) {
+            const data = type === 'events' ? events : students;
+            console.log('Saving', type, JSON.stringify(data, null, 4));
+            alert(type + ' saved! (In browser only - needs backend to persist)');
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

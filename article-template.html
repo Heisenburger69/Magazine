@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - The Rising Times News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #c9a84c;
+            --primary-black: #000;
+            --bg-cream: #f5f4f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f4f0;
+            color: var(--primary-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background with R.png */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('R.png');
+            background-attachment: fixed;
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.7;
+        }
+
+        /* ================================================================
+           NAVIGATION
+           ================================================================ */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(245, 244, 240, 0.98);
+            padding: 12px 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-gold);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo-nav:hover {
+            transform: scale(1.08);
+        }
+
+        .logo-nav img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 30px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-black);
+            cursor: pointer;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        nav button:hover {
+            color: var(--primary-gold);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+        }
+
+        .social-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-btn img {
+            height: 24px;
+            width: 24px;
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        /* ================================================================
+           MAIN CONTENT
+           ================================================================ */
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .article-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary-black);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .article-meta {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Featured image */
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        /* Article text */
+        .article-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(230,230,230,0.8) 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        /* ================================================================
+           VIDEO PLAYERS SECTION
+           ================================================================
+           
+           HOW TO ADD YOUTUBE VIDEOS:
+           
+           Replace the YouTube video IDs below with your own:
+           - Find video ID: youtube.com/watch?v=[VIDEO_ID]
+           - Example: youtube.com/watch?v=dQw4w9WgXcQ → dQw4w9WgXcQ
+           - Change src="https://www.youtube.com/embed/CHANGE_ME"
+           
+           ================================================================ */
+        
+        .videos-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid var(--primary-gold);
+        }
+
+        .videos-section h3 {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary-black);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        /* ================================================================
+           FOOTER
+           ================================================================ */
+        footer {
+            background-color: var(--primary-black);
+            color: var(--primary-gold);
+            padding: 40px;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 2px solid var(--primary-gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 8px 0;
+        }
+
+        /* ================================================================
+           RESPONSIVE
+           ================================================================ */
+        @media (max-width: 768px) {
+            nav {
+                padding: 10px 20px;
+            }
+
+            .logo-nav img {
+                height: 40px;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .content {
+                padding: 40px 20px;
+            }
+
+            .article-title {
+                font-size: 32px;
+            }
+
+            .featured-image {
+                height: 250px;
+            }
+
+            .article-content {
+                padding: 30px 20px;
+                font-size: 15px;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ================================================================
+         NAVIGATION (Same as index)
+         ================================================================ -->
+    <nav>
+        <div class="logo-nav" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <img src="logo1.png" alt="Logo">
+        </div>
+
+        <div class="nav-buttons">
+            <button onclick="window.location.href='index.html#home'">Home</button>
+            <button onclick="window.location.href='index.html#articles'">Latest News</button>
+            <button onclick="window.location.href='index.html#about'">About Us</button>
+            <button onclick="window.location.href='top-students.html'">Top Students</button>
+        </div>
+        
+        <div class="social-buttons">
+            <button class="social-btn" onclick="window.open('https://www.instagram.com/risingtimesofficial', '_blank')">
+                <img src="1776904803472_image.webp" alt="Instagram">
+            </button>
+            <button class="social-btn" onclick="window.open('https://www.facebook.com/risingtimes', '_blank')">
+                <img src="logo.png" alt="Facebook" style="height: 20px; width: 20px;">
+            </button>
+        </div>
+    </nav>
+
+    <!-- ================================================================
+         ARTICLE CONTENT
+         ================================================================
+         
+         INSTRUCTIONS: TO CUSTOMIZE THIS ARTICLE
+         
+         1. CHANGE ARTICLE TITLE:
+            Find: <h1 class="article-title">
+            Replace: "Article Title Here" with your title
+         
+         2. CHANGE FEATURED IMAGE:
+            Find: <img class="featured-image" src=
+            Replace: "image.png" with your image filename
+         
+         3. CHANGE ARTICLE TEXT:
+            Find: <div class="article-content">
+            Edit the <p> paragraphs with your content
+         
+         4. ADD YOUTUBE VIDEOS:
+            Find: src="https://www.youtube.com/embed/CHANGE_ME"
+            Replace: CHANGE_ME with YouTube video ID
+            
+            Example: youtube.com/watch?v=dQw4w9WgXcQ → dQw4w9WgXcQ
+         
+         ================================================================ -->
+    
+    <div class="content">
+        <!-- Article Header -->
+        <div class="article-header">
+            <h1 class="article-title">Change This Article Title</h1>
+            <p class="article-meta">Published in The Rising Times News</p>
+        </div>
+
+        <!-- Featured Image -->
+        <!-- CHANGE IMAGE: Replace "image.png" with your image filename -->
+        <img class="featured-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23ddd' width='400' height='300'/%3E%3C/svg%3E" alt="Article image">
+
+        <!-- Article Content -->
+        <div class="article-content">
+            <p>
+                Replace this paragraph with your article content. You can write as much as you want. 
+                This is your main story text area. Make it engaging and informative!
+            </p>
+
+            <p>
+                Add more paragraphs here to tell your story. Each paragraph should be wrapped in &lt;p&gt; tags like this one.
+                The styling will automatically apply.
+            </p>
+
+            <p>
+                Continue your article content here. You can have as many paragraphs as you need.
+                The layout will automatically adjust to fit all your text.
+            </p>
+        </div>
+
+        <!-- Videos Section -->
+        <div class="videos-section">
+            <h3>Event Highlights</h3>
+            <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 14px;">
+                Watch the videos below to see the highlights from this event:
+            </p>
+
+            <div class="videos-grid">
+                <!-- VIDEO 1 -->
+                <!-- CHANGE VIDEO: Replace "CHANGE_ME" with YouTube video ID -->
+                <!-- Example: youtube.com/watch?v=dQw4w9WgXcQ → Use: dQw4w9WgXcQ -->
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/CHANGE_ME" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <!-- VIDEO 2 -->
+                <!-- CHANGE VIDEO: Replace "CHANGE_ME" with YouTube video ID -->
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/CHANGE_ME" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
+    <footer>
+        <p><strong>THE RISING TIMES NEWS</strong></p>
+        <p>Rising Stars Language School | Futures Education System</p>
+        <p style="margin-top: 15px; font-size: 11px; opacity: 0.8;">© 2024 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        console.log('✅ Article page loaded!');
+    </script>
+</body>
+</html>
