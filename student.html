@@ -6,172 +6,63 @@
     <title>Student Profile - Rising Stars Magazine</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .profile-header {
-            background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(245, 244, 240, 0.9));
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .profile-header img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary-gold);
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 20px;
-        }
-
-        .profile-header h1 {
-            margin-bottom: 8px;
-        }
-
-        .profile-header .role {
-            font-size: 16px;
-            color: #666;
-            font-style: italic;
-        }
-
-        .profile-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .profile-quote {
-            background: var(--bg-white);
-            padding: 24px;
-            border-radius: 12px;
-            font-size: 18px;
-            font-style: italic;
-            color: #333;
-            border-left: 4px solid var(--primary-gold);
-            margin-bottom: 30px;
-        }
-
-        .events-section h2 {
-            margin-bottom: 24px;
-        }
-
-        .event-mini {
-            background: var(--bg-white);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-sm);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .event-mini:hover {
-            transform: translateX(8px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .event-mini-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .event-mini-excerpt {
-            font-size: 13px;
-            color: #555;
-            margin-bottom: 12px;
-        }
-
-        .achievement-tag {
-            display: inline-block;
-            background: var(--primary-gold);
-            color: var(--primary-black);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .profile-header img {
-                width: 140px;
-                height: 140px;
-            }
-            .profile-header h1 {
-                font-size: 28px;
-            }
-        }
+        .profile-header { background: linear-gradient(135deg, var(--primary-black) 0%, #2a2520 100%); padding: 70px 20px; text-align: center; }
+        .profile-header h1 { color: var(--primary-gold); }
+        .profile-header img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary-gold); box-shadow: 0 6px 24px rgba(201,168,76,0.4); margin-bottom: 20px; }
+        .profile-header .role { font-size: 16px; color: rgba(255,255,255,0.7); font-style: italic; }
+        .profile-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .profile-quote { background: var(--bg-white); padding: 24px; border-radius: 12px; font-size: 18px; font-style: italic; color: #333; border-left: 4px solid var(--primary-gold); margin-bottom: 30px; }
+        .event-mini { background: var(--bg-white); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm); cursor: pointer; transition: var(--transition); }
+        .event-mini:hover { transform: translateX(8px); box-shadow: var(--shadow-md); }
+        .event-mini-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .event-mini-excerpt { font-size: 13px; color: #555; margin-bottom: 12px; }
+        .achievement-tag { display: inline-block; background: var(--primary-gold); color: var(--primary-black); padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+        @media (max-width: 768px) { .profile-header img { width: 140px; height: 140px; } .profile-header h1 { font-size: 28px; } }
     </style>
 </head>
 <body>
     <div class="bg-stars"></div>
 
-    <!-- NAV -->
     <nav class="navbar">
         <div class="container flex justify-between items-center">
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="Logo">
-            </a>
-            <a href="index.html" class="btn btn-primary" style="padding:8px 16px;font-size:12px;">← Home</a>
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Logo"></a>
+            <a href="index.html" class="btn btn-primary" style="padding:8px 16px;font-size:12px;">&larr; Home</a>
         </div>
     </nav>
 
-    <!-- PROFILE HEADER -->
     <div class="profile-header">
         <img src="" alt="Student" id="profileImage" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27180%27 height=%27180%27%3E%3Ccircle cx=%2790%27 cy=%2790%27 r=%2790%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
         <h1 id="profileName">Loading...</h1>
         <p class="role" id="profileRole"></p>
     </div>
 
-    <!-- PROFILE CONTENT -->
     <div class="profile-content">
         <div class="profile-quote" id="profileQuote"></div>
-
         <div class="events-section">
             <h2>Events</h2>
             <div id="eventsList"></div>
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <p><strong>THE RISING TIMES NEWS</strong></p>
             <p>Rising Stars Language School</p>
-            <p>© 2024 All Rights Reserved</p>
+            <p>&copy; 2024 All Rights Reserved</p>
         </div>
     </footer>
 
+    <script src="js/data.js"></script>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const studentName = urlParams.get('name') || '';
+        const studentName = new URLSearchParams(window.location.search).get('name') || '';
 
-        let eventsData = { events: [] };
-        let studentsData = { students: [] };
-
-        async function loadData() {
-            try {
-                const [e, s] = await Promise.all([
-                    fetch('data/events.json'),
-                    fetch('data/students.json')
-                ]);
-                eventsData = await e.json();
-                studentsData = await s.json();
-            } catch (err) {
-                loadDemoData();
-            }
+        async function init() {
+            await DataStore.load();
             loadProfile();
         }
 
-        function loadDemoData() {
-            eventsData = { events: [
-                { id: "science-fair-2024", title: "Science Fair", excerpt: "Students showcase projects", students: [{name:"Youssef Ahmed Sabry",role:"Science Rep",achievement:"First Place"}] },
-                { id: "olympiad", title: "International Olympiad", excerpt: "Math competition", students: [{name:"Youssef Ahmed Sabry",role:"Team Member",achievement:"Silver Medal"}] }
-            ]};
-            studentsData = { students: [{ name: "Youssef Ahmed Sabry", role: "Editor", quote: "Quote here", image: "Youssef.png", star: true }] };
-        }
-
         function loadProfile() {
-            const student = studentsData.students.find(s => s.name === studentName);
-            
+            const student = DataStore.getStudent(studentName);
             if (!student) {
                 document.getElementById('profileName').textContent = studentName || 'Student Not Found';
                 document.getElementById('eventsList').innerHTML = '<p>No student found.</p>';
@@ -183,22 +74,20 @@
             document.getElementById('profileQuote').textContent = '"' + student.quote + '"';
             document.getElementById('profileImage').src = student.image || '';
 
-            // Find events where this student participated
-            const studentEvents = eventsData.events.filter(e => 
-                e.students && e.students.some(s => s.name === studentName)
-            );
-
+            const studentEvents = DataStore.getStudentEvents(studentName);
             const eventsList = document.getElementById('eventsList');
+
             if (studentEvents.length > 0) {
                 eventsList.innerHTML = studentEvents.map(event => {
-                    const studentInfo = event.students.find(s => s.name === studentName);
+                    const excerpt = DataStore.getEventExcerpt(event);
+                    const eventStudents = DataStore.getEventStudents(event);
+                    const studentInfo = eventStudents.find(s => s.name === studentName);
                     return `
                         <div class="event-mini" onclick="viewArticle('${event.id}')">
                             <div class="event-mini-title">${event.title}</div>
-                            <div class="event-mini-excerpt">${event.excerpt}</div>
-                            ${studentInfo?.role || studentInfo?.achievement ? `<span class="achievement-tag">${studentInfo.role || 'Participant'} ${studentInfo.achievement ? '- ' + studentInfo.achievement : ''}</span>` : ''}
-                        </div>
-                    `;
+                            <div class="event-mini-excerpt">${excerpt}</div>
+                            ${studentInfo ? `<span class="achievement-tag">${studentInfo.role || 'Participant'} ${studentInfo.achievement ? '- ' + studentInfo.achievement : ''}</span>` : ''}
+                        </div>`;
                 }).join('');
             } else {
                 eventsList.innerHTML = '<p>No events found for this student.</p>';
@@ -209,7 +98,7 @@
             window.location.href = 'article.html?id=' + id;
         }
 
-        loadData();
+        init();
     </script>
 </body>
 </html>

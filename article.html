@@ -6,271 +6,77 @@
     <title>Article - Rising Stars Magazine</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .article-header {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(245, 244, 240, 0.9));
-        }
-
-        .article-meta {
-            font-size: 14px;
-            color: #666;
-            margin-top: 16px;
-        }
-
-        .article-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* IMAGE TEXT LAYOUTS */
-        .article-image-text {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .article-image-text.reverse {
-            direction: rtl;
-        }
-
-        .article-image-text.reverse > * {
-            direction: ltr;
-        }
-
-        .article-image-text img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .article-full-image img {
-            width: 100%;
-            max-height: 500px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* SLIDESHOW */
-        .slideshow {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        .slideshow-images {
-            display: flex;
-            transition: transform 0.5s ease;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .slideshow-images img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .slideshow-nav {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .slideshow-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ddd;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .slideshow-dot.active {
-            background: var(--primary-gold);
-        }
-
-        .slideshow-arrows {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 10px;
-            pointer-events: none;
-        }
-
-        .slideshow-arrow {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.9);
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            pointer-events: auto;
-            transition: var(--transition);
-        }
-
-        .slideshow-arrow:hover {
-            background: var(--primary-gold);
-        }
-
-        /* VIDEO */
-        .article-video {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .article-video iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* STUDENTS IN ARTICLE */
-        .article-students {
-            background: rgba(201, 168, 76, 0.15);
-            padding: 24px;
-            border-radius: 12px;
-            margin: 30px 0;
-        }
-
-        .article-students h3 {
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        .student-card-mini {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 12px;
-            background: var(--bg-white);
-            border-radius: 8px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .student-card-mini:hover {
-            transform: translateX(8px);
-        }
-
-        .student-card-mini img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .student-card-mini-info {
-            flex: 1;
-        }
-
-        .student-card-mini-name {
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .student-card-mini-role {
-            font-size: 12px;
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .article-image-text {
-                grid-template-columns: 1fr;
-            }
-            .article-image-text.reverse {
-                direction: ltr;
-            }
-        }
+        .article-header { text-align: center; padding: 70px 20px; background: linear-gradient(135deg, var(--primary-black) 0%, #2a2520 100%); }
+        .article-header h1 { color: var(--primary-gold); }
+        .article-meta { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 16px; }
+        .article-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .article-image-text { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 40px; }
+        .article-image-text.reverse { direction: rtl; }
+        .article-image-text.reverse > * { direction: ltr; }
+        .article-image-text img { width: 100%; border-radius: 12px; box-shadow: var(--shadow-md); }
+        .article-full-image img { width: 100%; max-height: 500px; object-fit: cover; border-radius: 12px; margin-bottom: 30px; box-shadow: var(--shadow-lg); }
+        .slideshow { position: relative; margin-bottom: 40px; }
+        .slideshow-images { display: flex; transition: transform 0.5s ease; overflow: hidden; border-radius: 12px; }
+        .slideshow-images img { width: 100%; max-height: 400px; object-fit: cover; flex-shrink: 0; }
+        .slideshow-nav { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+        .slideshow-dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd; cursor: pointer; transition: var(--transition); }
+        .slideshow-dot.active { background: var(--primary-gold); }
+        .slideshow-arrows { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 10px; pointer-events: none; }
+        .slideshow-arrow { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; font-size: 18px; pointer-events: auto; transition: var(--transition); }
+        .slideshow-arrow:hover { background: var(--primary-gold); }
+        .article-video { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; }
+        .article-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .article-quote { background: var(--bg-white); padding: 24px; border-radius: 12px; border-left: 4px solid var(--primary-gold); margin: 30px 0; font-style: italic; font-size: 18px; }
+        .article-quote .quote-author { font-size: 14px; color: #666; margin-top: 12px; font-style: normal; font-weight: 600; }
+        .article-students { background: rgba(201,168,76,0.15); padding: 24px; border-radius: 12px; margin: 30px 0; }
+        .article-students h3 { font-size: 14px; margin-bottom: 16px; }
+        .student-card-mini { display: flex; align-items: center; gap: 16px; padding: 12px; background: var(--bg-white); border-radius: 8px; margin-bottom: 12px; cursor: pointer; transition: var(--transition); }
+        .student-card-mini:hover { transform: translateX(8px); }
+        .student-card-mini img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        .student-card-mini-info { flex: 1; }
+        .student-card-mini-name { font-weight: 700; font-size: 14px; }
+        .student-card-mini-role { font-size: 12px; color: #666; }
+        .article-text { margin-bottom: 30px; font-size: 16px; line-height: 1.8; }
+        @media (max-width: 768px) { .article-image-text { grid-template-columns: 1fr; } .article-image-text.reverse { direction: ltr; } }
     </style>
 </head>
 <body>
     <div class="bg-stars"></div>
 
-    <!-- NAV -->
     <nav class="navbar">
         <div class="container flex justify-between items-center">
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="Logo">
-            </a>
-            <a href="index.html" class="btn btn-primary" style="padding:8px 16px;font-size:12px;">← Back</a>
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Logo"></a>
+            <a href="index.html" class="btn btn-primary" style="padding:8px 16px;font-size:12px;">&larr; Back</a>
         </div>
     </nav>
 
-    <!-- ARTICLE -->
     <article>
         <div class="article-header">
             <h1 id="articleTitle">Loading...</h1>
             <p class="article-meta" id="articleMeta">Published in The Rising Times News</p>
         </div>
-
-        <div class="article-content" id="articleContent">
-            <!-- Dynamic content -->
-        </div>
+        <div class="article-content" id="articleContent"></div>
     </article>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <p><strong>THE RISING TIMES NEWS</strong></p>
             <p>Rising Stars Language School | Futures Education System</p>
-            <p>© 2024 All Rights Reserved</p>
+            <p>&copy; 2024 All Rights Reserved</p>
         </div>
     </footer>
 
+    <script src="js/data.js"></script>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const articleId = urlParams.get('id') || '';
+        const articleId = new URLSearchParams(window.location.search).get('id') || '';
 
-        let eventsData = { events: [] };
-        let studentsData = { students: [] };
-
-        async function loadData() {
-            try {
-                const [e, s] = await Promise.all([
-                    fetch('data/events.json'),
-                    fetch('data/students.json')
-                ]);
-                eventsData = await e.json();
-                studentsData = await s.json();
-            } catch (err) {
-                loadDemoData();
-            }
+        async function init() {
+            await DataStore.load();
             loadArticle();
         }
 
-        function loadDemoData() {
-            eventsData = {
-                events: [
-                    { id: "science-fair-2024", title: "School Hosts Annual Science Fair 2024", excerpt: "Students showcase innovative projects and cutting-edge concepts.", type: "image-text", image: "englishday1.jpg", imagePosition: "left", featured: true, students: [{name:"Youssef Ahmed Sabry",role:"Science Rep",achievement:"First Place"}], date: "2024", category: "Academic" }
-                ]
-            };
-            studentsData = {
-                students: [{ id: "youssef-ahmed-sabry", name: "Youssef Ahmed Sabry", role: "Editor", image: "Youssef.png", star: true, achievements: [""] }]
-            };
-        }
-
         function loadArticle() {
-            const article = eventsData.events.find(e => e.id === articleId);
-            
+            const article = DataStore.getEvent(articleId);
             if (!article) {
                 document.getElementById('articleTitle').textContent = 'Article Not Found';
                 document.getElementById('articleContent').innerHTML = '<p>The requested article could not be found.</p>';
@@ -281,108 +87,65 @@
             document.getElementById('articleMeta').textContent = `Published in The Rising Times News | ${article.category || 'News'} | ${article.date || ''}`;
 
             const content = document.getElementById('articleContent');
-            let mainContent = '';
-            let studentSection = '';
+            let html = '';
 
-            // RENDER STUDENTS
-            if (article.students && article.students.length > 0) {
-                studentSection = '<div class="article-students"><h3>Students in this article:</h3>';
-                article.students.forEach(s => {
-                    const student = studentsData.students.find(st => st.name === s.name);
-                    const img = student?.image || 'placeholder.jpg';
-                    const isStar = student?.star;
-                    studentSection += `
-                        <div class="student-card-mini" onclick="viewStudent('${s.name}')">
-                            <img src="${img}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
-                            <div class="student-card-mini-info">
-                                <div class="student-card-mini-name">${s.name} ${isStar ? '★' : ''}</div>
-                                <div class="student-card-mini-role">${s.role || 'Student'} ${s.achievement ? '- ' + s.achievement : ''}</div>
-                            </div>
-                        </div>
-                    `;
+            if (article.elements) {
+                article.elements.forEach(el => {
+                    switch (el.type) {
+                        case 'text':
+                            html += `<div class="article-text"><p>${el.content}</p></div>`;
+                            break;
+                        case 'image':
+                            if (el.align === 'full') {
+                                html += `<div class="article-full-image"><img src="${el.image}" alt="${el.caption || article.title}" onerror="this.style.display='none'"></div>`;
+                            } else {
+                                const reverse = el.align === 'right' ? ' reverse' : '';
+                                html += `<div class="article-image-text${reverse}"><img src="${el.image}" alt="${el.caption || article.title}" onerror="this.style.display='none'"><div>${el.caption ? `<p>${el.caption}</p>` : ''}</div></div>`;
+                            }
+                            break;
+                        case 'slideshow':
+                            if (el.images && el.images.length) {
+                                const slides = el.images.map((img, i) => `<img src="${img}" alt="Slide ${i+1}" class="slide">`).join('');
+                                const dots = el.images.map((_, i) => `<div class="slideshow-dot ${i===0?'active':''}" onclick="goSlide(${i})"></div>`).join('');
+                                html += `<div class="slideshow"><div class="slideshow-images" id="slideshow">${slides}</div><div class="slideshow-arrows"><button class="slideshow-arrow" onclick="prevSlide()">&lsaquo;</button><button class="slideshow-arrow" onclick="nextSlide()">&rsaquo;</button></div><div class="slideshow-nav">${dots}</div></div>`;
+                                if (el.caption) html += `<p style="text-align:center;color:#666;margin-bottom:30px;">${el.caption}</p>`;
+                            }
+                            break;
+                        case 'video':
+                            if (el.video) {
+                                html += `<div class="article-video"><iframe src="${el.video}" allowfullscreen></iframe></div>`;
+                            }
+                            break;
+                        case 'quote':
+                            html += `<div class="article-quote">"${el.quote}"${el.author ? `<div class="quote-author">— ${el.author}</div>` : ''}</div>`;
+                            break;
+                        case 'students':
+                            if (el.students && el.students.length) {
+                                let studentsHtml = '<div class="article-students"><h3>Students in this article:</h3>';
+                                el.students.forEach(s => {
+                                    const student = DataStore.getStudent(s.name);
+                                    const img = student?.image || '';
+                                    const isStar = student?.star;
+                                    studentsHtml += `
+                                        <div class="student-card-mini" onclick="viewStudent('${s.name}')">
+                                            <img src="${img}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
+                                            <div class="student-card-mini-info">
+                                                <div class="student-card-mini-name">${s.name} ${isStar ? '★' : ''}</div>
+                                                <div class="student-card-mini-role">${s.role || 'Student'} ${s.achievement ? '- ' + s.achievement : ''}</div>
+                                            </div>
+                                        </div>`;
+                                });
+                                studentsHtml += '</div>';
+                                html += studentsHtml;
+                            }
+                            break;
+                    }
                 });
-                studentSection += '</div>';
             }
 
-            // RENDER BY TYPE
-            switch (article.type) {
-                case 'image-text':
-                    const reverseClass = article.imagePosition === 'right' ? 'reverse' : '';
-                    mainContent = `
-                        <div class="article-image-text ${reverseClass}">
-                            <img src="${article.image}" alt="${article.title}" onerror="this.style.display='none'">
-                            <div>
-                                <p>${article.excerpt}</p>
-                                <p style="margin-top:16px;">This event represents another milestone in our school's commitment to excellence and innovation.</p>
-                            </div>
-                        </div>
-                    `;
-                    break;
-
-                case 'full-image':
-                    mainContent = `
-                        <div class="article-full-image">
-                            <img src="${article.image}" alt="${article.title}" onerror="this.style.display='none'">
-                        </div>
-                        <p>${article.excerpt}</p>
-                    `;
-                    break;
-
-                case 'text-image':
-                    mainContent = `
-                        <p>${article.excerpt}</p>
-                        <div class="article-full-image">
-                            <img src="${article.image}" alt="${article.title}" onerror="this.style.display='none'">
-                        </div>
-                    `;
-                    break;
-
-                case 'slideshow':
-                    if (article.images && article.images.length > 0) {
-                        const slides = article.images.map((img, i) => 
-                            `<img src="${img.trim()}" alt="Slide ${i+1}" class="slide">`
-                        ).join('');
-                        const dots = article.images.map((_, i) => 
-                            `<div class="slideshow-dot ${i===0?'active':''}" onclick="goSlide(${i})"></div>`
-                        ).join('');
-                        mainContent = `
-                            <div class="slideshow">
-                                <div class="slideshow-images" id="slideshow">
-                                    ${slides}
-                                </div>
-                                <div class="slideshow-arrows">
-                                    <button class="slideshow-arrow" onclick="prevSlide()">‹</button>
-                                    <button class="slideshow-arrow" onclick="nextSlide()">›</button>
-                                </div>
-                                <div class="slideshow-nav">
-                                    ${dots}
-                                </div>
-                            </div>
-                            <p>${article.excerpt}</p>
-                        `;
-                    }
-                    break;
-
-                case 'video':
-                    if (article.video) {
-                        mainContent = `
-                            <div class="article-video">
-                                <iframe src="${article.video}" allowfullscreen></iframe>
-                            </div>
-                            <p>${article.excerpt}</p>
-                        `;
-                    }
-                    break;
-
-                default: // text-only
-                    mainContent = `<p>${article.excerpt}</p>
-                    <p style="margin-top:16px;">This event represents another milestone in our school's commitment to excellence and innovation. Stay tuned for more updates!</p>`;
-            }
-
-            content.innerHTML = mainContent + studentSection;
+            content.innerHTML = html;
         }
 
-        // Slideshow controls
         let currentSlide = 0;
         function goSlide(n) {
             const slides = document.querySelectorAll('.slide');
@@ -399,7 +162,7 @@
             window.location.href = 'student.html?name=' + encodeURIComponent(name);
         }
 
-        loadData();
+        init();
     </script>
 </body>
 </html>

@@ -13,7 +13,7 @@
     <nav class="navbar">
         <div class="container flex justify-between items-center">
             <a href="index.html" class="logo">
-                <img src="logo.png" alt="Logo">
+                <img src="assets/images/logo.png" alt="Logo">
             </a>
 
             <button class="menu-toggle" onclick="toggleMenu()">
@@ -27,7 +27,7 @@
                 <li><a href="#articles" data-section="articles">Latest News</a></li>
                 <li><a href="#about" data-section="about">About Us</a></li>
                 <li><a href="top-students.html">Star Students</a></li>
-                <li><a href="admin.html" style="color:var(--primary-gold);">Admin</a></li>
+                <li><a href="admin.html" class="admin-link">Admin</a></li>
             </ul>
         </div>
     </nav>
@@ -35,7 +35,7 @@
     <!-- HERO -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <img src="logo1.png" alt="Logo" style="height:200px;margin-bottom:20px;">
+            <img src="assets/images/logo1.png" alt="Logo" style="height:200px;margin-bottom:20px;">
             <h1>The Rising Times</h1>
             <p>Celebrating Excellence at Rising Stars Language School</p>
             <a href="#articles" class="btn btn-primary">Read News</a>
@@ -50,9 +50,7 @@
             </div>
             <div class="articles-grid" id="articlesGrid">
                 <div class="article-card">
-                    <div class="card-image">
-                        <img src="englishday1.jpg" alt="Article">
-                    </div>
+                    <div class="card-image"></div>
                     <div class="card-title">Loading...</div>
                     <p class="card-excerpt">Loading articles</p>
                 </div>
@@ -86,8 +84,8 @@
                     </ul>
                 </div>
                 <div class="grid grid-2" style="gap:20px;">
-                    <img src="School.png" alt="School" style="width:100%;border-radius:8px;">
-                    <img src="598667564_1432670612202302_5971902914503656799_n.webp" alt="Students" style="width:100%;border-radius:8px;">
+                    <img src="assets/images/School.png" alt="School" style="width:100%;border-radius:8px;">
+                    <img src="assets/images/school-students.webp" alt="Students" style="width:100%;border-radius:8px;">
                 </div>
             </div>
         </div>
@@ -98,143 +96,37 @@
         <div class="container">
             <p><strong>THE RISING TIMES NEWS</strong></p>
             <p>Rising Stars Language School | Futures Education System</p>
-            <p>© 2024 All Rights Reserved</p>
+            <p>&copy; 2024 All Rights Reserved</p>
         </div>
     </footer>
 
+    <script src="js/data.js"></script>
     <script>
-        let eventsData = { events: [] };
-        let studentsData = { students: [] };
-
-        async function loadData() {
-            try {
-                const [e, s] = await Promise.all([
-                    fetch('data/events.json'),
-                    fetch('data/students.json')
-                ]);
-                eventsData = await e.json();
-                studentsData = await s.json();
-            } catch (err) {
-                loadDemoData();
-            }
+        async function init() {
+            await DataStore.load();
             renderArticles();
             renderTeam();
         }
 
-        function loadDemoData() {
-            eventsData = {
-                events: [
-                    { id: "science-fair-2024", title: "School Hosts Annual Science Fair 2024", type: "multi", featured: true, category: "Academic", date: "2024",
-                        elements: [
-                            { type: "image", image: "englishday1.jpg", align: "full" },
-                            { type: "text", content: "Students showcase innovative projects and cutting-edge concepts." },
-                            { type: "students", students: [{name:"Youssef Ahmed Sabry",role:"Science Rep",achievement:"First Place"}, {name:"Ahmed Alaadin Hassan Darmelli",role:"Organizer",achievement:"Best Presentation"}] }
-                        ]
-                    },
-                    { id: "olympiad", title: "International Olympiad", type: "multi", featured: false, category: "Academic", date: "2024",
-                        elements: [
-                            { type: "text", content: "Rising Stars students excel in international mathematics competition." },
-                            { type: "image", image: "englishday3.jpg", align: "left" },
-                            { type: "students", students: [{name:"Ahmed Alaadin Hassan Darmelli",role:"Team Captain",achievement:"Gold Medal"}] }
-                        ]
-                    },
-                    { id: "language-day", title: "Language Day", type: "multi", featured: false, category: "Cultural", date: "2024",
-                        elements: [
-                            { type: "slideshow", images: ["englishday1.jpg","englishday2.jpg"] },
-                            { type: "students", students: [{name:"Youssef Ahmed Sabry",role:"MC",achievement:"Best Performance"}] }
-                        ]
-                    },
-                    { id: "debate-championship", title: "Debate Championship", type: "multi", featured: false, category: "Academic", date: "2024",
-                        elements: [
-                            { type: "text", content: "Students demonstrate oratory and critical thinking skills." },
-                            { type: "students", students: [{name:"Yassin Ahmed Sabry",role:"Team Captain",achievement:"Best Speaker"}] }
-                        ]
-                    },
-                    { id: "smart-board", title: "Smart Board Technology", type: "multi", featured: false, category: "Technology", date: "2024",
-                        elements: [
-                            { type: "image", image: "englishday2.jpg", align: "full" },
-                            { type: "text", content: "Latest teaching tech enhances interactive learning." }
-                        ]
-                    }
-                ]
-            };
-            studentsData = {
-                students: [
-                    { id: "youssef-ahmed-sabry", name: "Youssef Ahmed Sabry", role: "Newspaper Editor & The CSE Science rep of Secondary", quote: "working on the school magazine is such an honour for me", image: "Youssef.png", star: true, class: "Secondary", achievements: ["Academic Excellence", "Science Innovation"] },
-                    { id: "ahmed-alaadin-hassan", name: "Ahmed Alaadin Hassan Darmelli", role: "President of Preparatory", quote: "You fell down so what? Get back up.", image: "Ahmed.png", star: true, class: "Preparatory", achievements: ["Debate Champion", "Literary Excellence"] },
-                    { id: "yassin-ahmed-sabry", name: "Yassin Ahmed Sabry", role: "Reporter & Channel Manager", quote: "I suppose leadership at one time meant muscles, but today it means getting along with people.", image: "Yassin.webp", star: true, class: "Secondary", achievements: ["Leadership Award", "Digital Innovation"] }
-                ]
-            };
-        }
-
         function renderArticles() {
             const grid = document.getElementById('articlesGrid');
-            grid.innerHTML = eventsData.events.slice(0, 6).map(event => {
+            const events = DataStore.getEvents();
+            grid.innerHTML = events.slice(0, 6).map(event => {
                 const featured = event.featured;
-                
-                // Collect students from the event
+                const previewImage = DataStore.getEventPreviewImage(event);
+                const excerpt = DataStore.getEventExcerpt(event);
+                const eventStudents = DataStore.getEventStudents(event);
+
                 let studentChips = '';
-                let previewImage = '';
-                
-                if (event.type === 'multi' && event.elements) {
-                    // New multi-element format
-                    event.elements.forEach(el => {
-                        if (el.type === 'students' && el.students) {
-                            el.students.forEach(s => {
-                                const student = studentsData.students.find(st => st.name === s.name);
-                                const isStar = student?.star;
-                                let chip = `<button class="student-chip ${isStar ? 'star' : ''}" onclick="viewStudent('${s.name}')">${s.name}`;
-                                if (isStar) chip += `<span class="star-badge">★</span>`;
-                                chip += `</button>`;
-                                studentChips += chip;
-                            });
-                        }
-                        if (el.type === 'image' && !previewImage) {
-                            previewImage = el.image;
-                        }
-                        if (el.type === 'slideshow' && el.images && !previewImage) {
-                            previewImage = el.images[0];
-                        }
-                        if (el.type === 'video' && el.video && !previewImage) {
-                            previewImage = 'video';
-                        }
-                    });
-                } else {
-                    // Legacy format
-                    if (event.students) {
-                        event.students.forEach(s => {
-                            const student = studentsData.students.find(st => st.name === s.name);
-                            const isStar = student?.star;
-                            let chip = `<button class="student-chip ${isStar ? 'star' : ''}" onclick="viewStudent('${s.name}')">${s.name}`;
-                            if (isStar) chip += `<span class="star-badge">★</span>`;
-                            chip += `</button>`;
-                            studentChips += chip;
-                        });
-                    }
-                    previewImage = event.image;
-                }
+                eventStudents.forEach(s => {
+                    const student = DataStore.getStudent(s.name);
+                    const isStar = student?.star;
+                    studentChips += `<button class="student-chip ${isStar ? 'star' : ''}" onclick="event.stopPropagation();viewStudent('${s.name}')">${s.name}${isStar ? '<span class="star-badge">★</span>' : ''}</button>`;
+                });
 
-                // Build image HTML
                 let imageHtml = '';
-                if (previewImage === 'video') {
-                    imageHtml = `<div class="card-image" style="background:#333;display:flex;align-items:center;justify-content:center;">
-                        <span style="color:#fff;font-size:24px;">▶</span>
-                    </div>`;
-                } else if (previewImage) {
-                    imageHtml = `<div class="card-image">
-                        <img src="${previewImage}" alt="${event.title}" onerror="this.style.display='none'">
-                    </div>`;
-                } else if (event.images) {
-                    imageHtml = `<div class="card-image" style="display:flex;gap:4px;overflow:auto;">
-                        ${event.images.map(img => `<img src="${img.trim()}" style="width:80px;height:60px;object-fit:cover;border-radius:4px;">`).join('')}
-                    </div>`;
-                }
-
-                // Get excerpt from first text element if multi
-                let excerpt = event.excerpt || '';
-                if (event.type === 'multi' && event.elements) {
-                    const textEl = event.elements.find(e => e.type === 'text');
-                    if (textEl) excerpt = textEl.content;
+                if (previewImage) {
+                    imageHtml = `<div class="card-image"><img src="${previewImage}" alt="${event.title}" onerror="this.style.display='none'"></div>`;
                 }
 
                 return `
@@ -250,13 +142,12 @@
 
         function renderTeam() {
             const grid = document.getElementById('teamGrid');
-            grid.innerHTML = studentsData.students.map(student => {
+            const students = DataStore.getStudents();
+            grid.innerHTML = students.map(student => {
                 const starBadge = student.star ? '<span class="star-badge">★ Star</span>' : '';
-                const imgSrc = student.image || 'placeholder.jpg';
-                
                 return `
-                    <div class="card team-card">
-                        <img src="${imgSrc}" class="card-image" alt="${student.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27100%27 height=%27100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2750%27 fill=%27%23ddd%27/%3E%3C/svg%3E'" style="width:150px;height:150px;border-radius:50%;object-fit:cover;margin:0 auto 16px;display:block;">
+                    <div class="card team-card" onclick="viewStudent('${student.name}')">
+                        <img src="${student.image || ''}" alt="${student.name}" class="team-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27100%27 height=%27100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2750%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
                         <div class="team-name">${student.name}${starBadge}</div>
                         <div class="team-role">${student.role}</div>
                         <div class="team-quote">"${student.quote}"</div>
@@ -278,25 +169,19 @@
             document.querySelector('.menu-toggle').classList.toggle('active');
         }
 
-        function toggleStudentInfo(el) {
-            el.classList.toggle('open');
-        }
-
-        // Navigation scroll
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (this.getAttribute('href').startsWith('#')) {
                     e.preventDefault();
                     const section = this.getAttribute('href').slice(1);
                     document.getElementById(section)?.scrollIntoView({behavior:'smooth'});
-                    
                     document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
                 }
             });
         });
 
-        loadData();
+        init();
     </script>
 </body>
 </html>
