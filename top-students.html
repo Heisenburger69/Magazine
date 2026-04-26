@@ -6,17 +6,21 @@
     <title>Star Students - Rising Stars Magazine</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .students-header { background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(245,244,240,0.9)); padding: 60px 20px; text-align: center; }
-        .filter-bar { display: flex; justify-content: center; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
-        .filter-btn { padding: 8px 20px; background: var(--bg-white); border: 2px solid transparent; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: var(--transition); }
-        .filter-btn.active, .filter-btn:hover { border-color: var(--primary-gold); background: var(--primary-gold); }
-        .student-card { background: var(--bg-white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; }
+        .students-header { background: linear-gradient(135deg, var(--primary-black) 0%, #2a2520 100%); padding: 70px 20px; text-align: center; }
+        .students-header h1 { color: var(--primary-gold); text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .students-header p { color: rgba(255,255,255,0.7); }
+        .filter-bar { display: flex; justify-content: center; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+        .filter-btn { padding: 8px 20px; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: var(--transition); color: rgba(255,255,255,0.8); }
+        .filter-btn.active, .filter-btn:hover { border-color: var(--primary-gold); background: var(--primary-gold); color: var(--primary-black); }
+        .student-card { background: var(--bg-white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer; border: 1px solid rgba(0,0,0,0.06); }
         .student-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-        .student-card.star { background: linear-gradient(135deg, var(--primary-gold), #b8941f); border: 3px solid var(--primary-black); }
-        .student-card img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary-gold); margin-bottom: 16px; }
-        .student-card.star img { border-color: var(--primary-black); }
-        .student-card h3 { font-size: 18px; margin-bottom: 4px; }
-        .student-card .role { font-size: 12px; color: #666; font-style: italic; margin-bottom: 12px; }
+        .student-card.star { background: linear-gradient(145deg, #1a1a1a 0%, #2a2520 100%); border: 2px solid var(--primary-gold); color: #fff; }
+        .student-card.star h3 { color: var(--primary-gold); }
+        .student-card.star .role { color: rgba(255,255,255,0.7); }
+        .student-card img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-gold); margin-bottom: 16px; box-shadow: 0 4px 16px rgba(201,168,76,0.3); }
+        .student-card.star img { border-color: var(--primary-gold); box-shadow: 0 4px 20px rgba(201,168,76,0.5); }
+        .student-card h3 { font-size: 16px; margin-bottom: 4px; }
+        .student-card .role { font-size: 12px; color: #555; font-style: italic; margin-bottom: 12px; }
         .achievements { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 12px; }
         .achievement-tag { background: rgba(201,168,76,0.3); padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; }
         .student-card.star .achievement-tag { background: rgba(0,0,0,0.15); }

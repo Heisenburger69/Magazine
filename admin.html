@@ -95,11 +95,13 @@
             <input type="password" class="form-input" id="passwordInput" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')checkPassword()">
         </div>
         <button class="btn btn-primary" onclick="checkPassword()" style="width:100%">Login</button>
+        <a href="index.html" style="display:block;text-align:center;margin-top:16px;color:var(--primary-gold);font-size:13px;text-decoration:none;font-weight:600;">&larr; Back to Magazine</a>
     </div>
 
     <!-- ADMIN PANEL -->
     <div id="adminPanel" style="display:none;">
         <div class="admin-header" style="position:relative;display:flex;align-items:center;justify-content:center;">
+            <a href="index.html" style="position:absolute;left:20px;color:var(--primary-gold);text-decoration:none;font-size:13px;font-weight:600;">&larr; Magazine</a>
             <h1>Admin Dashboard</h1>
             <button class="btn btn-secondary" onclick="logout()" style="position:absolute;right:20px;padding:8px 16px;font-size:12px;">Logout</button>
         </div>
