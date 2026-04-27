@@ -16,6 +16,11 @@
                 <img src="assets/images/logo.png" alt="Logo">
             </a>
 
+            <div class="social-nav">
+                <a href="https://www.instagram.com/" target="_blank"><img src="assets/images/instagram.webp" alt="Instagram"></a>
+                <a href="https://www.facebook.com/RisingStars.6thofOctober/" target="_blank"><img src="assets/images/facebook.png" alt="Facebook"></a>
+            </div>
+
             <button class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -26,7 +31,8 @@
                 <li><a href="#home" class="active" data-section="home">Home</a></li>
                 <li><a href="#articles" data-section="articles">Latest News</a></li>
                 <li><a href="#about" data-section="about">About Us</a></li>
-                <li><a href="top-students.html">Star Students</a></li>
+                <li><a href="#school" data-section="school">Our School</a></li>
+                <li><a href="top-students.html">Stars</a></li>
                 <li><a href="admin.html" class="admin-link">Admin</a></li>
             </ul>
         </div>
@@ -64,7 +70,15 @@
             <div class="section-header">
                 <h2>About Us</h2>
             </div>
-            <div class="grid grid-3" id="teamGrid"></div>
+            <!-- Desktop: grid -->
+            <div class="team-desktop" id="teamGrid"></div>
+            <!-- Mobile: carousel -->
+            <div class="team-mobile-carousel">
+                <button class="tc-btn prev" onclick="moveTeamSlide(-1)">&#10094;</button>
+                <div class="tc-track" id="teamCarousel"></div>
+                <button class="tc-btn next" onclick="moveTeamSlide(1)">&#10095;</button>
+            </div>
+            <div class="tc-dots" id="teamDots"></div>
         </div>
     </section>
 
@@ -102,10 +116,49 @@
 
     <script src="js/data.js"></script>
     <script>
+        let currentSlide = 0;
+        let teamSlideIndex = 0;
+        
         async function init() {
             await DataStore.load();
             renderArticles();
             renderTeam();
+            initCarousel();
+        }
+
+        function initCarousel() {
+            const dots = document.getElementById('carouselDots');
+            const slides = document.querySelectorAll('.carousel-slide');
+            dots.innerHTML = slides.length > 1 ? slides.map((_, i) => 
+                `<span class="dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></span>`
+            ).join('') : '';
+        }
+
+        function moveSlide(n) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            currentSlide = (currentSlide + n + slides.length) % slides.length;
+            goToSlide(currentSlide);
+        }
+
+        function goToSlide(n) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            slides.forEach((s, i) => s.classList.toggle('active', i === n));
+            document.querySelectorAll('.carousel-dots .dot').forEach((d, i) => d.classList.toggle('active', i === n));
+            currentSlide = n;
+        }
+
+        // Team carousel functions
+        function moveTeamSlide(n) {
+            const students = DataStore.getStudents();
+            teamSlideIndex = (teamSlideIndex + n + students.length) % students.length;
+            goToTeamSlide(teamSlideIndex);
+        }
+
+        function goToTeamSlide(n) {
+            const slides = document.querySelectorAll('.tc-slide');
+            slides.forEach((s, i) => s.classList.toggle('active', i === n));
+            document.querySelectorAll('.tc-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+            teamSlideIndex = n;
         }
 
         function renderArticles() {
@@ -142,7 +195,11 @@
 
         function renderTeam() {
             const grid = document.getElementById('teamGrid');
+            const carousel = document.getElementById('teamCarousel');
+            const dots = document.getElementById('teamDots');
             const students = DataStore.getStudents();
+            
+            // Desktop grid
             grid.innerHTML = students.map(student => {
                 const starBadge = student.star ? '<span class="star-badge">★ Star</span>' : '';
                 return `
@@ -154,6 +211,22 @@
                     </div>
                 `;
             }).join('');
+            
+            // Mobile carousel
+            carousel.innerHTML = students.map((student, i) => `
+                <div class="tc-slide ${i === 0 ? 'active' : ''}">
+                    <div class="card team-card" onclick="viewStudent('${student.name}')">
+                        <img src="${student.image || ''}" alt="${student.name}" class="team-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27100%27 height=%27100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2750%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
+                        <div class="team-name">${student.name}${student.star ? '<span class="star-badge">★ Star</span>' : ''}</div>
+                        <div class="team-role">${student.role}</div>
+                        <div class="team-quote">"${student.quote}"</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            dots.innerHTML = students.length > 1 ? students.map((_, i) => 
+                `<span class="tc-dot ${i === 0 ? 'active' : ''}" onclick="goToTeamSlide(${i})"></span>`
+            ).join('') : '';
         }
 
         function viewStudent(name) {

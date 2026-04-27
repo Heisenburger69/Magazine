@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Students - Rising Stars Magazine</title>
+    <title>Stars - Rising Stars Magazine</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .students-header { background: linear-gradient(135deg, var(--primary-black) 0%, #2a2520 100%); padding: 70px 20px; text-align: center; }
@@ -21,6 +21,8 @@
         .student-card.star img { border-color: var(--primary-gold); box-shadow: 0 4px 20px rgba(201,168,76,0.5); }
         .student-card h3 { font-size: 16px; margin-bottom: 4px; }
         .student-card .role { font-size: 12px; color: #555; font-style: italic; margin-bottom: 12px; }
+        .student-card .class-badge { display: inline-block; background: #8B3A5C; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+        .student-card.teacher .class-badge { background: #6B4423; }
         .achievements { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 12px; }
         .achievement-tag { background: rgba(201,168,76,0.3); padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; }
         .student-card.star .achievement-tag { background: rgba(0,0,0,0.15); }
@@ -37,11 +39,14 @@
     </nav>
 
     <div class="students-header">
-        <h1>Star Students</h1>
+        <h1>Stars</h1>
         <p>Celebrating excellence at Rising Stars Language School</p>
         <div class="filter-bar">
             <button class="filter-btn active" onclick="filterStudents('all')">All</button>
             <button class="filter-btn" onclick="filterStudents('star')">★ Stars</button>
+            <button class="filter-btn" onclick="filterStudents('teacher')">Teachers</button>
+            <button class="filter-btn" onclick="filterStudents('student')">Students</button>
+            <button class="filter-btn" onclick="filterStudents('Primary')">Primary</button>
             <button class="filter-btn" onclick="filterStudents('Preparatory')">Preparatory</button>
             <button class="filter-btn" onclick="filterStudents('Secondary')">Secondary</button>
         </div>
@@ -80,7 +85,9 @@
         function renderStudents() {
             let students = DataStore.getStudents();
             if (currentFilter === 'star') students = students.filter(s => s.star);
-            else if (currentFilter === 'Preparatory' || currentFilter === 'Secondary') students = students.filter(s => s.class === currentFilter);
+            else if (currentFilter === 'teacher') students = students.filter(s => s.type === 'teacher');
+            else if (currentFilter === 'student') students = students.filter(s => s.type === 'student');
+            else if (currentFilter === 'Primary' || currentFilter === 'Preparatory' || currentFilter === 'Secondary') students = students.filter(s => s.class === currentFilter);
 
             const grid = document.getElementById('studentsGrid');
             if (!students.length) {
@@ -90,10 +97,13 @@
 
             grid.innerHTML = students.map(s => {
                 const isStar = s.star;
+                const isTeacher = s.type === 'teacher';
+                const studentClass = s.class || 'Student';
                 const achievements = s.achievements ? s.achievements.map(a => `<span class="achievement-tag">${a}</span>`).join('') : '';
                 return `
-                    <div class="student-card ${isStar ? 'star' : ''}" onclick="viewStudent('${s.name}')">
+                    <div class="student-card ${isStar ? 'star' : ''} ${isTeacher ? 'teacher' : ''}" onclick="viewStudent('${s.name}')">
                         <img src="${s.image || ''}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27140%27 height=%27140%27%3E%3Ccircle cx=%2770%27 cy=%2770%27 r=%2770%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
+                        <span class="class-badge">${isTeacher ? 'Teacher' : studentClass}</span>
                         <h3>${s.name}${isStar ? '<span class="star-badge">★ STAR</span>' : ''}</h3>
                         <p class="role">${s.role || ''}</p>
                         <div class="achievements">${achievements}</div>

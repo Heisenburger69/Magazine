@@ -290,6 +290,56 @@ body {
     color: var(--primary-gold);
 }
 
+.social-nav {
+    display: flex;
+    gap: 12px;
+}
+
+.social-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-nav a:hover {
+    transform: translateY(-2px);
+}
+
+.social-nav img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    transition: var(--transition);
+}
+
+.social-btn:hover {
+    background: var(--primary-gold);
+    transform: translateY(-2px);
+}
+
+.star-link {
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 75%, 18% 100%, 0% 38%);
+    background: var(--primary-gold) !important;
+    color: var(--primary-black) !important;
+    padding: 8px 14px !important;
+    font-weight: 700 !important;
+}
+
 /* --- MOBILE MENU --- */
 .menu-toggle {
     display: none;
@@ -606,8 +656,167 @@ p {
 }
 
 /* ================================================================
-   BUTTONS
-   ================================================================ */
+    ABOUT US CAROUSEL
+    ================================================================ */
+.about-carousel {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.carousel-track {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.carousel-slide {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.carousel-slide.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: var(--primary-black);
+    color: var(--primary-gold);
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: var(--primary-gold);
+    color: var(--primary-black);
+}
+
+.carousel-btn.prev { left: -60px; }
+.carousel-btn.next { right: -60px; }
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.carousel-dots .dot.active {
+    background: var(--primary-gold);
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .carousel-btn { display: none; }
+    .carousel-slide { display: block; }
+    .carousel-dots { display: none; }
+}
+
+/* --- TEAM MOBILE CAROUSEL --- */
+.team-mobile-carousel {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+    display: none;
+}
+
+.team-mobile-carousel .tc-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: var(--primary-black);
+    color: var(--primary-gold);
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.team-mobile-carousel .tc-btn:hover {
+    background: var(--primary-gold);
+    color: var(--primary-black);
+}
+
+.team-mobile-carousel .tc-btn.prev { left: 0; }
+.team-mobile-carousel .tc-btn.next { right: 0; }
+
+.tc-track {
+    padding: 0 50px;
+    overflow: hidden;
+}
+
+.tc-slide {
+    display: none;
+}
+
+.tc-slide.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.tc-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tc-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+}
+
+.tc-dot.active {
+    background: var(--primary-gold);
+}
+
+/* Desktop: show grid */
+.team-desktop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* Mobile: show carousel */
+@media (max-width: 768px) {
+    .team-mobile-carousel { display: block; }
+    .team-desktop { display: none; }
+}
+
+/* ================================================================
+    BUTTONS
+    ================================================================ */
 .btn {
     display: inline-flex;
     align-items: center;
