@@ -26,9 +26,29 @@
         {
           "type": "students",
           "students": [
-            { "name": "Youssef Ahmed Sabry", "role": "Science Representative", "achievement": "First Place - Robotics" },
-            { "name": "Ahmed Alaadin Hassan Darmelli", "role": "Event Organizer", "achievement": "Best Presentation" }
+            {
+              "name": "Youssef Ahmed Sabry",
+              "role": "Science Representative",
+              "achievement": "First Place - Robotics"
+            },
+            {
+              "name": "Ahmed Alaadin Hassan Darmelli",
+              "role": "Event Organizer",
+              "achievement": "Best Presentation"
+            }
           ]
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/Ahmed.png",
+            "assets/images/67.png"
+          ],
+          "caption": ""
+        },
+        {
+          "type": "video",
+          "video": "https://www.youtube.com/embed/dQw4w9WgXcQ"
         }
       ]
     },
@@ -52,8 +72,16 @@
         {
           "type": "students",
           "students": [
-            { "name": "Ahmed Alaadin Hassan Darmelli", "role": "Team Captain", "achievement": "Gold Medal" },
-            { "name": "Youssef Ahmed Sabry", "role": "Team Member", "achievement": "Silver Medal" }
+            {
+              "name": "Ahmed Alaadin Hassan Darmelli",
+              "role": "Team Captain",
+              "achievement": "Gold Medal"
+            },
+            {
+              "name": "Youssef Ahmed Sabry",
+              "role": "Team Member",
+              "achievement": "Silver Medal"
+            }
           ]
         }
       ]
@@ -68,7 +96,11 @@
       "elements": [
         {
           "type": "slideshow",
-          "images": ["assets/images/englishday1.jpg", "assets/images/englishday2.jpg", "assets/images/englishday3.jpg"],
+          "images": [
+            "assets/images/englishday1.jpg",
+            "assets/images/englishday2.jpg",
+            "assets/images/englishday3.jpg"
+          ],
           "caption": "Highlights from the day"
         },
         {
@@ -78,8 +110,16 @@
         {
           "type": "students",
           "students": [
-            { "name": "Youssef Ahmed Sabry", "role": "MC", "achievement": "Best Performance" },
-            { "name": "Yassin Ahmed Sabry", "role": "Performer", "achievement": "Audience Choice" }
+            {
+              "name": "Youssef Ahmed Sabry",
+              "role": "MC",
+              "achievement": "Best Performance"
+            },
+            {
+              "name": "Yassin Ahmed Sabry",
+              "role": "Performer",
+              "achievement": "Audience Choice"
+            }
           ]
         }
       ]
@@ -99,7 +139,11 @@
         {
           "type": "students",
           "students": [
-            { "name": "Yassin Ahmed Sabry", "role": "Team Captain", "achievement": "Best Speaker" }
+            {
+              "name": "Yassin Ahmed Sabry",
+              "role": "Team Captain",
+              "achievement": "Best Speaker"
+            }
           ]
         }
       ]
@@ -128,7 +172,7 @@
       "title": "Sports Day Highlights",
       "type": "multi",
       "category": "Sports",
-      "featured": false,
+      "featured": true,
       "date": "2024",
       "elements": [
         {

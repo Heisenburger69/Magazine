@@ -612,7 +612,7 @@
                         }
                         break;
                     case 'video':
-                        if (el.video) html += `<div style="background:#1a1a1a;border-radius:8px;padding:40px;text-align:center;color:white;margin-bottom:16px;">▶ Video: ${el.video}</div>`;
+                        if (el.video) html += `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;margin-bottom:16px;"><iframe src="${el.video}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
                         break;
                     case 'quote':
                         if (el.quote) html += `<blockquote style="border-left:4px solid var(--primary-gold);padding:16px;margin:16px 0;font-style:italic;background:#f9f9f9;border-radius:0 8px 8px 0;">"${el.quote}"${el.author ? `<footer style="margin-top:8px;font-size:13px;color:#666;">— ${el.author}</footer>` : ''}</blockquote>`;
