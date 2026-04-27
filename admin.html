@@ -168,6 +168,7 @@
                             <button class="add-element-btn" onclick="addElement('video')">+ Video</button>
                             <button class="add-element-btn" onclick="addElement('quote')">+ Quote</button>
                             <button class="add-element-btn" onclick="addElement('students')">+ Students</button>
+                            <button class="add-element-btn" onclick="addElement('organizers')" style="background:#DC143C;color:white;border-color:#DC143C;">+ Organizers</button>
                         </div>
                     </div>
 
@@ -223,14 +224,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Class</label>
-                                <select class="form-select" id="studentClass">
-                                    <option value="Preparatory">Preparatory</option>
-                                    <option value="Secondary">Secondary</option>
+                                <label class="form-label">Type</label>
+                                <select class="form-select" id="studentType">
+                                    <option value="student">Student</option>
+                                    <option value="teacher">Teacher</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Class</label>
+                                <select class="form-select" id="studentClass">
+                                    <option value="Primary">Primary</option>
+                                    <option value="Preparatory">Preparatory</option>
+                                    <option value="Secondary">Secondary</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label class="form-label">Star Student</label>
                                 <select class="form-select" id="studentStar">
@@ -238,10 +247,10 @@
                                     <option value="true">Yes</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label">Achievements (comma separated)</label>
-                                <input type="text" class="form-input" id="studentAchievements" placeholder="Academic Excellence, Science Innovation">
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Achievements (comma separated)</label>
+                            <input type="text" class="form-input" id="studentAchievements" placeholder="Academic Excellence, Science Innovation">
                         </div>
                         <div style="display:flex;gap:12px;margin-top:10px;">
                             <button class="btn btn-primary" onclick="saveStudent()">Save Student</button>
@@ -430,6 +439,7 @@
                 case 'video': el.video = ''; break;
                 case 'quote': el.quote = ''; el.author = ''; break;
                 case 'students': el.students = []; break;
+                case 'organizers': el.organizers = []; break;
             }
             elements.push(el);
             renderElements();
@@ -515,6 +525,25 @@
                                 <button class="add-element-btn" onclick="addStudentToElement(${i})" style="margin-top:8px;font-size:11px;">+ Link Student</button>
                             </div>`;
                         break;
+                    case 'organizers':
+                        const allTeachers = DataStore.getStudents();
+                        const organizerRows = (el.organizers || []).map((s, si) => `
+                            <div class="student-picker-item">
+                                <select onchange="updateOrganizerInElement(${i},${si},'name',this.value);updatePreview()">
+                                    <option value="">Select organizer...</option>
+                                    ${allTeachers.map(st => `<option value="${st.name}" ${st.name===s.name?'selected':''}>${st.name} (${st.type === 'teacher' ? 'Teacher' : st.class || 'Student'})${st.star?' ★':''}</option>`).join('')}
+                                </select>
+                                <input placeholder="Role" value="${s.role||''}" onchange="updateOrganizerInElement(${i},${si},'role',this.value)">
+                                <input placeholder="Achievement" value="${s.achievement||''}" onchange="updateOrganizerInElement(${i},${si},'achievement',this.value)">
+                                <button onclick="removeOrganizerFromElement(${i},${si})" style="background:#ffebee;color:#c62828;border:none;border-radius:4px;padding:4px 8px;cursor:pointer;">x</button>
+                            </div>
+                        `).join('');
+                        fields = `
+                            <div class="student-picker" style="border-color:#DC143C;">
+                                ${organizerRows || '<p style="font-size:12px;color:#999;">No organizers linked yet.</p>'}
+                                <button class="add-element-btn" onclick="addOrganizerToElement(${i})" style="margin-top:8px;font-size:11px;">+ Link Organizer</button>
+                            </div>`;
+                        break;
                 }
 
                 return `
@@ -536,6 +565,10 @@
         function updateStudentInElement(elIdx, sIdx, key, value) { elements[elIdx].students[sIdx][key] = value; }
         function addStudentToElement(idx) { elements[idx].students.push({name:'',role:'',achievement:''}); renderElements(); }
         function removeStudentFromElement(elIdx, sIdx) { elements[elIdx].students.splice(sIdx, 1); renderElements(); updatePreview(); }
+
+        function updateOrganizerInElement(elIdx, sIdx, key, value) { elements[elIdx].organizers[sIdx][key] = value; }
+        function addOrganizerToElement(idx) { elements[idx].organizers.push({name:'',role:'',achievement:''}); renderElements(); }
+        function removeOrganizerFromElement(elIdx, sIdx) { elements[elIdx].organizers.splice(sIdx, 1); renderElements(); updatePreview(); }
 
         function previewElementImage(input, idx) {
             if (input.files && input.files[0]) {
@@ -593,6 +626,15 @@
                             if (chips) html += `<div style="background:rgba(201,168,76,0.15);padding:16px;border-radius:8px;margin-bottom:16px;"><strong style="font-size:12px;display:block;margin-bottom:8px;">STUDENTS</strong><div style="display:flex;flex-wrap:wrap;gap:8px;">${chips}</div></div>`;
                         }
                         break;
+                    case 'organizers':
+                        if (el.organizers && el.organizers.length) {
+                            const chips = el.organizers.filter(s => s.name).map(s => {
+                                const st = DataStore.getStudent(s.name);
+                                return `<span style="display:inline-block;background:#DC143C;color:white;padding:4px 12px;border-radius:16px;font-size:12px;font-weight:600;">${s.name}${st?.star?' ★':''}${s.role?' — '+s.role:''}${s.achievement?' — '+s.achievement:''}</span>`;
+                            }).join(' ');
+                            if (chips) html += `<div style="background:rgba(220,20,60,0.15);padding:16px;border-radius:8px;margin-bottom:16px;border-left:4px solid #DC143C;"><strong style="font-size:12px;display:block;margin-bottom:8px;color:#DC143C;">ORGANIZERS / TEACHERS</strong><div style="display:flex;flex-wrap:wrap;gap:8px;">${chips}</div></div>`;
+                        }
+                        break;
                 }
             });
             preview.innerHTML = html || '<p style="color:#999;text-align:center;padding:40px;">Add content to elements to see preview</p>';
@@ -605,9 +647,10 @@
             if (!students.length) { list.innerHTML = '<p style="color:#999;text-align:center;padding:40px;">No students yet. Add one!</p>'; return; }
             list.innerHTML = students.map(s => `
                 <div class="item-row">
+                    <img src="${s.image || ''}" alt="${s.name}" style="width:50px;height:50px;border-radius:50%;object-fit:cover;margin-right:12px;border:2px solid var(--primary-gold);" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
                     <div class="item-info">
                         <div class="item-title">${s.star ? '★ ' : ''}${s.name}</div>
-                        <div class="item-meta">${s.role || ''} | ${s.class || ''}</div>
+                        <div class="item-meta">${s.type === 'teacher' ? 'Teacher' : s.class || 'Student'} | ${s.role || ''}</div>
                     </div>
                     <div class="item-actions">
                         <button class="btn-star ${s.star?'active':''}" onclick="toggleStar('${s.id}')" title="Toggle star">${s.star?'★':'☆'}</button>
@@ -630,6 +673,7 @@
                 document.getElementById('studentRole').value = studentData.role || '';
                 document.getElementById('studentQuote').value = studentData.quote || '';
                 document.getElementById('studentImage').value = studentData.image || '';
+                document.getElementById('studentType').value = studentData.type || 'student';
                 document.getElementById('studentClass').value = studentData.class || 'Secondary';
                 document.getElementById('studentStar').value = studentData.star ? 'true' : 'false';
                 document.getElementById('studentAchievements').value = (studentData.achievements || []).join(', ');
@@ -685,6 +729,7 @@
                 quote: document.getElementById('studentQuote').value,
                 image: document.getElementById('studentImage').value,
                 star: document.getElementById('studentStar').value === 'true',
+                type: document.getElementById('studentType').value,
                 class: document.getElementById('studentClass').value,
                 achievements: achText ? achText.split(',').map(s => s.trim()).filter(Boolean) : []
             };
