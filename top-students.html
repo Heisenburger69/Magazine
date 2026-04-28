@@ -12,20 +12,24 @@
         .filter-bar { display: flex; justify-content: center; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
         .filter-btn { padding: 8px 20px; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: var(--transition); color: rgba(255,255,255,0.8); }
         .filter-btn.active, .filter-btn:hover { border-color: var(--primary-gold); background: var(--primary-gold); color: var(--primary-black); }
-        .student-card { background: var(--bg-white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer; border: 1px solid rgba(0,0,0,0.06); }
-        .student-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .students-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        @media (min-width: 1024px) { .students-grid { grid-template-columns: repeat(5, 1fr); } }
+        @media (max-width: 768px) { .students-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+        @media (max-width: 480px) { .students-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+        .student-card { background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,244,240,0.9) 100%); border-radius: 12px; padding: 20px; text-align: center; box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer; border: 1px solid rgba(0,0,0,0.06); }
+        .student-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
         .student-card.star { background: linear-gradient(145deg, #1a1a1a 0%, #2a2520 100%); border: 2px solid var(--primary-gold); color: #fff; }
         .student-card.star h3 { color: var(--primary-gold); }
         .student-card.star .role { color: rgba(255,255,255,0.7); }
-        .student-card img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-gold); margin-bottom: 16px; box-shadow: 0 4px 16px rgba(201,168,76,0.3); }
-        .student-card.star img { border-color: var(--primary-gold); box-shadow: 0 4px 20px rgba(201,168,76,0.5); }
-        .student-card h3 { font-size: 16px; margin-bottom: 4px; }
-        .student-card .role { font-size: 12px; color: #555; font-style: italic; margin-bottom: 12px; }
+        .student-card.star .class-badge { background: var(--primary-gold); color: var(--primary-black); }
+        .student-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-gold); margin-bottom: 12px; box-shadow: 0 4px 16px rgba(201,168,76,0.3); }
+        .student-card h3 { font-size: 14px; margin-bottom: 4px; }
+        .student-card .role { font-size: 11px; color: #555; font-style: italic; margin-bottom: 8px; }
         .student-card .class-badge { display: inline-block; background: #8B3A5C; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
         .student-card.teacher .class-badge { background: #6B4423; }
-        .achievements { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 12px; }
-        .achievement-tag { background: rgba(201,168,76,0.3); padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; }
-        .student-card.star .achievement-tag { background: rgba(0,0,0,0.15); }
+        .achievements { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 8px; }
+        .achievement-tag { background: rgba(201,168,76,0.3); padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 600; }
+        .student-card.star .achievement-tag { background: rgba(0,0,0,0.15); color: #fff; }
     </style>
 </head>
 <body>
@@ -54,7 +58,7 @@
 
     <section class="section">
         <div class="container">
-            <div class="grid grid-3" id="studentsGrid"></div>
+            <div class="students-grid" id="studentsGrid"></div>
         </div>
     </section>
 
@@ -84,10 +88,18 @@
 
         function renderStudents() {
             let students = DataStore.getStudents();
-            if (currentFilter === 'star') students = students.filter(s => s.star);
-            else if (currentFilter === 'teacher') students = students.filter(s => s.type === 'teacher');
-            else if (currentFilter === 'student') students = students.filter(s => s.type === 'student');
-            else if (currentFilter === 'Primary' || currentFilter === 'Preparatory' || currentFilter === 'Secondary') students = students.filter(s => s.class === currentFilter);
+            
+            if (currentFilter === 'all') {
+                students = students.sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+            } else if (currentFilter === 'star') {
+                students = students.filter(s => s.star).sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+            } else if (currentFilter === 'teacher') {
+                students = students.filter(s => s.type === 'teacher').sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+            } else if (currentFilter === 'student') {
+                students = students.filter(s => s.type === 'student').sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+            } else if (currentFilter === 'Primary' || currentFilter === 'Preparatory' || currentFilter === 'Secondary') {
+                students = students.filter(s => s.class === currentFilter).sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+            }
 
             const grid = document.getElementById('studentsGrid');
             if (!students.length) {
