@@ -15,8 +15,8 @@
         .article-image-text.reverse > * { direction: ltr; }
         .article-image-text img { width: 100%; border-radius: 12px; box-shadow: var(--shadow-md); }
         .article-full-image img { width: 100%; max-height: 500px; object-fit: cover; border-radius: 12px; margin-bottom: 30px; box-shadow: var(--shadow-lg); }
-        .slideshow { position: relative; margin-bottom: 40px; min-height: 300px; }
-        .slideshow-images { display: flex; transition: transform 0.5s ease; overflow: hidden; border-radius: 12px; width: 100%; background: #f0f0f0; }
+        .slideshow { position: relative; margin-bottom: 40px; }
+        .slideshow-images { display: flex; transition: transform 0.5s ease; overflow: hidden; border-radius: 12px; background: #f0f0f0; width: 100%; }
         .slideshow-images img { width: 100%; height: auto; max-height: 500px; object-fit: contain; flex-shrink: 0; background: transparent; }
         .slideshow-nav { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
         .slideshow-dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd; cursor: pointer; transition: var(--transition); }
@@ -38,7 +38,15 @@
         .student-card-mini-info { flex: 1; }
         .student-card-mini-name { font-weight: 700; font-size: 14px; }
         .student-card-mini-role { font-size: 12px; color: #666; }
-        .article-text { margin-bottom: 30px; font-size: 16px; line-height: 1.8; }
+        .article-text {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,244,240,0.9) 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .article-text p { font-size: 16px; line-height: 1.8; color: #333; }
         @media (max-width: 768px) { .article-image-text { grid-template-columns: 1fr; } .article-image-text.reverse { direction: ltr; } }
     </style>
 </head>
@@ -107,16 +115,28 @@
                             break;
                         case 'slideshow':
                             if (el.images && el.images.length) {
-                                const slideId = 'slideshow-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-                                const slides = el.images.map((img, i) => `<img src="${img}" alt="Slide ${i+1}" class="slide" onerror="console.error('Slide ${i+1} FAILED to load:', '${img}'); this.style.border='3px solid red'; this.alt='FAILED: ${img}'" onload="console.log('Slide ${i+1} loaded:', '${img}', this.naturalWidth, this.naturalHeight, this.complete)">`).join('');
-                                const dots = el.images.map((_, i) => `<div class="slideshow-dot ${i===0?'active':''}" onclick="goSlide('${slideId}', ${i})"></div>`).join('');
-                                html += `<div class="slideshow"><div class="slideshow-images" id="${slideId}" style="border: 2px solid blue;">${slides}</div><div class="slideshow-arrows"><button class="slideshow-arrow" onclick="prevSlide('${slideId}')">&lsaquo;</button><button class="slideshow-arrow" onclick="nextSlide('${slideId}')">&rsaquo;</button></div><div class="slideshow-nav">${dots}</div></div>`;
-                                if (el.caption) html += `<p style="text-align:center;color:#666;margin-bottom:30px;">${el.caption}</p>`;
+                                const slideId = 'slideshow-' + Math.random().toString(36).substr(2, 9);
+                                const slides = el.images.map((img, i) => `<img src="${img}" alt="Slide ${i+1}" class="slide" style="display:${i===0?'block':'none'}">`).join('');
+                                const dots = el.images.map((_, i) => `<div class="slideshow-dot" data-slide="${slideId}" data-index="${i}" onclick="goSlide('${slideId}', ${i})" style="${i===0?'background:var(--primary-gold)':''}"></div>`).join('');
+                                html += `<div class="slideshow"><div class="slideshow-images" id="${slideId}" style="border-radius:12px;overflow:hidden;">${slides}</div><div class="slideshow-arrows" style="position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;"><button class="slideshow-arrow" onclick="prevSlide('${slideId}')" style="pointer-events:auto;">&lsaquo;</button><button class="slideshow-arrow" onclick="nextSlide('${slideId}')" style="pointer-events:auto;">&rsaquo;</button></div><div class="slideshow-nav">${dots}</div></div>`;
+                                if (el.caption) html += `<p style="text-align:center;color:#666;margin-bottom:30px;margin-top:-25px;position:relative;z-index:1;">${el.caption}</p>`;
                             }
                             break;
                         case 'video':
                             if (el.video) {
-                                html += `<div class="article-video"><iframe src="${el.video}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
+                                const videoId = el.video.trim();
+                                const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&enablejsapi=1&origin=${window.location.origin}`;
+                                html += `<div class="article-video" style="margin: 30px 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md);">
+                                    <iframe 
+                                        width="100%" 
+                                        height="500" 
+                                        src="${embedUrl}" 
+                                        title="YouTube video player" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>`;
                             }
                             break;
                         case 'quote':
@@ -169,37 +189,39 @@
             content.innerHTML = html;
         }
 
-        let slideStates = {};
         function goSlide(slideId, n) {
             const container = document.getElementById(slideId);
-            if (!container) return;
             const slides = container.querySelectorAll('.slide');
-            if (!slides.length) return;
-            if (!(slideId in slideStates)) slideStates[slideId] = 0;
-            slideStates[slideId] = (n + slides.length) % slides.length;
-            container.style.transform = `translateX(-${slideStates[slideId] * 100}%)`;
-            container.parentElement.querySelectorAll('.slideshow-dot').forEach((d, i) => d.classList.toggle('active', i === slideStates[slideId]));
+            const dots = document.querySelectorAll('.slideshow-dot[data-slide="' + slideId + '"]');
+            let current = 0;
+            dots.forEach((d, i) => {
+                if (d.classList.contains('active')) current = i;
+            });
+            current = (n + slides.length) % slides.length;
+            slides.forEach((s, i) => s.style.display = i === current ? 'block' : 'none');
+            dots.forEach((d, i) => {
+                d.style.background = i === current ? 'var(--primary-gold)' : '#ddd';
+                d.classList.toggle('active', i === current);
+            });
         }
-        function nextSlide(slideId) { 
-            const container = document.getElementById(slideId);
-            if (!container) return;
-            const slides = container.querySelectorAll('.slide');
-            if (!slides.length) return;
-            const current = slideStates[slideId] || 0;
-            goSlide(slideId, current + 1); 
+        function nextSlide(slideId) {
+            const slides = document.querySelectorAll('#' + slideId + ' .slide');
+            const dots = document.querySelectorAll('.slideshow-dot[data-slide="' + slideId + '"]');
+            let current = 0;
+            dots.forEach((d, i) => {
+                if (d.classList.contains('active')) current = i;
+            });
+            goSlide(slideId, current + 1);
         }
-        function prevSlide(slideId) { 
-            const container = document.getElementById(slideId);
-            if (!container) return;
-            const slides = container.querySelectorAll('.slide');
-            if (!slides.length) return;
-            const current = slideStates[slideId] || 0;
-            goSlide(slideId, current - 1); 
+        function prevSlide(slideId) {
+            const slides = document.querySelectorAll('#' + slideId + ' .slide');
+            const dots = document.querySelectorAll('.slideshow-dot[data-slide="' + slideId + '"]');
+            let current = 0;
+            dots.forEach((d, i) => {
+                if (d.classList.contains('active')) current = i;
+            });
+            goSlide(slideId, current - 1);
         }
-        document.querySelectorAll('.slideshow-images').forEach(s => { 
-            if (!slideStates[s.id]) slideStates[s.id] = 0; 
-            setInterval(() => nextSlide(s.id), 4000);
-        });
 
         function viewStudent(name) {
             window.location.href = 'student.html?name=' + encodeURIComponent(name);
