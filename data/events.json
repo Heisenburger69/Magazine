@@ -1,143 +1,164 @@
 {
   "events": [
     {
-      "id": "science-fair-2024",
-      "title": "School Hosts Annual Science Fair 2024",
+      "id": "english-day-2026",
+      "title": "The International English Day",
       "type": "multi",
-      "category": "Academic",
+      "category": "Cultural",
       "featured": true,
-      "date": "2024",
+      "date": "23/4/2026",
       "elements": [
         {
           "type": "image",
-          "image": "assets/images/englishday1.jpg",
-          "caption": "Students presenting their projects",
-          "align": "full"
+          "image": "assets/images/englishday1.jpg"
         },
         {
           "type": "text",
-          "content": "Students showcase innovative projects and cutting-edge concepts. The event highlights our commitment to STEM education and hands-on learning experiences."
+          "content": "The celebration of the international English day"
         },
         {
-          "type": "quote",
-          "quote": "This was an amazing experience!",
-          "author": "Ahmed Alaadin Hassan Darmelli"
+          "type": "text",
+          "content": "This phenomenal day is a celebration of The English Language, it's not just a subject we take in school, it's a global Language that connects millions of people around the world, a bridge of culture and ideas with no borders, the greatest mean of communication and learning of all time.\n\nThis day is always celebrated worldwide on April 23rd, every year. It's also the birthday of William Shakespeare, the greatest writer of all time whose works inspire generations to this day.\n\nThe school's effort of honoring this day and language is astonishing. This day couldn't have been any more amazing\n"
+        },
+        {
+          "type": "video",
+          "video": "dQw4w9WgXcQ"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/englishday2.jpg",
+            "assets/images/englishday5.jpg",
+            "assets/images/englishday4.jpg"
+          ],
+          "caption": "Pictures of our Excellent Students and Organizers"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/1.png",
+            "assets/images/2.png"
+          ],
+          "caption": "Pictures of the main event"
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Sahar",
+              "role": "Organizer"
+            },
+            {
+              "name": "Miss Amany",
+              "role": "Co-Organizer"
+            },
+            {
+              "name": "Mr. Amir Nagy",
+              "role": "Co-Organizer"
+            },
+            {
+              "name": "Miss Eman Sabry",
+              "role": "Art Manager"
+            }
+          ]
         },
         {
           "type": "students",
           "students": [
-            { "name": "Youssef Ahmed Sabry", "role": "Science Representative", "achievement": "First Place - Robotics" },
-            { "name": "Ahmed Alaadin Hassan Darmelli", "role": "Event Organizer", "achievement": "Best Presentation" }
+            {
+              "name": "Youssef Ahmed Sabry",
+              "role": "Event Speaker",
+              "achievement": "Speaker on the English day"
+            },
+            {
+              "name": "Ahmed Adel Abd Elhafeez",
+              "role": "Mini Game Manager",
+              "achievement": "Correct Pronunciation Minigame"
+            },
+            {
+              "name": "Hassan Mohamed",
+              "role": "Mini Game Manager",
+              "achievement": "Correct Pronunciation Minigame"
+            },
+            {
+              "name": "Sama Alaa",
+              "role": "Presenter",
+              "achievement": "Presentation on Consumerism"
+            },
+            {
+              "name": "Lili Ahmed",
+              "role": "The Riddler",
+              "achievement": "Riddles Minigame"
+            },
+            {
+              "name": "Angelina Amjad",
+              "role": "Singer/Presenter",
+              "achievement": "Poetry & Song"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "id": "olympiad",
-      "title": "International Olympiad",
-      "type": "multi",
-      "category": "Academic",
-      "featured": false,
-      "date": "2024",
-      "elements": [
-        {
-          "type": "text",
-          "content": "Rising Stars students excel in international mathematics competition. Our team brought home multiple medals!"
         },
         {
           "type": "image",
-          "image": "assets/images/englishday3.jpg",
+          "image": "assets/images/englishday9.jpg",
           "align": "left"
         },
         {
-          "type": "students",
-          "students": [
-            { "name": "Ahmed Alaadin Hassan Darmelli", "role": "Team Captain", "achievement": "Gold Medal" },
-            { "name": "Youssef Ahmed Sabry", "role": "Team Member", "achievement": "Silver Medal" }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "language-day",
-      "title": "Language Day",
-      "type": "multi",
-      "category": "Cultural",
-      "featured": false,
-      "date": "2024",
-      "elements": [
-        {
-          "type": "slideshow",
-          "images": ["assets/images/englishday1.jpg", "assets/images/englishday2.jpg", "assets/images/englishday3.jpg"],
-          "caption": "Highlights from the day"
-        },
-        {
           "type": "text",
-          "content": "Students showcase multilingual talents and cultural diversity through performances and exhibitions."
-        },
-        {
-          "type": "students",
-          "students": [
-            { "name": "Youssef Ahmed Sabry", "role": "MC", "achievement": "Best Performance" },
-            { "name": "Yassin Ahmed Sabry", "role": "Performer", "achievement": "Audience Choice" }
-          ]
+          "content": "And we also got to play a movie <3"
         }
       ]
     },
     {
-      "id": "debate-championship",
-      "title": "Debate Championship",
+      "id": "art-exhibition",
+      "title": "Art Exhibition",
       "type": "multi",
-      "category": "Academic",
-      "featured": false,
-      "date": "2024",
-      "elements": [
-        {
-          "type": "text",
-          "content": "Students demonstrate oratory and critical thinking skills in our annual debate championship."
-        },
-        {
-          "type": "students",
-          "students": [
-            { "name": "Yassin Ahmed Sabry", "role": "Team Captain", "achievement": "Best Speaker" }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "smart-board",
-      "title": "Smart Board Technology",
-      "type": "multi",
-      "category": "Technology",
+      "category": "Arts",
       "featured": false,
       "date": "2024",
       "elements": [
         {
           "type": "image",
-          "image": "assets/images/englishday2.jpg",
-          "align": "full"
+          "image": "assets/images/englishday2.jpg"
         },
         {
           "type": "text",
-          "content": "Latest teaching tech enhances interactive learning in classrooms across all grade levels."
+          "content": "Students showcase their artwork in the annual exhibition."
         }
       ]
     },
     {
-      "id": "video-event",
-      "title": "Sports Day Highlights",
+      "id": "sports-day",
+      "title": "Sports Day",
       "type": "multi",
       "category": "Sports",
       "featured": false,
       "date": "2024",
       "elements": [
         {
-          "type": "video",
-          "video": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+          "type": "image",
+          "image": "assets/images/englishday3.jpg"
         },
         {
           "type": "text",
-          "content": "Exciting sports competition and healthy competition among students."
+          "content": "Exciting sports competition among all grades."
+        }
+      ]
+    },
+    {
+      "id": "music-concert",
+      "title": "Music Concert",
+      "type": "multi",
+      "category": "Cultural",
+      "featured": false,
+      "date": "2024",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/englishday4.jpg"
+        },
+        {
+          "type": "text",
+          "content": "Students perform musical pieces for the school community."
         }
       ]
     }
