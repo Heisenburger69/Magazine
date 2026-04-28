@@ -30,8 +30,12 @@
         .article-quote .quote-author { font-size: 14px; color: #666; margin-top: 12px; font-style: normal; font-weight: 600; }
         .article-students { background: rgba(201,168,76,0.15); padding: 24px; border-radius: 12px; margin: 30px 0; }
         .article-students h3 { font-size: 14px; margin-bottom: 16px; }
+        .article-students-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .students-group { margin-bottom: 20px; }
+        .group-separator { font-size: 12px; font-weight: 700; color: #555; padding: 8px 12px; margin-bottom: 10px; background: rgba(0,0,0,0.05); border-radius: 4px; }
         .article-organizers { background: rgba(220,20,60,0.1); padding: 24px; border-radius: 12px; margin: 30px 0; border-left: 4px solid #DC143C; }
         .article-organizers h3 { font-size: 14px; margin-bottom: 16px; color: #DC143C; }
+        .article-organizers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         .student-card-mini { display: flex; align-items: center; gap: 16px; padding: 12px; background: var(--bg-white); border-radius: 8px; margin-bottom: 12px; cursor: pointer; transition: var(--transition); }
         .student-card-mini:hover { transform: translateX(8px); }
         .student-card-mini img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
@@ -145,26 +149,47 @@
                         case 'students':
                             if (el.students && el.students.length) {
                                 let studentsHtml = '<div class="article-students"><h3>Students in this article:</h3>';
+                                
+                                const secondary = [], preparatory = [], primary = [], other = [];
                                 el.students.forEach(s => {
                                     const student = DataStore.getStudent(s.name);
-                                    const img = student?.image || '';
-                                    const isStar = student?.star;
-                                    studentsHtml += `
-                                        <div class="student-card-mini" onclick="viewStudent('${s.name}')">
-                                            <img src="${img}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
-                                            <div class="student-card-mini-info">
-                                                <div class="student-card-mini-name">${s.name} ${isStar ? '★' : ''}</div>
-                                                <div class="student-card-mini-role">${s.role || 'Student'} ${s.achievement ? '- ' + s.achievement : ''}</div>
-                                            </div>
-                                        </div>`;
+                                    const studentClass = student?.class?.toLowerCase() || 'other';
+                                    if (studentClass === 'secondary') secondary.push(s);
+                                    else if (studentClass === 'preparatory') preparatory.push(s);
+                                    else if (studentClass === 'primary') primary.push(s);
+                                    else other.push(s);
                                 });
+                                
+                                const renderGroup = (students, title, color) => {
+                                    if (!students.length) return '';
+                                    return `<div class="students-group">
+                                        <div class="group-separator" style="border-left: 4px solid ${color};">${title}</div>
+                                        <div class="article-students-grid">` +
+                                        students.map(s => {
+                                            const student = DataStore.getStudent(s.name);
+                                            const img = student?.image || '';
+                                            const isStar = student?.star;
+                                            return `<div class="student-card-mini" onclick="viewStudent('${s.name}')">
+                                                <img src="${img}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
+                                                <div class="student-card-mini-info">
+                                                    <div class="student-card-mini-name">${s.name} ${isStar ? '★' : ''}</div>
+                                                    <div class="student-card-mini-role">${s.role || 'Student'} ${s.achievement ? '- ' + s.achievement : ''}</div>
+                                                </div>
+                                            </div>`;
+                                        }).join('') + '</div></div>';
+                                };
+                                
+                                studentsHtml += renderGroup(secondary, 'Secondary', '#333');
+                                studentsHtml += renderGroup(preparatory, 'Preparatory', '#2A6B54');
+                                studentsHtml += renderGroup(primary, 'Primary', '#4299E1');
+                                studentsHtml += renderGroup(other, 'Other', '#8B3A5C');
                                 studentsHtml += '</div>';
                                 html += studentsHtml;
                             }
                             break;
                         case 'organizers':
                             if (el.organizers && el.organizers.length) {
-                                let orgHtml = '<div class="article-organizers"><h3 style="color:#DC143C;">Organizers / Teachers:</h3>';
+                                let orgHtml = '<div class="article-organizers"><h3 style="color:#DC143C;">Organizers / Teachers:</h3><div class="article-organizers-grid">';
                                 el.organizers.forEach(s => {
                                     const student = DataStore.getStudent(s.name);
                                     const img = student?.image || '';
@@ -178,7 +203,7 @@
                                             </div>
                                         </div>`;
                                 });
-                                orgHtml += '</div>';
+                                orgHtml += '</div></div>';
                                 html += orgHtml;
                             }
                             break;

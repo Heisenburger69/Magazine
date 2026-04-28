@@ -18,15 +18,44 @@
         @media (max-width: 480px) { .students-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
         .student-card { background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,244,240,0.9) 100%); border-radius: 12px; padding: 20px; text-align: center; box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer; border: 1px solid rgba(0,0,0,0.06); }
         .student-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-        .student-card.star { background: linear-gradient(145deg, #1a1a1a 0%, #2a2520 100%); border: 2px solid var(--primary-gold); color: #fff; }
+        
+        /* Base star style - gold border */
+        .student-card.star { border: 3px solid var(--primary-gold); box-shadow: 0 0 20px rgba(201,168,76,0.6); }
+        .student-card.star.teacher { background: linear-gradient(145deg, #722F37 0%, #4A1F29 100%); border-color: var(--primary-gold); }
+        .student-card.star.secondary { background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%); border-color: var(--primary-gold); box-shadow: 0 0 0 3px #333, 0 0 25px rgba(201,168,76,0.6); }
+        .student-card.star.preparatory { background: linear-gradient(145deg, #1B4D3E 0%, #0F2E25 100%); border-color: var(--primary-gold); box-shadow: 0 0 0 3px #2A6B54, 0 0 25px rgba(201,168,76,0.6); }
+        .student-card.star.primary { background: linear-gradient(145deg, #2C5282 0%, #1A3652 100%); border-color: var(--primary-gold); box-shadow: 0 0 0 3px #4299E1, 0 0 25px rgba(201,168,76,0.6); }
+        .student-card.star.teacher { box-shadow: 0 0 0 3px #922B3E, 0 0 25px rgba(201,168,76,0.6); }
+        
         .student-card.star h3 { color: var(--primary-gold); }
         .student-card.star .role { color: rgba(255,255,255,0.7); }
         .student-card.star .class-badge { background: var(--primary-gold); color: var(--primary-black); }
+        
+        /* Teacher colors */
+        .student-card.teacher { background: linear-gradient(145deg, #722F37 0%, #4A1F29 100%); border: 2px solid #922B3E; color: #fff; }
+        .student-card.teacher h3 { color: #fff; }
+        .student-card.teacher .role { color: rgba(255,255,255,0.8); }
+        .student-card.teacher .class-badge { background: #922B3E; color: #fff; }
+        
+        /* Secondary */
+        .student-card.secondary { background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #333; color: #fff; }
+        .student-card.secondary h3 { color: #fff; }
+        .student-card.secondary .class-badge { background: #333; color: #fff; }
+        
+        /* Preparatory */
+        .student-card.preparatory { background: linear-gradient(145deg, #1B4D3E 0%, #0F2E25 100%); border: 2px solid #2A6B54; color: #fff; }
+        .student-card.preparatory h3 { color: #fff; }
+        .student-card.preparatory .class-badge { background: #2A6B54; color: #fff; }
+        
+        /* Primary */
+        .student-card.primary { background: linear-gradient(145deg, #2C5282 0%, #1A3652 100%); border: 2px solid #4299E1; color: #fff; }
+        .student-card.primary h3 { color: #fff; }
+        .student-card.primary .class-badge { background: #4299E1; color: #fff; }
+        
         .student-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-gold); margin-bottom: 12px; box-shadow: 0 4px 16px rgba(201,168,76,0.3); }
         .student-card h3 { font-size: 14px; margin-bottom: 4px; }
         .student-card .role { font-size: 11px; color: #555; font-style: italic; margin-bottom: 8px; }
         .student-card .class-badge { display: inline-block; background: #8B3A5C; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
-        .student-card.teacher .class-badge { background: #6B4423; }
         .achievements { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 8px; }
         .achievement-tag { background: rgba(201,168,76,0.3); padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 600; }
         .student-card.star .achievement-tag { background: rgba(0,0,0,0.15); color: #fff; }
@@ -112,8 +141,14 @@
                 const isTeacher = s.type === 'teacher';
                 const studentClass = s.class || 'Student';
                 const achievements = s.achievements ? s.achievements.map(a => `<span class="achievement-tag">${a}</span>`).join('') : '';
+                
+                let className = 'student-card';
+                if (isStar) className += ' star';
+                if (isTeacher) className += ' teacher';
+                else if (studentClass.toLowerCase()) className += ' ' + studentClass.toLowerCase();
+                
                 return `
-                    <div class="student-card ${isStar ? 'star' : ''} ${isTeacher ? 'teacher' : ''}" onclick="viewStudent('${s.name}')">
+                    <div class="${className}" onclick="viewStudent('${s.name}')">
                         <img src="${s.image || ''}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27140%27 height=%27140%27%3E%3Ccircle cx=%2770%27 cy=%2770%27 r=%2770%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
                         <span class="class-badge">${isTeacher ? 'Teacher' : studentClass}</span>
                         <h3>${s.name}${isStar ? '<span class="star-badge">★ STAR</span>' : ''}</h3>
