@@ -25,7 +25,7 @@ Admin can create and manage rich event articles with mixed content elements, and
 - [ ] Element builder in admin — add/remove/reorder content blocks (text, image, slideshow, video, quote, students)
 - [ ] Full CRUD for events — create, edit, delete with live preview
 - [ ] Full CRUD for students — create, edit, delete, toggle star status
-- [ ] LocalStorage persistence + JSON export/import for GitHub Pages deployment
+- [ ] JSON view + copy UI — admin edits in browser, copies JSON output, pastes into repo
 - [ ] Link students to events from admin
 - [ ] Modern, intuitive admin UI
 - [ ] Clean up codebase — remove duplicate files, shared JS modules, consistent code structure
@@ -49,7 +49,7 @@ Admin can create and manage rich event articles with mixed content elements, and
 ## Constraints
 
 - **Hosting**: GitHub Pages — no server, no dynamic backend
-- **Persistence**: LocalStorage for editing session + JSON file export/import to commit changes
+- **Persistence**: Pure JSON — admin edits in UI, views/copies JSON output, pastes into repo files
 - **Stack**: Vanilla HTML/CSS/JS — no build tools, no frameworks (KISS)
 - **KISS**: Keep it simple. This is a school project, not enterprise software
 
@@ -57,7 +57,7 @@ Admin can create and manage rich event articles with mixed content elements, and
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| LocalStorage + JSON export/import | GitHub Pages = no server. Admin edits in browser, exports JSON, commits to repo | — Pending |
+| Pure JSON copy/paste persistence | GitHub Pages = no server. Admin edits in UI, copies JSON, pastes into repo files. No LocalStorage. | — Pending |
 | Element builder for articles | User wants rich content composition, not form-per-type | — Pending |
 | Vanilla JS, no frameworks | KISS principle, school project, no build complexity | — Pending |
 | Move images to assets/images/ | Root dir cluttered with 15+ loose image files | — Pending |
