@@ -14,15 +14,11 @@
         },
         {
           "type": "text",
-          "content": "The celebration of the international English day"
+          "content": "The celebration of the international English day in Rising Stars Language School"
         },
         {
           "type": "text",
           "content": "This phenomenal day is a celebration of The English Language, it's not just a subject we take in school, it's a global Language that connects millions of people around the world, a bridge of culture and ideas with no borders, the greatest mean of communication and learning of all time.\n\nThis day is always celebrated worldwide on April 23rd, every year. It's also the birthday of William Shakespeare, the greatest writer of all time whose works inspire generations to this day.\n\nThe school's effort of honoring this day and language is astonishing. This day couldn't have been any more amazing\n"
-        },
-        {
-          "type": "video",
-          "video": "mU1EPS0NXcI"
         },
         {
           "type": "slideshow",
@@ -34,12 +30,28 @@
           "caption": "Pictures of our Excellent Students and Organizers"
         },
         {
+          "type": "video",
+          "video": "qec10WMPcP4, 92AQTP09qas"
+        },
+        {
+          "type": "text",
+          "content": "The Presentations and Minigames"
+        },
+        {
+          "type": "video",
+          "video": "T7U9PgIN8I0"
+        },
+        {
+          "type": "text",
+          "content": "Angelina's incredible performance"
+        },
+        {
           "type": "slideshow",
           "images": [
             "assets/images/1.png",
             "assets/images/2.png"
           ],
-          "caption": "Pictures of the main event"
+          "caption": "Pictures of the main event, Giving away prices and chocolates to participants"
         },
         {
           "type": "organizers",
@@ -59,6 +71,11 @@
             {
               "name": "Miss Eman Sabry",
               "role": "Art Manager"
+            },
+            {
+              "name": "Mr. Ahmed Ashour",
+              "role": "Director of Event",
+              "achievement": ""
             }
           ]
         },
@@ -109,56 +126,142 @@
       ]
     },
     {
-      "id": "art-exhibition",
-      "title": "Art Exhibition",
+      "id": "the-crafts-exhibition",
+      "title": "The Crafts Exhibition",
       "type": "multi",
-      "category": "Arts",
+      "category": "School",
       "featured": false,
-      "date": "2024",
+      "date": "2026",
       "elements": [
         {
           "type": "image",
-          "image": "assets/images/englishday2.jpg"
+          "image": "assets/images/32713.jpg",
+          "align": "left",
+          "caption": ""
         },
         {
           "type": "text",
-          "content": "Students showcase their artwork in the annual exhibition."
+          "content": "Students get to showcase their custom crafts and sell them to each other, learning life skills along the way"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/11 (1).jpg",
+            "assets/images/11 (2).jpg",
+            "assets/images/11 (3).jpg"
+          ],
+          "caption": "Students enjoying the day"
+        },
+        {
+          "type": "video",
+          "video": "mU1EPS0NXcI"
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Eman Sabry",
+              "role": "Art Teacher",
+              "achievement": "Taught the students how to make crafts"
+            }
+          ]
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Mina Maged",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Joy fady",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Bola Beshoy",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Theodora Maged",
+              "role": "",
+              "achievement": ""
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "content": "This event helped students know the basics of craftsmanship and trading, before they went to the exhibition in Sheraton branch.\n It's a light-hearted, fun experience for the students to enjoy."
         }
       ]
     },
     {
-      "id": "sports-day",
-      "title": "Sports Day",
+      "id": "the-exhibition-of-outstanding-students-at-the-sheraton-branch",
+      "title": "The exhibition of outstanding students at the Sheraton branch",
       "type": "multi",
-      "category": "Sports",
+      "category": "School",
       "featured": false,
-      "date": "2024",
+      "date": "2026",
       "elements": [
         {
           "type": "image",
-          "image": "assets/images/englishday3.jpg"
+          "image": "assets/images/22 (3).jpg",
+          "align": "left",
+          "caption": ""
         },
         {
           "type": "text",
-          "content": "Exciting sports competition among all grades."
-        }
-      ]
-    },
-    {
-      "id": "music-concert",
-      "title": "Music Concert",
-      "type": "multi",
-      "category": "Cultural",
-      "featured": false,
-      "date": "2024",
-      "elements": [
+          "content": "This Crafts event was hosted by the ESI \n\nWhere in students made handcrafted bracelets and other accessories and listed them for sale in another Future's school"
+        },
         {
-          "type": "image",
-          "image": "assets/images/englishday4.jpg"
+          "type": "students",
+          "students": [
+            {
+              "name": "Joy fady",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Bola Beshoy",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Theodora Maged",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Mina Maged",
+              "role": "",
+              "achievement": ""
+            }
+          ]
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Eman Sabry",
+              "role": "Art Teacher",
+              "achievement": "Helped the students accomplish all those wonders"
+            }
+          ]
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/22 (3).jpg",
+            "assets/images/22 (2).jpg",
+            "assets/images/22 (1).jpg"
+          ],
+          "caption": ""
         },
         {
           "type": "text",
-          "content": "Students perform musical pieces for the school community."
+          "content": "The event helped teach students how to barter \nHow to make accessories \nAnd how to sell them \nAll in all it was a very enjoyable, yet useful event with many students loving the experience and meeting new people and students with shared interests"
         }
       ]
     }

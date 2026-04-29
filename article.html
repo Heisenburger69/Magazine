@@ -153,11 +153,18 @@
                                 const secondary = [], preparatory = [], primary = [], other = [];
                                 el.students.forEach(s => {
                                     const student = DataStore.getStudent(s.name);
-                                    const studentClass = student?.class?.toLowerCase() || 'other';
-                                    if (studentClass === 'secondary') secondary.push(s);
-                                    else if (studentClass === 'preparatory') preparatory.push(s);
-                                    else if (studentClass === 'primary') primary.push(s);
-                                    else other.push(s);
+                                    const studentClass = (student?.class || 'other').toString().toLowerCase();
+                                    if (student?.type === 'teacher' || studentClass === 'teacher') {
+                                        other.push(s);
+                                    } else if (studentClass === 'secondary') {
+                                        secondary.push(s);
+                                    } else if (studentClass === 'preparatory') {
+                                        preparatory.push(s);
+                                    } else if (studentClass === 'primary') {
+                                        primary.push(s);
+                                    } else {
+                                        other.push(s);
+                                    }
                                 });
                                 
                                 const renderGroup = (students, title, color) => {
@@ -168,7 +175,7 @@
                                         students.map(s => {
                                             const student = DataStore.getStudent(s.name);
                                             const img = student?.image || '';
-                                            const isStar = student?.star;
+                                            const isStar = student?.star && student?.type === 'student';
                                             return `<div class="student-card-mini" onclick="viewStudent('${s.name}')">
                                                 <img src="${img}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
                                                 <div class="student-card-mini-info">
@@ -193,7 +200,7 @@
                                 el.organizers.forEach(s => {
                                     const student = DataStore.getStudent(s.name);
                                     const img = student?.image || '';
-                                    const isStar = student?.star;
+                                    const isStar = student?.star && student?.type === 'student';
                                     orgHtml += `
                                         <div class="student-card-mini" onclick="viewStudent('${s.name}')">
                                             <img src="${img}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">

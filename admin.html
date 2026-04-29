@@ -193,20 +193,43 @@
                 </div>
                 <div id="studentsList"></div>
 
-                <!-- STUDENT EDITOR -->
+<!-- STUDENT EDITOR -->
                 <div id="studentEditor" style="display:none;">
                     <div class="form-section">
                         <h3 id="studentEditorTitle">New Student</h3>
                         <input type="hidden" id="editStudentId">
                         <div class="form-row">
                             <div class="form-group">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-input" id="studentName" placeholder="Full name">
+                                <label class="form-label">Type</label>
+                                <select class="form-select" id="studentType">
+                                    <option value="student">Student</option>
+                                    <option value="teacher">Teacher</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Role</label>
-                                <input type="text" class="form-input" id="studentRole" placeholder="e.g. Editor, President">
+                                <label class="form-label">Class</label>
+                                <select class="form-select" id="studentClass">
+                                    <option value="Secondary">Secondary</option>
+                                    <option value="Preparatory">Preparatory</option>
+                                    <option value="Primary">Primary</option>
+                                    <option value="Teacher">Teacher</option>
+                                </select>
                             </div>
+                            <div class="form-group">
+                                <label class="form-label">Star Student</label>
+                                <select class="form-select" id="studentStar">
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-input" id="studentName" placeholder="Full name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Role</label>
+                            <input type="text" class="form-input" id="studentRole" placeholder="e.g. Editor, President">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Quote</label>
@@ -223,29 +246,12 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label">Type</label>
-                                <select class="form-select" id="studentType">
-                                    <option value="student">Student</option>
-                                    <option value="teacher">Teacher</option>
-                                </select>
-                            </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">Class</label>
-                                <select class="form-select" id="studentClass">
-                                    <option value="Primary">Primary</option>
-                                    <option value="Preparatory">Preparatory</option>
-                                    <option value="Secondary">Secondary</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Star Student</label>
-                                <select class="form-select" id="studentStar">
-                                    <option value="false">No</option>
-                                    <option value="true">Yes</option>
-                                </select>
+                        <div class="form-group">
+                            <label class="form-label">Achievements (comma separated)</label>
+                            <input type="text" class="form-input" id="studentAchievements" placeholder="Academic Excellence, Science Innovation">
+                        </div>
+                        <div style="display:flex;gap:12px;margin-top:10px;">
                             </div>
                         </div>
                         <div class="form-group">
@@ -264,18 +270,20 @@
             <div class="tab-content" id="jsonTab">
                 <div class="form-section">
                     <h3>Events JSON</h3>
-                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Copy this JSON and paste it into <code>data/events.json</code> in your repo.</p>
+                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Edit events in the Events tab, then copy or download the JSON here.</p>
                     <div class="json-panel">
                         <button class="json-copy-btn" onclick="copyJSON('events')">Copy</button>
+                        <button class="json-copy-btn" style="background:#4CAF50;" onclick="downloadJSON('events')">Download</button>
                         <pre id="eventsJSON"></pre>
                     </div>
                 </div>
 
                 <div class="form-section">
                     <h3>Students JSON</h3>
-                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Copy this JSON and paste it into <code>data/students.json</code> in your repo.</p>
+                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Edit students in the Students tab, then copy or download the JSON here.</p>
                     <div class="json-panel">
                         <button class="json-copy-btn" onclick="copyJSON('students')">Copy</button>
+                        <button class="json-copy-btn" style="background:#4CAF50;" onclick="downloadJSON('students')">Download</button>
                         <pre id="studentsJSON"></pre>
                     </div>
                 </div>
@@ -287,18 +295,24 @@
                         <div>
                             <label class="form-label">Import Events</label>
                             <div class="import-area">
-                                <textarea id="importEventsArea" placeholder='Paste events JSON here...'></textarea>
+                                <textarea id="importEventsArea" placeholder='Paste events JSON here...' style="min-height:100px;"></textarea>
                             </div>
                             <button class="btn btn-primary" onclick="importJSON('events')" style="margin-top:10px;padding:8px 20px;font-size:12px;">Import Events</button>
                         </div>
                         <div>
                             <label class="form-label">Import Students</label>
                             <div class="import-area">
-                                <textarea id="importStudentsArea" placeholder='Paste students JSON here...'></textarea>
+                                <textarea id="importStudentsArea" placeholder='Paste students JSON here...' style="min-height:100px;"></textarea>
                             </div>
                             <button class="btn btn-primary" onclick="importJSON('students')" style="margin-top:10px;padding:8px 20px;font-size:12px;">Import Students</button>
                         </div>
                     </div>
+                </div>
+                
+                <div class="form-section" style="background:#f0f7ff;border:2px solid #2196F3;">
+                    <h3 style="color:#2196F3;">Reload Data</h3>
+                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Clear localStorage and reload from JSON files (requires local server).</p>
+                    <button class="btn" style="background:#2196F3;color:white;padding:10px 24px;font-size:13px;" onclick="reloadData()">⚡ Reload from JSON Files</button>
                 </div>
             </div>
         </div>
@@ -346,8 +360,9 @@
             const list = document.getElementById('eventsList');
             const events = DataStore.getEvents();
             if (!events.length) { list.innerHTML = '<p style="color:#999;text-align:center;padding:40px;">No events yet. Create one!</p>'; return; }
-            list.innerHTML = events.map(e => `
-                <div class="item-row">
+            list.innerHTML = events.map((e, i) => `
+                <div class="item-row" draggable="true" data-event-id="${e.id}" data-index="${i}" ondragstart="dragEventStart(event)" ondragover="dragEventOver(event)" ondrop="dropEvent(event)" ondragend="dragEventEnd(event)">
+                    <div style="cursor:grab;padding:0 12px;color:#999;font-size:18px;">☰</div>
                     <div class="item-info">
                         <div class="item-title">${e.featured ? '★ ' : ''}${e.title}</div>
                         <div class="item-meta">${e.category || ''} | ${e.date || ''} | ${(e.elements || []).length} elements</div>
@@ -358,6 +373,35 @@
                     </div>
                 </div>
             `).join('');
+        }
+        
+        let draggedEventIndex = null;
+        
+        function dragEventStart(e) {
+            draggedEventIndex = parseInt(e.target.dataset.index);
+            e.target.style.opacity = '0.5';
+        }
+        
+        function dragEventOver(e) {
+            e.preventDefault();
+        }
+        
+        function dropEvent(e) {
+            e.preventDefault();
+            const targetRow = e.target.closest('[data-index]');
+            if (!targetRow) return;
+            const targetIndex = parseInt(targetRow.dataset.index);
+            
+            if (draggedEventIndex !== null && draggedEventIndex !== targetIndex) {
+                DataStore.reorderEvent(draggedEventIndex, targetIndex);
+                renderEventsList();
+                showJSON();
+            }
+        }
+        
+        function dragEventEnd(e) {
+            e.target.style.opacity = '1';
+            draggedEventIndex = null;
         }
 
         function openEventEditor(eventData) {
@@ -700,6 +744,7 @@
                 document.getElementById('studentRole').value = '';
                 document.getElementById('studentQuote').value = '';
                 document.getElementById('studentImage').value = '';
+                document.getElementById('studentType').value = 'student';
                 document.getElementById('studentClass').value = 'Secondary';
                 document.getElementById('studentStar').value = 'false';
                 document.getElementById('studentAchievements').value = '';
@@ -768,13 +813,22 @@
 
         function copyJSON(type) {
             const text = type === 'events' ? DataStore.getEventsJSON() : DataStore.getStudentsJSON();
-            navigator.clipboard.writeText(text).then(() => {
-                const btns = document.querySelectorAll('.json-copy-btn');
-                const btn = type === 'events' ? btns[0] : btns[1];
-                btn.textContent = 'Copied!';
-                btn.classList.add('copied');
-                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-            });
+            navigator.clipboard.writeText(text);
+            alert(type + ' JSON copied to clipboard!');
+        }
+
+        function downloadJSON(type) {
+            const text = type === 'events' ? DataStore.getEventsJSON() : DataStore.getStudentsJSON();
+            const filename = type === 'events' ? 'events.json' : 'students.json';
+            const blob = new Blob([text], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
 
         function importJSON(type) {
@@ -791,10 +845,21 @@
                     renderStudentsList();
                 }
                 area.value = '';
-                alert(type.charAt(0).toUpperCase() + type.slice(1) + ' imported successfully!');
+                showJSON();
+                alert(type.charAt(0).toUpperCase() + type.slice(1) + ' imported successfully! (also saved to localStorage)');
             } catch (err) {
                 alert('Invalid JSON: ' + err.message);
             }
+        }
+
+        async function reloadData() {
+            if (!confirm('This will clear localStorage and reload from JSON files. Continue?')) return;
+            
+            await DataStore.reload();
+            renderEventsList();
+            renderStudentsList();
+            showJSON();
+            alert('Data reloaded!');
         }
 
         // --- Init on password entry ---
