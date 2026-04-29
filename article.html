@@ -51,7 +51,19 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .article-text p { font-size: 16px; line-height: 1.8; color: #333; }
-        @media (max-width: 768px) { .article-image-text { grid-template-columns: 1fr; } .article-image-text.reverse { direction: ltr; } }
+        @media (max-width: 768px) { 
+            .article-image-text { grid-template-columns: 1fr; } 
+            .article-image-text.reverse { direction: ltr; }
+            .article-students, .article-organizers { padding: 12px; }
+            .article-students h3, .article-organizers h3 { font-size: 12px; margin-bottom: 12px; }
+            .article-students-grid, .article-organizers-grid { gap: 8px; }
+            .student-card-mini { padding: 6px; gap: 8px; }
+            .student-card-mini img { width: 32px; height: 32px; }
+            .student-card-mini-name { font-size: 12px; }
+            .student-card-mini-role { font-size: 10px; }
+            .students-group { margin-bottom: 16px; }
+            .group-separator { font-size: 10px; padding: 4px 8px; margin-bottom: 8px; }
+        }
     </style>
 </head>
 <body>
