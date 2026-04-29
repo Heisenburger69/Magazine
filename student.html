@@ -69,7 +69,7 @@
                 return;
             }
 
-            document.getElementById('profileName').innerHTML = student.name + (student.star ? ' <span class="star-badge">★ Star</span>' : '');
+            document.getElementById('profileName').innerHTML = student.name + (student.star && student.type === 'student' ? ' <span class="star-badge">★ Star</span>' : '');
             document.getElementById('profileRole').textContent = student.role || '';
             document.getElementById('profileQuote').textContent = '"' + student.quote + '"';
             document.getElementById('profileImage').src = student.image || '';
@@ -80,13 +80,34 @@
             if (studentEvents.length > 0) {
                 eventsList.innerHTML = studentEvents.map(event => {
                     const excerpt = DataStore.getEventExcerpt(event);
-                    const eventStudents = DataStore.getEventStudents(event);
-                    const studentInfo = eventStudents.find(s => s.name === studentName);
+                    const thumb = DataStore.getEventPreviewImage(event);
+                    
+                    let studentInfo = null;
+                    if (event.elements) {
+                        for (const el of event.elements) {
+                            if (el.type === 'students' && el.students) {
+                                studentInfo = el.students.find(s => s.name === studentName);
+                                if (studentInfo) break;
+                            }
+                            if (el.type === 'organizers' && el.organizers) {
+                                studentInfo = el.organizers.find(s => s.name === studentName);
+                                if (studentInfo) break;
+                            }
+                        }
+                    }
+                    
+                    const roleText = studentInfo?.role ? studentInfo.role : 'Participant';
+                    const achieveText = studentInfo?.achievement ? `- ${studentInfo.achievement}` : '';
                     return `
                         <div class="event-mini" onclick="viewArticle('${event.id}')">
-                            <div class="event-mini-title">${event.title}</div>
-                            <div class="event-mini-excerpt">${excerpt}</div>
-                            ${studentInfo ? `<span class="achievement-tag">${studentInfo.role || 'Participant'} ${studentInfo.achievement ? '- ' + studentInfo.achievement : ''}</span>` : ''}
+                            <div style="display:flex;gap:16px;align-items:flex-start;">
+                                ${thumb ? `<img src="${thumb}" style="width:80px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;" onerror="this.style.display='none'">` : ''}
+                                <div style="flex:1;">
+                                    <div class="event-mini-title">${event.title}</div>
+                                    <div style="font-size:12px;color:#DC143C;font-weight:600;margin:4px 0;">${roleText} ${achieveText}</div>
+                                    <div class="event-mini-excerpt">${excerpt}</div>
+                                </div>
+                            </div>
                         </div>`;
                 }).join('');
             } else {

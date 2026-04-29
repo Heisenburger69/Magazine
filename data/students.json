@@ -3,46 +3,55 @@
     {
       "id": "youssef-ahmed-sabry",
       "name": "Youssef Ahmed Sabry",
-      "role": "Newspaper/Magazine Creator & Editor",
+      "role": "Science Rep, Newspaper/Magazine Creator & Editor",
       "quote": "Working on the school magazine is such an honor for me, I will gladly try to make this magazine the best there ever was in all of future's schools",
       "image": "assets/images/Youssef.png",
       "star": true,
       "type": "student",
       "class": "Secondary",
-      "achievements": ["Academic Excellence"]
+      "achievements": [
+        "Academic Excellence"
+      ]
     },
     {
       "id": "ahmed-alaadin-hassan",
       "name": "Ahmed Alaadin Hassan Darmelli",
       "role": "President of Preparatory & Newspaper Writer",
       "quote": "You fell down so what? Get back up. For it is our destiny to rise, and in that there's no doubt",
-      "image": "assets/images/Ahmed.png",
+      "image": "assets/images/31633.jpg",
       "star": true,
       "type": "student",
       "class": "Preparatory",
-      "achievements": ["Debate Champion"]
+      "achievements": [
+        "Debate Champion"
+      ]
     },
     {
       "id": "yassin-ahmed-sabry",
       "name": "Yassin Ahmed Sabry",
-      "role": "Reporter & Channel Manager",
+      "role": "Social Rep, Reporter & Channel Manager",
       "quote": "I suppose leadership at one time meant muscles, but today it means getting along with people.",
       "image": "assets/images/Yassin.webp",
       "star": true,
       "type": "student",
       "class": "Preparatory",
-      "achievements": ["Best Reporter"]
+      "achievements": [
+        "Best Reporter"
+      ]
     },
     {
       "id": "ahmed-adel-abd-elhafeez",
       "name": "Ahmed Adel Abd Elhafeez",
       "role": "Excellent Student",
       "quote": "A perfect student that does his homework, and helps when he can.",
-      "image": "assets/images/ahmed.jpg",
+      "image": "assets/images/IMG-20260427-WA0024.jpg",
       "star": true,
       "type": "student",
       "class": "Secondary",
-      "achievements": ["Designer", "Artist"]
+      "achievements": [
+        "Designer",
+        "Artist"
+      ]
     },
     {
       "id": "retaj-adel-abd-elhafeez",
@@ -53,7 +62,9 @@
       "star": false,
       "type": "student",
       "class": "Preparatory",
-      "achievements": ["Artist"]
+      "achievements": [
+        "Artist"
+      ]
     },
     {
       "id": "ahmed-mohamed",
@@ -141,7 +152,9 @@
       "star": false,
       "type": "teacher",
       "class": "Secondary",
-      "achievements": ["Excellent Teacher"]
+      "achievements": [
+        "Excellent Teacher"
+      ]
     },
     {
       "id": "miss-sahar",
@@ -152,7 +165,10 @@
       "star": true,
       "type": "teacher",
       "class": "Secondary",
-      "achievements": ["Event Organization", "Incredible Leadership"]
+      "achievements": [
+        "Event Organization",
+        "Incredible Leadership"
+      ]
     },
     {
       "id": "dr-raafat-omran",
@@ -163,7 +179,10 @@
       "star": true,
       "type": "teacher",
       "class": "Secondary",
-      "achievements": ["School Principal", "Ex Arabic Teacher"]
+      "achievements": [
+        "School Principal",
+        "Ex Arabic Teacher"
+      ]
     },
     {
       "id": "miss-somia",
@@ -185,7 +204,9 @@
       "star": false,
       "type": "teacher",
       "class": "Secondary",
-      "achievements": ["Excellent Teacher"]
+      "achievements": [
+        "Excellent Teacher"
+      ]
     },
     {
       "id": "eyad-bahaa",
@@ -207,7 +228,9 @@
       "star": true,
       "type": "teacher",
       "class": "Secondary",
-      "achievements": ["Artist"]
+      "achievements": [
+        "Artist"
+      ]
     },
     {
       "id": "bola-beshoy",
@@ -225,22 +248,28 @@
       "name": "Marcelino Reda",
       "role": "Excellent Designer",
       "quote": "The designer of the school uniform that's currently going up against other future schools to be number 1 inshallah",
-      "image": "assets/images/32887.jpg",
+      "image": "assets/images/33590.jpg",
       "star": true,
       "type": "student",
       "class": "Secondary",
-      "achievements": ["Designer", "Artist"]
+      "achievements": [
+        "Designer",
+        "Artist"
+      ]
     },
     {
       "id": "theodora-maged",
       "name": "Theodora Maged",
-      "role": "Diligent pupil",
-      "quote": "",
+      "role": "Diligent pupil, Excellent designer",
+      "quote": "Had pretty incredible Hand-drawn designs for the future's schools uniform competition, she definitely deserves recognition",
       "image": "assets/images/32891.jpg",
-      "star": false,
+      "star": true,
       "type": "student",
       "class": "Secondary",
-      "achievements": []
+      "achievements": [
+        "Designer",
+        "Artist"
+      ]
     },
     {
       "id": "lili-sheriff",
@@ -295,7 +324,10 @@
       "star": true,
       "type": "student",
       "class": "Secondary",
-      "achievements": ["Speaker", "Presenter"]
+      "achievements": [
+        "Speaker",
+        "Presenter"
+      ]
     },
     {
       "id": "miss-merna",
@@ -306,18 +338,22 @@
       "star": false,
       "type": "teacher",
       "class": "Secondary",
-      "achievements": ["Photographer"]
+      "achievements": [
+        "Photographer"
+      ]
     },
     {
       "id": "hassan-mohamed",
       "name": "Hassan Mohamed",
-      "role": "Cool dude fr",
+      "role": "Chess Enthusiast",
       "quote": "Runs the school, and is the most intellectual human being",
       "image": "assets/images/hassan.jpg",
       "star": true,
       "type": "student",
       "class": "Secondary",
-      "achievements": ["Just Incredible"]
+      "achievements": [
+        "Just Incredible"
+      ]
     },
     {
       "id": "charlie-bin-elkirky",
@@ -328,7 +364,9 @@
       "star": false,
       "type": "student",
       "class": "Secondary",
-      "achievements": ["Graduated top of his class"]
+      "achievements": [
+        "Graduated top of his class"
+      ]
     },
     {
       "id": "angelina-amjad",
@@ -339,7 +377,110 @@
       "star": true,
       "type": "student",
       "class": "Preparatory",
-      "achievements": ["Excellent Singer", "Musician", "Face of the school"]
+      "achievements": [
+        "Excellent Singer",
+        "Musician",
+        "Face of the school"
+      ]
+    },
+    {
+      "id": "perpetua-gerges",
+      "name": "Perpetua Gerges",
+      "role": "Arabic Rep",
+      "quote": "",
+      "image": "assets/images/33614.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Secondary",
+      "achievements": []
+    },
+    {
+      "id": "jasmine-ahmed-mohamed",
+      "name": "Jasmine Ahmed Mohamed",
+      "role": "Vice Class Rep",
+      "quote": "",
+      "image": "assets/images/33330.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Primary",
+      "achievements": []
+    },
+    {
+      "id": "asser-kareem-mohamed",
+      "name": "Asser Kareem Mohamed",
+      "role": "Sports Rep",
+      "quote": "",
+      "image": "assets/images/33338.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Preparatory",
+      "achievements": []
+    },
+    {
+      "id": "mohamed-bahaa",
+      "name": "Mohamed Bahaa",
+      "role": "Chemistry Rep",
+      "quote": "",
+      "image": "assets/images/33210.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Secondary",
+      "achievements": []
+    },
+    {
+      "id": "abdelrahman-mohamed-shahata",
+      "name": "Abdelrahman Mohamed Shahata",
+      "role": "Culture & Religion Rep",
+      "quote": "",
+      "image": "assets/images/blank.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Preparatory",
+      "achievements": []
+    },
+    {
+      "id": "youssef-ahmed-samy",
+      "name": "Youssef Ahmed Samy",
+      "role": "Science Rep",
+      "quote": "",
+      "image": "assets/images/33422.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Preparatory",
+      "achievements": []
+    },
+    {
+      "id": "fayrouz-alaa-mohamed",
+      "name": "Fayrouz Alaa Mohamed",
+      "role": "Art Rep",
+      "quote": "",
+      "image": "assets/images/33307.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Primary",
+      "achievements": []
+    },
+    {
+      "id": "abdelrahman-maher-abdelrahman",
+      "name": "Abdelrahman Maher Abdelrahman",
+      "role": "Social Rep",
+      "quote": "",
+      "image": "assets/images/33353.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Secondary",
+      "achievements": []
+    },
+    {
+      "id": "mr-ahmed-ashour",
+      "name": "Mr. Ahmed Ashour",
+      "role": "Vice Principal ",
+      "quote": "Responsible for organizing and planning out events with each supervisor of each department of the school, whether that's the Main subjects or the school trips and competitions etc ",
+      "image": "assets/images/Screenshot_20260429_005439_Instagram.jpg",
+      "star": true,
+      "type": "teacher",
+      "class": "Secondary",
+      "achievements": []
     }
   ]
 }

@@ -145,7 +145,7 @@
             const desktop = document.getElementById('teamGridDesktop');
             const carousel = document.getElementById('teamCarousel');
             const dots = document.getElementById('teamDots');
-            const students = DataStore.getStudents().slice(0, 3);
+            const students = DataStore.getStudents().filter(s => s.type === 'student').slice(0, 3);
             const cardHtml = (student, showStarBadge) => `
                 <div class="card team-card" onclick="viewStudent('${student.name}')">
                     <img src="${student.image || ''}" alt="${student.name}" class="team-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27120%27 height=%27120%27%3E%3Ccircle cx=%2760%27 cy=%2760%27 r=%2760%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
@@ -155,8 +155,8 @@
                 </div>
             `;
             
-            desktop.innerHTML = students.map(s => cardHtml(s, s.star)).join('');
-            carousel.innerHTML = students.map((s, i) => `<div class="tc-slide ${i === 0 ? 'active' : ''}">${cardHtml(s, s.star)}</div>`).join('');
+            desktop.innerHTML = students.map(s => cardHtml(s, s.star && s.type === 'student')).join('');
+            carousel.innerHTML = students.map((s, i) => `<div class="tc-slide ${i === 0 ? 'active' : ''}">${cardHtml(s, s.star && s.type === 'student')}</div>`).join('');
             dots.innerHTML = students.length > 1 ? students.map((_, i) => `<span class="tc-dot ${i === 0 ? 'active' : ''}" onclick="goTeamSlide(${i})"></span>`).join('') : '';
         }
         

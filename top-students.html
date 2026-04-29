@@ -119,11 +119,11 @@
             let students = DataStore.getStudents();
             
             if (currentFilter === 'all') {
-                students = students.sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+                students = students.sort((a, b) => (b.star && b.type === 'student' === a.star && a.type === 'student') ? 0 : (b.star && b.type === 'student') ? 1 : -1);
             } else if (currentFilter === 'star') {
-                students = students.filter(s => s.star).sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+                students = students.filter(s => s.star && s.type === 'student').sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
             } else if (currentFilter === 'teacher') {
-                students = students.filter(s => s.type === 'teacher').sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+                students = students.filter(s => s.type === 'teacher');
             } else if (currentFilter === 'student') {
                 students = students.filter(s => s.type === 'student').sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
             } else if (currentFilter === 'Primary' || currentFilter === 'Preparatory' || currentFilter === 'Secondary') {
@@ -137,7 +137,7 @@
             }
 
             grid.innerHTML = students.map(s => {
-                const isStar = s.star;
+                const isStar = s.star && s.type === 'student';
                 const isTeacher = s.type === 'teacher';
                 const studentClass = s.class || 'Student';
                 const achievements = s.achievements ? s.achievements.map(a => `<span class="achievement-tag">${a}</span>`).join('') : '';

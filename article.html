@@ -128,9 +128,20 @@
                             break;
                         case 'video':
                             if (el.video) {
-                                const videoId = el.video.trim();
-                                const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&enablejsapi=1&origin=${window.location.origin}`;
-                                html += `<div class="article-video" style="margin: 30px 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md);">
+                                const videoIds = el.video.split(',').map(v => v.trim()).filter(v => v);
+                                if (videoIds.length > 1) {
+                                    html += `<div class="article-video-row" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:30px 0;">`;
+                                    videoIds.forEach(videoId => {
+                                        const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&enablejsapi=1&origin=${window.location.origin}`;
+                                        html += `<div style="position:relative;padding-bottom:56.25%;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);">
+                                            <iframe width="100%" height="100%" style="position:absolute;top:0;left:0;height:100%;" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                        </div>`;
+                                    });
+                                    html += `</div>`;
+                                } else {
+                                    const videoId = videoIds[0];
+                                    const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&enablejsapi=1&origin=${window.location.origin}`;
+                                    html += `<div class="article-video" style="margin: 30px 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md);">
                                     <iframe 
                                         width="100%" 
                                         height="500" 
@@ -141,6 +152,7 @@
                                         allowfullscreen>
                                     </iframe>
                                 </div>`;
+                                }
                             }
                             break;
                         case 'quote':
@@ -153,11 +165,18 @@
                                 const secondary = [], preparatory = [], primary = [], other = [];
                                 el.students.forEach(s => {
                                     const student = DataStore.getStudent(s.name);
-                                    const studentClass = student?.class?.toLowerCase() || 'other';
-                                    if (studentClass === 'secondary') secondary.push(s);
-                                    else if (studentClass === 'preparatory') preparatory.push(s);
-                                    else if (studentClass === 'primary') primary.push(s);
-                                    else other.push(s);
+                                    const studentClass = (student?.class || 'other').toString().toLowerCase();
+                                    if (student?.type === 'teacher' || studentClass === 'teacher') {
+                                        other.push(s);
+                                    } else if (studentClass === 'secondary') {
+                                        secondary.push(s);
+                                    } else if (studentClass === 'preparatory') {
+                                        preparatory.push(s);
+                                    } else if (studentClass === 'primary') {
+                                        primary.push(s);
+                                    } else {
+                                        other.push(s);
+                                    }
                                 });
                                 
                                 const renderGroup = (students, title, color) => {
@@ -168,7 +187,7 @@
                                         students.map(s => {
                                             const student = DataStore.getStudent(s.name);
                                             const img = student?.image || '';
-                                            const isStar = student?.star;
+                                            const isStar = student?.star && student?.type === 'student';
                                             return `<div class="student-card-mini" onclick="viewStudent('${s.name}')">
                                                 <img src="${img}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
                                                 <div class="student-card-mini-info">
@@ -193,7 +212,7 @@
                                 el.organizers.forEach(s => {
                                     const student = DataStore.getStudent(s.name);
                                     const img = student?.image || '';
-                                    const isStar = student?.star;
+                                    const isStar = student?.star && student?.type === 'student';
                                     orgHtml += `
                                         <div class="student-card-mini" onclick="viewStudent('${s.name}')">
                                             <img src="${img}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
