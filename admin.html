@@ -6,13 +6,11 @@
     <title>Admin Dashboard - Rising Stars Magazine</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* --- ADMIN LAYOUT --- */
         .admin-login { max-width: 400px; margin: 100px auto; padding: 40px; background: var(--bg-white); border-radius: 12px; box-shadow: var(--shadow-lg); }
         .admin-login h2 { text-align: center; margin-bottom: 30px; }
         .error-msg { background: #ffebee; color: #c62828; padding: 12px; border-radius: 6px; margin-bottom: 20px; display: none; }
         .success-msg { background: #e8f5e9; color: #2e7d32; padding: 12px; border-radius: 6px; margin-bottom: 20px; display: none; }
 
-        /* --- TABS --- */
         .tabs { display: flex; gap: 4px; margin-bottom: 30px; background: #f0f0f0; border-radius: 8px; padding: 4px; }
         .tab-btn { flex: 1; padding: 12px 16px; background: none; border: none; font-weight: 600; cursor: pointer; border-radius: 6px; transition: var(--transition); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
         .tab-btn.active { background: var(--bg-white); box-shadow: var(--shadow-sm); color: var(--primary-gold); }
@@ -20,7 +18,6 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* --- LIST ITEMS --- */
         .item-row { display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--bg-white); border-radius: 8px; margin-bottom: 8px; box-shadow: var(--shadow-sm); transition: var(--transition); }
         .item-row:hover { box-shadow: var(--shadow-md); }
         .item-info { flex: 1; }
@@ -35,7 +32,6 @@
         .btn-star { background: rgba(201,168,76,0.15); color: #8a7020; font-size: 16px; padding: 6px 10px; }
         .btn-star.active { background: var(--primary-gold); }
 
-        /* --- ELEMENT BUILDER --- */
         .element-builder { background: #f9f9f9; border-radius: 12px; padding: 20px; margin-top: 20px; }
         .element-list { min-height: 60px; }
         .element-item { background: var(--bg-white); border: 2px solid #e0e0e0; border-radius: 8px; padding: 16px; margin-bottom: 10px; position: relative; transition: var(--transition); }
@@ -49,35 +45,29 @@
         .add-element-btn { padding: 8px 16px; background: var(--bg-white); border: 2px solid #ddd; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; transition: var(--transition); }
         .add-element-btn:hover { border-color: var(--primary-gold); background: rgba(201,168,76,0.1); }
 
-        /* --- PREVIEW --- */
         .preview-panel { background: var(--bg-white); border-radius: 12px; padding: 24px; margin-top: 20px; box-shadow: var(--shadow-sm); border: 2px solid #e0e0e0; }
         .preview-panel h3 { font-size: 14px; color: #888; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- JSON PANEL --- */
         .json-panel { background: #1a1a1a; border-radius: 12px; padding: 20px; margin-top: 20px; position: relative; }
         .json-panel pre { color: #e0e0e0; font-size: 12px; line-height: 1.6; overflow-x: auto; max-height: 400px; overflow-y: auto; white-space: pre-wrap; word-break: break-all; }
         .json-copy-btn { position: absolute; top: 12px; right: 12px; padding: 6px 16px; background: var(--primary-gold); color: var(--primary-black); border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; transition: var(--transition); }
         .json-copy-btn:hover { background: #b8941f; }
         .json-copy-btn.copied { background: #4caf50; color: white; }
 
-        /* --- IMPORT --- */
         .import-area { border: 2px dashed #ddd; border-radius: 12px; padding: 20px; text-align: center; margin-top: 16px; transition: var(--transition); }
         .import-area:hover { border-color: var(--primary-gold); }
         .import-area textarea { width: 100%; min-height: 120px; border: none; resize: vertical; font-family: monospace; font-size: 12px; outline: none; background: transparent; }
 
-        /* --- STUDENT PICKER --- */
         .student-picker { background: rgba(201,168,76,0.08); border-radius: 8px; padding: 12px; margin-top: 8px; }
         .student-picker-item { display: flex; align-items: center; gap: 12px; padding: 8px; background: var(--bg-white); border-radius: 6px; margin-bottom: 6px; }
         .student-picker-item input { flex: 1; padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; }
         .student-picker-item select { padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; }
 
-        /* --- FORM SECTIONS --- */
         .form-section { background: var(--bg-white); border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
         .form-section h3 { margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--primary-gold); font-size: 16px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; } }
 
-        /* --- IMAGE PICKER --- */
         .image-picker { display: flex; gap: 8px; align-items: center; }
         .image-picker input[type="file"] { display: none; }
         .image-preview { width: 60px; height: 60px; border-radius: 6px; object-fit: cover; border: 2px solid #ddd; }
@@ -121,7 +111,7 @@
                 </div>
                 <div id="eventsList"></div>
 
-                <!-- EVENT EDITOR (hidden by default) -->
+                <!-- EVENT EDITOR -->
                 <div id="eventEditor" style="display:none;">
                     <div class="form-section">
                         <h3 id="editorTitle">New Event</h3>
@@ -193,43 +183,20 @@
                 </div>
                 <div id="studentsList"></div>
 
-<!-- STUDENT EDITOR -->
+                <!-- STUDENT EDITOR -->
                 <div id="studentEditor" style="display:none;">
                     <div class="form-section">
                         <h3 id="studentEditorTitle">New Student</h3>
                         <input type="hidden" id="editStudentId">
                         <div class="form-row">
                             <div class="form-group">
-                                <label class="form-label">Type</label>
-                                <select class="form-select" id="studentType">
-                                    <option value="student">Student</option>
-                                    <option value="teacher">Teacher</option>
-                                </select>
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-input" id="studentName" placeholder="Full name">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Class</label>
-                                <select class="form-select" id="studentClass">
-                                    <option value="Secondary">Secondary</option>
-                                    <option value="Preparatory">Preparatory</option>
-                                    <option value="Primary">Primary</option>
-                                    <option value="Teacher">Teacher</option>
-                                </select>
+                                <label class="form-label">Role</label>
+                                <input type="text" class="form-input" id="studentRole" placeholder="e.g. Editor, President">
                             </div>
-                            <div class="form-group">
-                                <label class="form-label">Star Student</label>
-                                <select class="form-select" id="studentStar">
-                                    <option value="false">No</option>
-                                    <option value="true">Yes</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-input" id="studentName" placeholder="Full name">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Role</label>
-                            <input type="text" class="form-input" id="studentRole" placeholder="e.g. Editor, President">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Quote</label>
@@ -246,12 +213,29 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="form-label">Type</label>
+                                <select class="form-select" id="studentType">
+                                    <option value="student">Student</option>
+                                    <option value="teacher">Teacher</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Achievements (comma separated)</label>
-                            <input type="text" class="form-input" id="studentAchievements" placeholder="Academic Excellence, Science Innovation">
-                        </div>
-                        <div style="display:flex;gap:12px;margin-top:10px;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Class</label>
+                                <select class="form-select" id="studentClass">
+                                    <option value="Primary">Primary</option>
+                                    <option value="Preparatory">Preparatory</option>
+                                    <option value="Secondary">Secondary</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Star Student</label>
+                                <select class="form-select" id="studentStar">
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -270,7 +254,7 @@
             <div class="tab-content" id="jsonTab">
                 <div class="form-section">
                     <h3>Events JSON</h3>
-                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Edit events in the Events tab, then copy or download the JSON here.</p>
+                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Copy or download this JSON to save/export.</p>
                     <div class="json-panel">
                         <button class="json-copy-btn" onclick="copyJSON('events')">Copy</button>
                         <button class="json-copy-btn" style="background:#4CAF50;" onclick="downloadJSON('events')">Download</button>
@@ -280,7 +264,7 @@
 
                 <div class="form-section">
                     <h3>Students JSON</h3>
-                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Edit students in the Students tab, then copy or download the JSON here.</p>
+                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Copy or download this JSON to save/export.</p>
                     <div class="json-panel">
                         <button class="json-copy-btn" onclick="copyJSON('students')">Copy</button>
                         <button class="json-copy-btn" style="background:#4CAF50;" onclick="downloadJSON('students')">Download</button>
@@ -295,24 +279,18 @@
                         <div>
                             <label class="form-label">Import Events</label>
                             <div class="import-area">
-                                <textarea id="importEventsArea" placeholder='Paste events JSON here...' style="min-height:100px;"></textarea>
+                                <textarea id="importEventsArea" placeholder='Paste events JSON here...'></textarea>
                             </div>
                             <button class="btn btn-primary" onclick="importJSON('events')" style="margin-top:10px;padding:8px 20px;font-size:12px;">Import Events</button>
                         </div>
                         <div>
                             <label class="form-label">Import Students</label>
                             <div class="import-area">
-                                <textarea id="importStudentsArea" placeholder='Paste students JSON here...' style="min-height:100px;"></textarea>
+                                <textarea id="importStudentsArea" placeholder='Paste students JSON here...'></textarea>
                             </div>
                             <button class="btn btn-primary" onclick="importJSON('students')" style="margin-top:10px;padding:8px 20px;font-size:12px;">Import Students</button>
                         </div>
                     </div>
-                </div>
-                
-                <div class="form-section" style="background:#f0f7ff;border:2px solid #2196F3;">
-                    <h3 style="color:#2196F3;">Reload Data</h3>
-                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Clear localStorage and reload from JSON files (requires local server).</p>
-                    <button class="btn" style="background:#2196F3;color:white;padding:10px 24px;font-size:13px;" onclick="reloadData()">⚡ Reload from JSON Files</button>
                 </div>
             </div>
         </div>
@@ -321,7 +299,7 @@
     <script src="js/data.js"></script>
     <script>
         const ADMIN_PASSWORD = 'admin123';
-        let elements = []; // current event elements being edited
+        let elements = [];
 
         // --- AUTH ---
         function checkPassword() {
@@ -361,8 +339,8 @@
             const events = DataStore.getEvents();
             if (!events.length) { list.innerHTML = '<p style="color:#999;text-align:center;padding:40px;">No events yet. Create one!</p>'; return; }
             list.innerHTML = events.map((e, i) => `
-                <div class="item-row" draggable="true" data-event-id="${e.id}" data-index="${i}" ondragstart="dragEventStart(event)" ondragover="dragEventOver(event)" ondrop="dropEvent(event)" ondragend="dragEventEnd(event)">
-                    <div style="cursor:grab;padding:0 12px;color:#999;font-size:18px;">☰</div>
+                <div class="item-row" draggable="true" data-index="${i}" ondragstart="dragEventStart(event)" ondragover="dragEventOver(event)" ondrop="dropEvent(event)" ondragend="dragEventEnd(event)" style="cursor:grab;">
+                    <div style="padding:0 12px;color:#999;font-size:18px;">☰</div>
                     <div class="item-info">
                         <div class="item-title">${e.featured ? '★ ' : ''}${e.title}</div>
                         <div class="item-meta">${e.category || ''} | ${e.date || ''} | ${(e.elements || []).length} elements</div>
@@ -395,7 +373,6 @@
             if (draggedEventIndex !== null && draggedEventIndex !== targetIndex) {
                 DataStore.reorderEvent(draggedEventIndex, targetIndex);
                 renderEventsList();
-                showJSON();
             }
         }
         
@@ -544,7 +521,7 @@
                             <input type="text" class="form-input" style="margin-top:8px;" value="${el.caption || ''}" placeholder="Caption (optional)" onchange="updateElement(${i},'caption',this.value)">`;
                         break;
                     case 'video':
-                        fields = `<input type="text" class="form-input" value="${el.video || ''}" placeholder="Enter YouTube video ID (e.g., mU1EPS0NXcI)" onchange="updateElement(${i},'video',this.value);updatePreview()">`;
+                        fields = `<input type="text" class="form-input" value="${el.video || ''}" placeholder="YouTube ID(s) - separate multiple with comma for side-by-side" onchange="updateElement(${i},'video',this.value);updatePreview()">`;
                         break;
                     case 'quote':
                         fields = `
@@ -658,20 +635,38 @@
                         break;
                     case 'video':
                         if (el.video) {
-                            let videoSrc = el.video.trim();
-                            if (videoSrc.includes('youtu.be/')) {
-                                const videoId = videoSrc.split('youtu.be/')[1].split('?')[0].split('&')[0];
-                                videoSrc = 'https://www.youtube.com/embed/' + videoId;
-                            } else if (videoSrc.includes('youtube.com/watch')) {
-                                try {
-                                    const url = new URL(videoSrc);
-                                    const v = url.searchParams.get('v');
-                                    if (v) videoSrc = 'https://www.youtube.com/embed/' + v;
-                                } catch(e) {}
-                            } else if (!videoSrc.includes('http')) {
-                                videoSrc = 'https://www.youtube.com/embed/' + videoSrc;
+                            const videoIds = el.video.split(',').map(v => v.trim()).filter(v => v);
+                            if (videoIds.length > 1) {
+                                html += `<div style="display:flex;gap:16px;margin-bottom:16px;">`;
+                                videoIds.forEach(videoSrc => {
+                                    let vs = videoSrc;
+                                    if (vs.includes('youtu.be/')) {
+                                        const videoId = vs.split('youtu.be/')[1].split('?')[0].split('&')[0];
+                                        vs = 'https://www.youtube.com/embed/' + videoId;
+                                    } else if (vs.includes('youtube.com/watch')) {
+                                        try { const url = new URL(vs); const v = url.searchParams.get('v'); if (v) vs = 'https://www.youtube.com/embed/' + v; } catch(e) {}
+                                    } else if (!vs.includes('http')) {
+                                        vs = 'https://www.youtube.com/embed/' + vs;
+                                    }
+                                    html += `<div style="flex:1;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;"><iframe src="${vs}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
+                                });
+                                html += `</div>`;
+                            } else {
+                                let videoSrc = videoIds[0] || '';
+                                if (videoSrc.includes('youtu.be/')) {
+                                    const videoId = videoSrc.split('youtu.be/')[1].split('?')[0].split('&')[0];
+                                    videoSrc = 'https://www.youtube.com/embed/' + videoId;
+                                } else if (videoSrc.includes('youtube.com/watch')) {
+                                    try {
+                                        const url = new URL(videoSrc);
+                                        const v = url.searchParams.get('v');
+                                        if (v) videoSrc = 'https://www.youtube.com/embed/' + v;
+                                    } catch(e) {}
+                                } else if (videoSrc && !videoSrc.includes('http')) {
+                                    videoSrc = 'https://www.youtube.com/embed/' + videoSrc;
+                                }
+                                html += `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;margin-bottom:16px;"><iframe src="${videoSrc}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
                             }
-                            html += `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;margin-bottom:16px;"><iframe src="${videoSrc}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
                         }
                         break;
                     case 'quote':
@@ -744,7 +739,6 @@
                 document.getElementById('studentRole').value = '';
                 document.getElementById('studentQuote').value = '';
                 document.getElementById('studentImage').value = '';
-                document.getElementById('studentType').value = 'student';
                 document.getElementById('studentClass').value = 'Secondary';
                 document.getElementById('studentStar').value = 'false';
                 document.getElementById('studentAchievements').value = '';
@@ -813,8 +807,13 @@
 
         function copyJSON(type) {
             const text = type === 'events' ? DataStore.getEventsJSON() : DataStore.getStudentsJSON();
-            navigator.clipboard.writeText(text);
-            alert(type + ' JSON copied to clipboard!');
+            navigator.clipboard.writeText(text).then(() => {
+                const btns = document.querySelectorAll('.json-copy-btn');
+                const btn = type === 'events' ? btns[0] : btns[1];
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+            });
         }
 
         function downloadJSON(type) {
@@ -845,24 +844,12 @@
                     renderStudentsList();
                 }
                 area.value = '';
-                showJSON();
-                alert(type.charAt(0).toUpperCase() + type.slice(1) + ' imported successfully! (also saved to localStorage)');
+                alert(type.charAt(0).toUpperCase() + type.slice(1) + ' imported successfully!');
             } catch (err) {
                 alert('Invalid JSON: ' + err.message);
             }
         }
 
-        async function reloadData() {
-            if (!confirm('This will clear localStorage and reload from JSON files. Continue?')) return;
-            
-            await DataStore.reload();
-            renderEventsList();
-            renderStudentsList();
-            showJSON();
-            alert('Data reloaded!');
-        }
-
-        // --- Init on password entry ---
         document.getElementById('passwordInput').focus();
     </script>
 </body>
