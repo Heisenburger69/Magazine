@@ -107,7 +107,7 @@
               "achievement": "Presentation on Consumerism"
             },
             {
-              "name": "Lili Ahmed",
+              "name": "Lily Ahmed",
               "role": "The Riddler",
               "achievement": "Riddles Minigame"
             },
@@ -126,6 +126,59 @@
         {
           "type": "text",
           "content": "And we also got to play a movie <3"
+        }
+      ]
+    },
+    {
+      "id": "futures-uniform-competition",
+      "title": "Futures uniform competition",
+      "type": "multi",
+      "category": "Academic",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/uniforms.webp",
+          "align": "left",
+          "caption": "Maroshka's Drawing, Marcelino's design"
+        },
+        {
+          "type": "text",
+          "content": "Marcelino Reda's Incredible uniform designs that are currently facing Future's schools themselves\nAnd Maroshka's beautiful illustrations of how a uniform can be creative"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/marc (1).jpg",
+            "assets/images/marc (2).jpg",
+            "assets/images/marc (3).jpg"
+          ],
+          "caption": "Marcilino's winning design"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/maro (1).jpg",
+            "assets/images/maro (2).jpg",
+            "assets/images/maro (3).jpg"
+          ],
+          "caption": "Maroshka's beautiful illustrations"
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Marcelino Reda",
+              "role": "Designer",
+              "achievement": "Winner of the Rising Stars local uniform competition"
+            },
+            {
+              "name": "Maroshka Ayman",
+              "role": "Designer",
+              "achievement": "2nd place in the Rising Stars local uniform competition"
+            }
+          ]
         }
       ]
     },
@@ -348,6 +401,81 @@
               "name": "Retaj Adel Abd Elhafeez",
               "role": "",
               "achievement": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "german-goethe-exam",
+      "title": "German Goethe Exam",
+      "type": "multi",
+      "category": "Academic",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/33118.jpg",
+          "align": "left",
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "Honoring the takers of the German Goethe exam 2026"
+        },
+        {
+          "type": "quote",
+          "quote": "I couldn't have done it without Frau Fatima, her being by our side is what made us pass with flying colors",
+          "author": "Ahmed Mohamed"
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Frau Fatima",
+              "role": "German Teacher",
+              "achievement": "Paved the students' path to success"
+            },
+            {
+              "name": "Mr. Ahmed Ashour",
+              "role": "Organizer",
+              "achievement": ""
+            },
+            {
+              "name": "Dr. Raafat Omran",
+              "role": "School Principal",
+              "achievement": ""
+            }
+          ]
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Ahmed Mohamed",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed with great success"
+            },
+            {
+              "name": "Mostafa Ahmed",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed with great success"
+            },
+            {
+              "name": "Jonier George",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed with great success"
+            },
+            {
+              "name": "Maria Raif",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed with great success"
+            },
+            {
+              "name": "Maroshka Ayman",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed with great success"
             }
           ]
         }
