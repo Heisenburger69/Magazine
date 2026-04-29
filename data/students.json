@@ -175,7 +175,7 @@
       "name": "Dr. Raafat Omran",
       "role": "The Principal of Rising Stars",
       "quote": "The principal of this incredible prestigious school, The reason the school keeps going forward and improving",
-      "image": "assets/images/Raafat.png",
+      "image": "assets/images/34209.jpg",
       "star": true,
       "type": "teacher",
       "class": "Teacher",
@@ -187,13 +187,15 @@
     {
       "id": "miss-somia",
       "name": "Miss Somia",
-      "role": "Social Specialist",
+      "role": "Academic Deputy",
       "quote": "Responsible for creating and providing the school magazine's resources.",
       "image": "assets/images/32894.jpg",
       "star": true,
       "type": "teacher",
       "class": "Teacher",
-      "achievements": []
+      "achievements": [
+        "Social Specialist"
+      ]
     },
     {
       "id": "mr-amir-nagy",
@@ -337,7 +339,7 @@
       "image": "assets/images/IMG-20260429-WA0033.jpg",
       "star": false,
       "type": "teacher",
-      "class": "",
+      "class": "Teacher",
       "achievements": [
         "Photographer"
       ]
@@ -461,17 +463,6 @@
       "achievements": []
     },
     {
-      "id": "abdelrahman-maher-abdelrahman",
-      "name": "Abdelrahman Maher Abdelrahman",
-      "role": "Social Rep",
-      "quote": "",
-      "image": "assets/images/33353.jpg",
-      "star": false,
-      "type": "student",
-      "class": "Secondary",
-      "achievements": []
-    },
-    {
       "id": "mr-ahmed-ashour",
       "name": "Mr. Ahmed Ashour",
       "role": "Vice Principal ",
@@ -527,6 +518,19 @@
       "type": "student",
       "class": "Secondary",
       "achievements": []
+    },
+    {
+      "id": "mr-alaa",
+      "name": "Mr. Alaa",
+      "role": "School Deputy",
+      "quote": "The vice president of the Rising Stars Language School",
+      "image": "assets/images/34096.jpg",
+      "star": false,
+      "type": "teacher",
+      "class": "Teacher",
+      "achievements": [
+        "Vice Principal"
+      ]
     }
   ]
 }
