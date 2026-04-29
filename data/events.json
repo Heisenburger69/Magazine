@@ -268,6 +268,90 @@
           ]
         }
       ]
+    },
+    {
+      "id": "the-grand-egyptian-museum-art-event",
+      "title": "The Grand Egyptian Museum Art Event",
+      "type": "multi",
+      "category": "Cultural",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/IMG-20260426-WA0132.jpg",
+          "align": "left",
+          "caption": "Ahmed Adel's Drawing"
+        },
+        {
+          "type": "text",
+          "content": "Honoring the Grand Egyptian Museum Opening"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/24.jpg",
+            "assets/images/24 (1).jpg",
+            "assets/images/24 (2).jpg",
+            "assets/images/IMG-20260426-WA0141.jpg"
+          ],
+          "caption": "Our students' incredible art pieces"
+        },
+        {
+          "type": "text",
+          "content": "In response to the opening of the Grand Egyptian museum, The school made an event that was useful in discovering the students' skills and creativity whilst still paying tribute and respect to the greatest Egyptian landmark of the century. The event allowed the students to express their creativity and talents in the form of drawing and paintings that show the beauty and greatness of the Egyptian people and the history of Egypt"
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Eman Sabry",
+              "role": "Artist",
+              "achievement": "Helped the students express their creativity with their drawings"
+            },
+            {
+              "name": "Mr. Ahmed Ashour",
+              "role": "History teacher/Director",
+              "achievement": "Organized the event "
+            }
+          ]
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Marcelino Reda",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Ahmed Adel Abd Elhafeez",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Lili Sheriff",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Fayrouz Mohamed",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Remas Mahmoud",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Retaj Adel Abd Elhafeez",
+              "role": "",
+              "achievement": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
