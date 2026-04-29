@@ -151,7 +151,7 @@
       "image": "assets/images/Amany.jpg",
       "star": false,
       "type": "teacher",
-      "class": "Secondary",
+      "class": "Teacher",
       "achievements": [
         "Excellent Teacher"
       ]
@@ -164,7 +164,7 @@
       "image": "assets/images/sahar.png",
       "star": true,
       "type": "teacher",
-      "class": "Secondary",
+      "class": "Teacher",
       "achievements": [
         "Event Organization",
         "Incredible Leadership"
@@ -178,7 +178,7 @@
       "image": "assets/images/Raafat.png",
       "star": true,
       "type": "teacher",
-      "class": "Secondary",
+      "class": "Teacher",
       "achievements": [
         "School Principal",
         "Ex Arabic Teacher"
@@ -192,7 +192,7 @@
       "image": "assets/images/32894.jpg",
       "star": true,
       "type": "teacher",
-      "class": "Secondary",
+      "class": "Teacher",
       "achievements": []
     },
     {
@@ -203,7 +203,7 @@
       "image": "assets/images/506766623_10235387618098383_3742940243125327954_n.jpg",
       "star": false,
       "type": "teacher",
-      "class": "Secondary",
+      "class": "Teacher",
       "achievements": [
         "Excellent Teacher"
       ]
@@ -227,7 +227,7 @@
       "image": "assets/images/32889.jpg",
       "star": true,
       "type": "teacher",
-      "class": "Secondary",
+      "class": "Teacher",
       "achievements": [
         "Artist"
       ]
@@ -306,7 +306,7 @@
     },
     {
       "id": "lili-ahmed",
-      "name": "Lili Ahmed",
+      "name": "Lily Ahmed",
       "role": "Excellent Student",
       "quote": "Great Academic Student",
       "image": "assets/images/Lili.jpg",
@@ -334,10 +334,10 @@
       "name": "Miss Merna",
       "role": "Social Media Manager",
       "quote": "Responsible for documenting All important school events",
-      "image": "assets/images/blank.jpg",
+      "image": "assets/images/IMG-20260429-WA0033.jpg",
       "star": false,
       "type": "teacher",
-      "class": "Secondary",
+      "class": "",
       "achievements": [
         "Photographer"
       ]
@@ -479,6 +479,52 @@
       "image": "assets/images/Screenshot_20260429_005439_Instagram.jpg",
       "star": true,
       "type": "teacher",
+      "class": "Teacher",
+      "achievements": []
+    },
+    {
+      "id": "frau-fatima",
+      "name": "Frau Fatima",
+      "role": "German Supervisor",
+      "quote": "Responsible for establishing students for their German Goethe exams, as well as helping them turn German into an almost native language to students across the school",
+      "image": "assets/images/33788.jpg",
+      "star": false,
+      "type": "teacher",
+      "class": "Teacher",
+      "achievements": [
+        "German Excellence"
+      ]
+    },
+    {
+      "id": "mostafa-ahmed",
+      "name": "Mostafa Ahmed",
+      "role": "Diligent pupil",
+      "quote": "",
+      "image": "assets/images/mostafa ahmed.png",
+      "star": false,
+      "type": "student",
+      "class": "Preparatory",
+      "achievements": []
+    },
+    {
+      "id": "jonier-george",
+      "name": "Jonier George",
+      "role": "Profound Artist & Diligent Pupil",
+      "quote": "",
+      "image": "assets/images/Jonier George.png",
+      "star": false,
+      "type": "student",
+      "class": "Secondary",
+      "achievements": []
+    },
+    {
+      "id": "maria-raif",
+      "name": "Maria Raif",
+      "role": "Diligent pupil",
+      "quote": "",
+      "image": "assets/images/Maria Raif.png",
+      "star": false,
+      "type": "student",
       "class": "Secondary",
       "achievements": []
     }

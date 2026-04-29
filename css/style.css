@@ -1043,8 +1043,21 @@ p {
         padding: 8px;
     }
     
-    .article-card .card-image {
+    .article-card.featured .card-image {
         padding-bottom: 50%;
+    }
+    
+    .article-card.featured .card-image img {
+        object-fit: cover;
+    }
+    
+    .article-card:not(.featured) .card-image {
+        height: 140px;
+        padding-bottom: 0;
+    }
+    
+    .article-card:not(.featured) .card-image img {
+        object-fit: contain;
     }
     
     .article-card .card-title {
@@ -1141,6 +1154,19 @@ p {
     .article-card.featured {
         grid-column: span 1;
         grid-row: span 1;
+    }
+    
+.article-card .card-image {
+        height: 120px;
+        padding-bottom: 0;
+    }
+    
+    .article-card:not(.featured) .card-image img {
+        object-fit: contain;
+    }
+    
+    .article-card.featured .card-image img {
+        object-fit: cover;
     }
     
     .article-card .card-title {

@@ -59,6 +59,8 @@
         .achievements { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 8px; }
         .achievement-tag { background: rgba(201,168,76,0.3); padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 600; }
         .student-card.star .achievement-tag { background: rgba(0,0,0,0.15); color: #fff; }
+        .search-input { width: 100%; max-width: 300px; padding: 10px 16px; border: 2px solid var(--primary-gold); border-radius: 20px; font-size: 14px; outline: none; margin-bottom: 20px; }
+        .search-input:focus { box-shadow: 0 0 10px rgba(201,168,76,0.4); }
     </style>
 </head>
 <body>
@@ -74,6 +76,7 @@
     <div class="students-header">
         <h1>Stars</h1>
         <p>Celebrating excellence at Rising Stars Language School</p>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search students..." oninput="renderStudents()">
         <div class="filter-bar">
             <button class="filter-btn active" onclick="filterStudents('all')">All</button>
             <button class="filter-btn" onclick="filterStudents('star')">★ Stars</button>
@@ -118,17 +121,85 @@
         function renderStudents() {
             let students = DataStore.getStudents();
             
+            const searchTerm = (document.getElementById('searchInput')?.value || '').toLowerCase();
+            if (searchTerm) {
+                students = students.filter(s => s.name.toLowerCase().includes(searchTerm));
+            }
+            
+            const priorityConfig = [
+                { name: 'youssef', match: s => s.name.toLowerCase().includes('youssef') && !s.name.toLowerCase().includes('samy') },
+                { name: 'ahmed alaa', match: s => s.name.toLowerCase().includes('alaadin') },
+                { name: 'yassin', match: s => s.name.toLowerCase().includes('yassin') && !s.name.toLowerCase().includes('youssef') },
+                { name: 'ahmed sabry', match: s => s.name.toLowerCase().includes('ahmed') && s.name.toLowerCase().includes('sabry') && !s.name.toLowerCase().includes('youssef') && !s.name.toLowerCase().includes('yassin') }
+            ];
+            
+            const isPriority = (name) => priorityConfig.some(p => p.match({ name }));
+            
+            const getPriorityIndex = (name) => {
+                for (let i = 0; i < priorityConfig.length; i++) {
+                    if (priorityConfig[i].match({ name })) return i;
+                }
+                return -1;
+            };
+            
+            const countEvents = (name) => {
+                const events = DataStore.getEvents();
+                let count = 0;
+                events.forEach(e => {
+                    if (e.elements) {
+                        e.elements.forEach(el => {
+                            if (el.students) {
+                                el.students.forEach(s => {
+                                    if (s.name && s.name.toLowerCase() === name.toLowerCase()) count++;
+                                });
+                            }
+                            if (el.organizers) {
+                                el.organizers.forEach(s => {
+                                    if (s.name && s.name.toLowerCase() === name.toLowerCase()) count++;
+                                });
+                            }
+                        });
+                    }
+                });
+                return count;
+            };
+            
             if (currentFilter === 'all') {
-                students = students.sort((a, b) => (b.star && b.type === 'student' === a.star && a.type === 'student') ? 0 : (b.star && b.type === 'student') ? 1 : -1);
+                students = students.filter(s => s.type === 'student' || s.type === 'teacher');
             } else if (currentFilter === 'star') {
-                students = students.filter(s => s.star && s.type === 'student').sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+                students = students.filter(s => s.star && s.type === 'student');
             } else if (currentFilter === 'teacher') {
                 students = students.filter(s => s.type === 'teacher');
             } else if (currentFilter === 'student') {
-                students = students.filter(s => s.type === 'student').sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+                students = students.filter(s => s.type === 'student');
             } else if (currentFilter === 'Primary' || currentFilter === 'Preparatory' || currentFilter === 'Secondary') {
-                students = students.filter(s => s.class === currentFilter).sort((a, b) => (b.star === a.star) ? 0 : b.star ? 1 : -1);
+                students = students.filter(s => s.class === currentFilter);
             }
+            
+            const priority = students.filter(s => getPriorityIndex(s.name) >= 0);
+            const others = students.filter(s => getPriorityIndex(s.name) < 0);
+            
+            const sortByEvents = (a, b) => {
+                const aCount = countEvents(a.name);
+                const bCount = countEvents(b.name);
+                if (bCount !== aCount) return bCount - aCount;
+                return a.name.localeCompare(b.name);
+            };
+            
+            priority.sort((a, b) => getPriorityIndex(a.name) - getPriorityIndex(b.name));
+            others.sort(sortByEvents);
+            students = [...priority, ...others];
+            
+            const teachers = [];
+            const regularStudents = [];
+            students.forEach(s => {
+                if (s.type === 'teacher') {
+                    teachers.push(s);
+                } else {
+                    regularStudents.push(s);
+                }
+            });
+            students = [...regularStudents, ...teachers];
 
             const grid = document.getElementById('studentsGrid');
             if (!students.length) {
