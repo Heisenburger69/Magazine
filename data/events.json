@@ -31,19 +31,15 @@
         },
         {
           "type": "video",
-          "video": "qec10WMPcP4, 92AQTP09qas"
+          "video": "qec10WMPcP4"
+        },
+        {
+          "type": "video",
+          "video": "92AQTP09qas"
         },
         {
           "type": "text",
           "content": "The Presentations and Minigames"
-        },
-        {
-          "type": "video",
-          "video": "T7U9PgIN8I0"
-        },
-        {
-          "type": "text",
-          "content": "Angelina's incredible performance"
         },
         {
           "type": "slideshow",
@@ -52,6 +48,14 @@
             "assets/images/2.png"
           ],
           "caption": "Pictures of the main event, Giving away prices and chocolates to participants"
+        },
+        {
+          "type": "video",
+          "video": "T7U9PgIN8I0"
+        },
+        {
+          "type": "text",
+          "content": "Angelina's incredible performance"
         },
         {
           "type": "organizers",
@@ -157,6 +161,10 @@
           "video": "mU1EPS0NXcI"
         },
         {
+          "type": "text",
+          "content": "This event helped students know the basics of craftsmanship and trading, before they went to the exhibition in Sheraton branch.\n It's a light-hearted, fun experience for the students to enjoy."
+        },
+        {
           "type": "organizers",
           "organizers": [
             {
@@ -190,10 +198,6 @@
               "achievement": ""
             }
           ]
-        },
-        {
-          "type": "text",
-          "content": "This event helped students know the basics of craftsmanship and trading, before they went to the exhibition in Sheraton branch.\n It's a light-hearted, fun experience for the students to enjoy."
         }
       ]
     },
@@ -214,6 +218,29 @@
         {
           "type": "text",
           "content": "This Crafts event was hosted by the ESI \n\nWhere in students made handcrafted bracelets and other accessories and listed them for sale in another Future's school"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/22 (3).jpg",
+            "assets/images/22 (2).jpg",
+            "assets/images/22 (1).jpg"
+          ],
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "The event helped teach students how to barter \nHow to make accessories \nAnd how to sell them \nAll in all it was a very enjoyable, yet useful event with many students loving the experience and meeting new people and students with shared interests"
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Eman Sabry",
+              "role": "Art Teacher",
+              "achievement": "Helped the students accomplish all those wonders"
+            }
+          ]
         },
         {
           "type": "students",
@@ -239,29 +266,6 @@
               "achievement": ""
             }
           ]
-        },
-        {
-          "type": "organizers",
-          "organizers": [
-            {
-              "name": "Miss Eman Sabry",
-              "role": "Art Teacher",
-              "achievement": "Helped the students accomplish all those wonders"
-            }
-          ]
-        },
-        {
-          "type": "slideshow",
-          "images": [
-            "assets/images/22 (3).jpg",
-            "assets/images/22 (2).jpg",
-            "assets/images/22 (1).jpg"
-          ],
-          "caption": ""
-        },
-        {
-          "type": "text",
-          "content": "The event helped teach students how to barter \nHow to make accessories \nAnd how to sell them \nAll in all it was a very enjoyable, yet useful event with many students loving the experience and meeting new people and students with shared interests"
         }
       ]
     }
