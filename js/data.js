@@ -20,29 +20,33 @@ async load() {
         if (this._loaded) return;
         
         try {
-            // Direct fetch - don't transform, keep all data as-is
-            const e = await fetch('data/events.json');
-            if (e.ok) this.events = await e.json();
-            console.log('events.cseCouncil:', this.events?.cseCouncil);
+            // Server first - cache bust
+            const e = await fetch('data/events.json?_=' + Date.now());
+            if (e.ok) {
+                this.events = await e.json();
+                if (!this._offlineMode) localStorage.setItem('magazine_events', JSON.stringify(this.events));
+            }
             
-            const s = await fetch('data/students.json');
-            if (s.ok) this.students = await s.json();
+            const s = await fetch('data/students.json?_=' + Date.now());
+            if (s.ok) {
+                this.students = await s.json();
+                if (!this._offlineMode) localStorage.setItem('magazine_students', JSON.stringify(this.students));
+            }
         } catch (err) {
-            console.log('Load error:', err);
+            // Offline fallback
+            this._offlineMode = true;
+            const storedEvents = localStorage.getItem('magazine_events');
+            const storedStudents = localStorage.getItem('magazine_students');
+            if (storedEvents) this.events = JSON.parse(storedEvents);
+            if (storedStudents) this.students = JSON.parse(storedStudents);
         }
         
-        // Fix: if type is teacher, ensure class is "Teacher" not Secondary/etc
+        // Fix: if type is teacher, ensure class is "Teacher"
         if (this.students.students) {
             this.students.students.forEach(s => {
-                if (s.type === 'teacher') {
-                    s.class = 'Teacher';
-                }
+                if (s.type === 'teacher') s.class = 'Teacher';
             });
         }
-        
-        // Cache to localStorage (for offline)
-        localStorage.setItem('magazine_events', JSON.stringify(this.events));
-        localStorage.setItem('magazine_students', JSON.stringify(this.students));
         
         this._loaded = true;
     },
