@@ -19,13 +19,7 @@ const DataStore = {
 async load() {
         if (this._loaded) return;
         
-        // Try loading from localStorage first (for offline/file:// usage)
-        const storedEvents = localStorage.getItem('magazine_events');
-        const storedStudents = localStorage.getItem('magazine_students');
-        if (storedEvents) this.events = JSON.parse(storedEvents);
-        if (storedStudents) this.students = JSON.parse(storedStudents);
-        
-        // Try updating from JSON files (requires local server)
+        // Try loading from JSON files first (server mode)
         try {
             const [e, s] = await Promise.all([
                 fetch('data/events.json'),
@@ -34,7 +28,12 @@ async load() {
             if (e.ok) this.events = await e.json();
             if (s.ok) this.students = await s.json();
         } catch (err) {
-            console.log('Using localStorage data (JSON files not loaded - no server or CORS)');
+            console.log('JSON fetch failed, trying localStorage');
+            // Fall back to localStorage only if JSON fails
+            const storedEvents = localStorage.getItem('magazine_events');
+            const storedStudents = localStorage.getItem('magazine_students');
+            if (storedEvents) this.events = JSON.parse(storedEvents);
+            if (storedStudents) this.students = JSON.parse(storedStudents);
         }
         
         // Fix: if type is teacher, ensure class is "Teacher" not Secondary/etc
