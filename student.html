@@ -112,8 +112,9 @@
                     const cseRole = event._cseRole || {};
                     const roleTitle = cseRole.title || 'CSE Council Member';
                     const roleIcon = cseRole.icon || '👑';
+                    const onclickAttr = isCSE ? "window.location.href='cse-council.html'" : "viewArticle('" + event.id + "')";
                     return `
-                        <div class="event-mini ${isCSE ? 'cse-event-mini' : ''}" onclick="${isCSE ? '' : 'viewArticle(' + "'" + event.id + "'" + ')'}">
+                        <div class="event-mini ${isCSE ? 'cse-event-mini' : ''}" onclick="${onclickAttr}">
                             <div style="display:flex;gap:16px;align-items:flex-start;">
                                 ${isCSE ? `<div style="width:60px;height:45px;min-width:60px;background:linear-gradient(135deg, #9B59B6, #8E44AD);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;">${roleIcon}</div>` : ''}
                                 ${!isCSE && thumb ? `<img src="${thumb}" style="width:60px;height:45px;object-fit:cover;border-radius:8px;flex-shrink:0;" onerror="this.style.display='none'">` : ''}
