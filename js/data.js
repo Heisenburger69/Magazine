@@ -244,13 +244,28 @@ async load() {
     // --- CSE Council methods ---
     
     getCSECouncil() {
-        // First try localStorage, then fall back to events.json data
-        const stored = localStorage.getItem('magazine_cse');
-        if (stored) this.cseCouncil = JSON.parse(stored);
-        if (!this.cseCouncil?.stages && this.events?.cseCouncil) {
+        // Try events.json data first, then localStorage
+        if (this.events?.cseCouncil) {
             this.cseCouncil = this.events.cseCouncil;
         }
-        return this.cseCouncil || { head: "Miss Somia", stages: { secondary: {}, preparatory: {}, primary: {} } };
+        const stored = localStorage.getItem('magazine_cse');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed?.stages) {
+                this.cseCouncil = parsed;
+            }
+        }
+        if (!this.cseCouncil?.stages) {
+            this.cseCouncil = { 
+                head: "Miss Somia", 
+                stages: { 
+                    secondary: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" }, 
+                    preparatory: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" }, 
+                    primary: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" } 
+                } 
+            };
+        }
+        return this.cseCouncil;
     },
     
     updateCSEPosition(stage, role, studentName) {
