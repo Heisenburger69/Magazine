@@ -477,5 +477,37 @@
         }
       ]
     }
-  ]
+  ],
+  "cseCouncil": {
+    "head": "Miss Somia",
+    "stages": {
+      "secondary": {
+        "president": "Lily Ahmed",
+        "vicePresident": "",
+        "science": "Youssef Ahmed Sabry",
+        "religiousCulture": "Ahmed Adel Abd Elhafeez",
+        "art": "",
+        "social": "",
+        "sports": "Ahmed Raafat"
+      },
+      "preparatory": {
+        "president": "Ahmed Alaadin Hassan Darmelli",
+        "vicePresident": "",
+        "science": "Youssef Ahmed Samy",
+        "religiousCulture": "",
+        "art": "Yazan Mohammad",
+        "social": "Yassin Ahmed Sabry",
+        "sports": "Asser Kareem Mohamed"
+      },
+      "primary": {
+        "president": "",
+        "vicePresident": "Jasmine Ahmed Mohamed",
+        "science": "",
+        "religiousCulture": "Farida Amr",
+        "art": "Fayrouz Alaa Mohamed",
+        "social": "",
+        "sports": ""
+      }
+    }
+  }
 }

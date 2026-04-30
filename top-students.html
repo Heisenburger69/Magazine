@@ -16,7 +16,7 @@
         @media (min-width: 1024px) { .students-grid { grid-template-columns: repeat(5, 1fr); } }
         @media (max-width: 768px) { .students-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
         @media (max-width: 480px) { .students-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
-        .student-card { background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,244,240,0.9) 100%); border-radius: 12px; padding: 20px; text-align: center; box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer; border: 1px solid rgba(0,0,0,0.06); }
+        .student-card { background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,244,240,0.9) 100%); border-radius: 12px; padding: 20px; text-align: center; box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer; border: 1px solid rgba(0,0,0,0.06); text-align: center; }
         .student-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
         
         /* Base star style - gold border */
@@ -29,6 +29,7 @@
         
         .student-card.star h3 { color: var(--primary-gold); }
         .student-card.star .role { color: rgba(255,255,255,0.7); }
+        .student-card.star .cse-role { color: #6A1B9A; background: white; }
         .student-card.star .class-badge { background: var(--primary-gold); color: var(--primary-black); }
         
         /* Teacher colors */
@@ -51,16 +52,20 @@
         .student-card.primary { background: linear-gradient(145deg, #2C5282 0%, #1A3652 100%); border: 2px solid #4299E1; color: #fff; }
         .student-card.primary h3 { color: #fff; }
         .student-card.primary .class-badge { background: #4299E1; color: #fff; }
+        .student-card.primary .role { color: rgba(255,255,255,0.7); }
         
-        .student-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-gold); margin-bottom: 12px; box-shadow: 0 4px 16px rgba(201,168,76,0.3); }
+        .student-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-gold); margin: 0 auto 12px; box-shadow: 0 4px 16px rgba(201,168,76,0.3); display: block; }
         .student-card h3 { font-size: 14px; margin-bottom: 4px; }
-        .student-card .role { font-size: 11px; color: #555; font-style: italic; margin-bottom: 8px; }
-        .student-card .class-badge { display: inline-block; background: #8B3A5C; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; word-break: break-word; max-width: 100%; text-align: center; }
+        .student-card .cse-role { color: #6A1B9A; font-size: 10px; font-weight: 700; margin-top: 4px; background: white; padding: 3px 8px; border-radius: 10px; display: inline-block; }
+        .student-card .role { font-size: 11px; color: rgba(255,255,255,0.7); font-style: italic; margin-bottom: 8px; }
+        .student-card .class-badge { display: block; background: #8B3A5C; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin: 0 auto 8px; width: fit-content; }
         .achievements { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 8px; }
         .achievement-tag { background: rgba(201,168,76,0.3); padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 600; }
         .student-card.star .achievement-tag { background: rgba(0,0,0,0.15); color: #fff; }
         .search-input { width: 100%; max-width: 300px; padding: 10px 16px; border: 2px solid var(--primary-gold); border-radius: 20px; font-size: 14px; outline: none; margin-bottom: 20px; }
         .search-input:focus { box-shadow: 0 0 10px rgba(201,168,76,0.4); }
+        .cse-link-btn { display: inline-block; background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); color: var(--primary-gold); padding: 12px 24px; border-radius: 25px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 16px; border: 2px solid var(--primary-gold); transition: var(--transition); }
+        .cse-link-btn:hover { background: var(--primary-gold); color: #1a1a1a; transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -69,7 +74,7 @@
     <nav class="navbar">
         <div class="container flex justify-between items-center">
             <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Logo"></a>
-            <a href="index.html" class="btn btn-primary" style="padding:8px 16px;font-size:12px;">&larr; Home</a>
+            <a href="javascript:void(0)" onclick="window.history.back()" class="btn btn-primary" style="padding:8px 16px;font-size:12px;">&larr; Back</a>
         </div>
     </nav>
 
@@ -86,6 +91,7 @@
             <button class="filter-btn" onclick="filterStudents('Preparatory')">Preparatory</button>
             <button class="filter-btn" onclick="filterStudents('Secondary')">Secondary</button>
         </div>
+        <a href="cse-council.html" class="cse-link-btn">View CSE Council</a>
     </div>
 
     <section class="section">
@@ -133,8 +139,6 @@
                 { name: 'ahmed sabry', match: s => s.name.toLowerCase().includes('ahmed') && s.name.toLowerCase().includes('sabry') && !s.name.toLowerCase().includes('youssef') && !s.name.toLowerCase().includes('yassin') }
             ];
             
-            const isPriority = (name) => priorityConfig.some(p => p.match({ name }));
-            
             const getPriorityIndex = (name) => {
                 for (let i = 0; i < priorityConfig.length; i++) {
                     if (priorityConfig[i].match({ name })) return i;
@@ -176,30 +180,44 @@
                 students = students.filter(s => s.class === currentFilter);
             }
             
-            const priority = students.filter(s => getPriorityIndex(s.name) >= 0);
-            const others = students.filter(s => getPriorityIndex(s.name) < 0);
+            const isPrincipal = (s) => s.type === 'teacher' && s.name.toLowerCase().includes('raafat') && s.name.toLowerCase().includes('omran');
             
-            const sortByEvents = (a, b) => {
+            const sortByEventsAndName = (a, b) => {
                 const aCount = countEvents(a.name);
                 const bCount = countEvents(b.name);
                 if (bCount !== aCount) return bCount - aCount;
                 return a.name.localeCompare(b.name);
             };
             
-            priority.sort((a, b) => getPriorityIndex(a.name) - getPriorityIndex(b.name));
-            others.sort(sortByEvents);
-            students = [...priority, ...others];
+            const principals = students.filter(s => isPrincipal(s));
+            const priorityStudents = students.filter(s => !isPrincipal(s) && getPriorityIndex(s.name) >= 0);
+            const otherStars = students.filter(s => !isPrincipal(s) && getPriorityIndex(s.name) < 0 && s.star && s.type === 'student');
+            const regularStudents = students.filter(s => !isPrincipal(s) && getPriorityIndex(s.name) < 0 && !s.star);
+            
+            priorityStudents.sort((a, b) => {
+                const aIdx = getPriorityIndex(a.name);
+                const bIdx = getPriorityIndex(b.name);
+                if (aIdx !== bIdx) return aIdx - bIdx;
+                return sortByEventsAndName(a, b);
+            });
+            
+            otherStars.sort(sortByEventsAndName);
+            regularStudents.sort(sortByEventsAndName);
             
             const teachers = [];
-            const regularStudents = [];
-            students.forEach(s => {
+            const nonTeachers = [];
+            
+            [...priorityStudents, ...otherStars, ...regularStudents].forEach(s => {
                 if (s.type === 'teacher') {
                     teachers.push(s);
                 } else {
-                    regularStudents.push(s);
+                    nonTeachers.push(s);
                 }
             });
-            students = [...regularStudents, ...teachers];
+            
+            const otherTeachers = teachers.filter(s => !isPrincipal(s));
+            
+            students = [...principals, ...nonTeachers, ...otherTeachers];
 
             const grid = document.getElementById('studentsGrid');
             if (!students.length) {
@@ -218,13 +236,31 @@
                 if (isTeacher) className += ' teacher';
                 else if (studentClass.toLowerCase()) className += ' ' + studentClass.toLowerCase();
                 
+                // Get CSE role if student is in CSE Council
+                let cseRoleHtml = '';
+                const council = DataStore.getCSECouncil();
+                if (council && council.stages) {
+                    for (const stage of ['secondary', 'preparatory', 'primary']) {
+                        for (const [roleKey, roleName] of Object.entries(council.stages[stage])) {
+                            if (roleName === s.name) {
+                                const roleTitles = { president: 'President', vicePresident: 'Vice President', science: 'Science', religiousCulture: 'Religious & Culture', art: 'Art', social: 'Social', sports: 'Sports' };
+                                const stageLabel = stage.charAt(0).toUpperCase() + stage.slice(1);
+                                cseRoleHtml = `<p class="cse-role">${stageLabel} ${roleTitles[roleKey] || roleKey} Rep</p>`;
+                                break;
+                            }
+                        }
+                        if (cseRoleHtml) break;
+                    }
+                }
+                
                 return `
                     <div class="${className}" onclick="viewStudent('${s.name}')">
                         <img src="${s.image || ''}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27140%27 height=%27140%27%3E%3Ccircle cx=%2770%27 cy=%2770%27 r=%2770%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
-                        <span class="class-badge">${isTeacher ? 'Teacher' : studentClass}</span>
+                        ${!isTeacher ? `<span class="class-badge">${studentClass}</span>` : ''}
                         <h3>${s.name}${isStar ? '<span class="star-badge">★ STAR</span>' : ''}</h3>
+                        ${cseRoleHtml}
                         <p class="role">${s.role || ''}</p>
-                        <div class="achievements">${achievements}</div>
+                        ${achievements ? `<div class="achievements">${achievements}</div>` : ''}
                     </div>`;
             }).join('');
         }
