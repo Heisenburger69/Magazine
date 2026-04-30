@@ -178,7 +178,13 @@
         }
         
         function viewStudent(name) { window.location.href = 'student.html?name=' + encodeURIComponent(name); }
-        function viewArticle(id) { window.location.href = 'article.html?id=' + id; }
+        function viewArticle(id) { 
+            if (id === 'cse-council-event') {
+                window.location.href = 'cse-council.html';
+            } else {
+                window.location.href = 'article.html?id=' + id; 
+            }
+        }
         
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
