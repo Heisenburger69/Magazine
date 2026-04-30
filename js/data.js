@@ -19,18 +19,16 @@ const DataStore = {
 async load() {
         if (this._loaded) return;
         
-        // Always load fresh from JSON files on server - ignore localStorage cache
         try {
+            // Direct fetch - don't transform, keep all data as-is
             const e = await fetch('data/events.json');
-            if (e.ok) {
-                const data = await e.json();
-                // Extract events array and cseCouncil from the JSON file
-                this.events = { events: data.events || [], cseCouncil: data.cseCouncil };
-            }
+            if (e.ok) this.events = await e.json();
+            console.log('events.cseCouncil:', this.events?.cseCouncil);
+            
             const s = await fetch('data/students.json');
             if (s.ok) this.students = await s.json();
         } catch (err) {
-            console.log('Load error:', err.message);
+            console.log('Load error:', err);
         }
         
         // Fix: if type is teacher, ensure class is "Teacher" not Secondary/etc
@@ -241,28 +239,20 @@ async load() {
     // --- CSE Council methods ---
     
     getCSECouncil() {
-        // Try events.json data first, then localStorage
+        // Direct access to events.cseCouncil
+        console.log('getCSECouncil this.events:', this.events);
         if (this.events?.cseCouncil) {
-            this.cseCouncil = this.events.cseCouncil;
+            return this.events.cseCouncil;
         }
-        const stored = localStorage.getItem('magazine_cse');
-        if (stored) {
-            const parsed = JSON.parse(stored);
-            if (parsed?.stages) {
-                this.cseCouncil = parsed;
-            }
-        }
-        if (!this.cseCouncil?.stages) {
-            this.cseCouncil = { 
-                head: "Miss Somia", 
-                stages: { 
-                    secondary: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" }, 
-                    preparatory: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" }, 
-                    primary: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" } 
-                } 
-            };
-        }
-        return this.cseCouncil;
+        // Default fallback
+        return { 
+            head: "Miss Somia", 
+            stages: { 
+                secondary: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" }, 
+                preparatory: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" }, 
+                primary: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" } 
+            } 
+        };
     },
     
     updateCSEPosition(stage, role, studentName) {
