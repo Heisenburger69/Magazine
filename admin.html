@@ -255,7 +255,7 @@
             <div class="tab-content" id="cseTab">
                 <div class="form-section">
                     <h3>CSE Council Management</h3>
-                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Assign students to CSE Council positions for each stage.</p>
+                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Assign students to CSE Council positions for each stage. Click "Save" to download the updated events.json file.</p>
                     
                     <div class="form-row" style="margin-bottom:20px;">
                         <div style="flex:1;">
@@ -884,13 +884,37 @@
         }
         
         function saveCSECouncil() {
-            DataStore.cseCouncil.head = document.getElementById('cseHeadSelect').value;
+            // Get current events.json
+            const eventsData = DataStore.events;
+            if (!eventsData.cseCouncil) {
+                eventsData.cseCouncil = {
+                    head: "Miss Somia",
+                    stages: { secondary: {}, preparatory: {}, primary: {} }
+                };
+            }
+            
+            // Update head
+            eventsData.cseCouncil.head = document.getElementById('cseHeadSelect').value || "Miss Somia";
+            
+            // Update positions
             document.querySelectorAll('.cse-select').forEach(select => {
                 const stage = select.dataset.stage;
                 const role = select.dataset.role;
-                DataStore.updateCSEPosition(stage, role, select.value);
+                eventsData.cseCouncil.stages[stage] = eventsData.cseCouncil.stages[stage] || {};
+                eventsData.cseCouncil.stages[stage][role] = select.value;
             });
-            alert('CSE Council saved successfully!');
+            
+            // Download updated events.json
+            const jsonStr = JSON.stringify(eventsData, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'events.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('CSE Council saved! Downloaded events.json - replace the file in data/ folder.');
         }
 
         // ===== JSON =====
