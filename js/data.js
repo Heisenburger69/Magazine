@@ -19,21 +19,18 @@ const DataStore = {
 async load() {
         if (this._loaded) return;
         
-        // Try loading from JSON files first (server mode)
+        // Always load fresh from JSON files on server - ignore localStorage cache
         try {
-            const [e, s] = await Promise.all([
-                fetch('data/events.json'),
-                fetch('data/students.json')
-            ]);
-            if (e.ok) this.events = await e.json();
+            const e = await fetch('data/events.json');
+            if (e.ok) {
+                const data = await e.json();
+                // Extract events array and cseCouncil from the JSON file
+                this.events = { events: data.events || [], cseCouncil: data.cseCouncil };
+            }
+            const s = await fetch('data/students.json');
             if (s.ok) this.students = await s.json();
         } catch (err) {
-            console.log('JSON fetch failed, trying localStorage');
-            // Fall back to localStorage only if JSON fails
-            const storedEvents = localStorage.getItem('magazine_events');
-            const storedStudents = localStorage.getItem('magazine_students');
-            if (storedEvents) this.events = JSON.parse(storedEvents);
-            if (storedStudents) this.students = JSON.parse(storedStudents);
+            console.log('Load error:', err.message);
         }
         
         // Fix: if type is teacher, ensure class is "Teacher" not Secondary/etc
@@ -45,7 +42,7 @@ async load() {
             });
         }
         
-        // Save to localStorage for next time
+        // Cache to localStorage (for offline)
         localStorage.setItem('magazine_events', JSON.stringify(this.events));
         localStorage.setItem('magazine_students', JSON.stringify(this.students));
         
