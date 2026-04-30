@@ -19,21 +19,16 @@ const DataStore = {
 async load() {
         if (this._loaded) return;
         
-        // Try loading from JSON files first (server mode)
         try {
-            const [e, s] = await Promise.all([
-                fetch('data/events.json'),
-                fetch('data/students.json')
-            ]);
+            // Direct fetch - don't transform, keep all data as-is
+            const e = await fetch('data/events.json');
             if (e.ok) this.events = await e.json();
+            console.log('events.cseCouncil:', this.events?.cseCouncil);
+            
+            const s = await fetch('data/students.json');
             if (s.ok) this.students = await s.json();
         } catch (err) {
-            console.log('JSON fetch failed, trying localStorage');
-            // Fall back to localStorage only if JSON fails
-            const storedEvents = localStorage.getItem('magazine_events');
-            const storedStudents = localStorage.getItem('magazine_students');
-            if (storedEvents) this.events = JSON.parse(storedEvents);
-            if (storedStudents) this.students = JSON.parse(storedStudents);
+            console.log('Load error:', err);
         }
         
         // Fix: if type is teacher, ensure class is "Teacher" not Secondary/etc
@@ -45,7 +40,7 @@ async load() {
             });
         }
         
-        // Save to localStorage for next time
+        // Cache to localStorage (for offline)
         localStorage.setItem('magazine_events', JSON.stringify(this.events));
         localStorage.setItem('magazine_students', JSON.stringify(this.students));
         
@@ -244,13 +239,20 @@ async load() {
     // --- CSE Council methods ---
     
     getCSECouncil() {
-        // First try localStorage, then fall back to events.json data
-        const stored = localStorage.getItem('magazine_cse');
-        if (stored) this.cseCouncil = JSON.parse(stored);
-        if (!this.cseCouncil?.stages && this.events?.cseCouncil) {
-            this.cseCouncil = this.events.cseCouncil;
+        // Direct access to events.cseCouncil
+        console.log('getCSECouncil this.events:', this.events);
+        if (this.events?.cseCouncil) {
+            return this.events.cseCouncil;
         }
-        return this.cseCouncil || { head: "Miss Somia", stages: { secondary: {}, preparatory: {}, primary: {} } };
+        // Default fallback
+        return { 
+            head: "Miss Somia", 
+            stages: { 
+                secondary: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" }, 
+                preparatory: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" }, 
+                primary: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" } 
+            } 
+        };
     },
     
     updateCSEPosition(stage, role, studentName) {
