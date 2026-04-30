@@ -100,6 +100,7 @@
             <div class="tabs">
                 <button class="tab-btn active" onclick="switchTab('events')">Events</button>
                 <button class="tab-btn" onclick="switchTab('students')">Students</button>
+                <button class="tab-btn" onclick="switchTab('cse')">CSE Council</button>
                 <button class="tab-btn" onclick="switchTab('json')">JSON</button>
             </div>
 
@@ -250,6 +251,62 @@
                 </div>
             </div>
 
+            <!-- CSE COUNCIL TAB -->
+            <div class="tab-content" id="cseTab">
+                <div class="form-section">
+                    <h3>CSE Council Management</h3>
+                    <p style="font-size:13px;color:#666;margin-bottom:12px;">Assign students to CSE Council positions for each stage.</p>
+                    
+                    <div class="form-row" style="margin-bottom:20px;">
+                        <div style="flex:1;">
+                            <label class="form-label">Council Head</label>
+                            <select class="form-input" id="cseHeadSelect"><option value="">-- Select --</option></select>
+                        </div>
+                    </div>
+                    
+                    <div class="cse-stage-section">
+                        <h4 style="background:#1a1a1a;color:#fff;padding:12px;border-radius:8px;margin-bottom:16px;">Secondary Stage</h4>
+                        <div class="form-row" style="grid-template-columns:repeat(2,1fr);">
+                            <div><label class="form-label">Stage President Rep</label><select class="form-input cse-select" data-stage="secondary" data-role="president"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Vice President Rep</label><select class="form-input cse-select" data-stage="secondary" data-role="vicePresident"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Science Rep</label><select class="form-input cse-select" data-stage="secondary" data-role="science"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Religious & Culture Rep</label><select class="form-input cse-select" data-stage="secondary" data-role="religiousCulture"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Art Rep</label><select class="form-input cse-select" data-stage="secondary" data-role="art"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Social Rep</label><select class="form-input cse-select" data-stage="secondary" data-role="social"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Sports Rep</label><select class="form-input cse-select" data-stage="secondary" data-role="sports"><option value="">-- Select --</option></select></div>
+                        </div>
+                    </div>
+                    
+                    <div class="cse-stage-section" style="margin-top:24px;">
+                        <h4 style="background:#1B4D3E;color:#fff;padding:12px;border-radius:8px;margin-bottom:16px;">Preparatory Stage</h4>
+                        <div class="form-row" style="grid-template-columns:repeat(2,1fr);">
+                            <div><label class="form-label">Stage President Rep</label><select class="form-input cse-select" data-stage="preparatory" data-role="president"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Vice President Rep</label><select class="form-input cse-select" data-stage="preparatory" data-role="vicePresident"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Science Rep</label><select class="form-input cse-select" data-stage="preparatory" data-role="science"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Religious & Culture Rep</label><select class="form-input cse-select" data-stage="preparatory" data-role="religiousCulture"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Art Rep</label><select class="form-input cse-select" data-stage="preparatory" data-role="art"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Social Rep</label><select class="form-input cse-select" data-stage="preparatory" data-role="social"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Sports Rep</label><select class="form-input cse-select" data-stage="preparatory" data-role="sports"><option value="">-- Select --</option></select></div>
+                        </div>
+                    </div>
+                    
+                    <div class="cse-stage-section" style="margin-top:24px;">
+                        <h4 style="background:#2C5282;color:#fff;padding:12px;border-radius:8px;margin-bottom:16px;">Primary Stage</h4>
+                        <div class="form-row" style="grid-template-columns:repeat(2,1fr);">
+                            <div><label class="form-label">Stage President Rep</label><select class="form-input cse-select" data-stage="primary" data-role="president"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Vice President Rep</label><select class="form-input cse-select" data-stage="primary" data-role="vicePresident"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Science Rep</label><select class="form-input cse-select" data-stage="primary" data-role="science"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Religious & Culture Rep</label><select class="form-input cse-select" data-stage="primary" data-role="religiousCulture"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Art Rep</label><select class="form-input cse-select" data-stage="primary" data-role="art"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Social Rep</label><select class="form-input cse-select" data-stage="primary" data-role="social"><option value="">-- Select --</option></select></div>
+                            <div><label class="form-label">Sports Rep</label><select class="form-input cse-select" data-stage="primary" data-role="sports"><option value="">-- Select --</option></select></div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="saveCSECouncil()" style="margin-top:20px;padding:10px 30px;">Save CSE Council</button>
+                </div>
+            </div>
+
             <!-- JSON TAB -->
             <div class="tab-content" id="jsonTab">
                 <div class="form-section">
@@ -324,6 +381,7 @@
             event.target.classList.add('active');
             document.getElementById(tab + 'Tab').classList.add('active');
             if (tab === 'json') refreshJSON();
+            if (tab === 'cse') { populateCSESelects(); loadCSECouncil(); }
         }
 
         // --- LOAD ---
@@ -797,6 +855,42 @@
 
             cancelStudentEditor();
             renderStudentsList();
+        }
+        
+        // ===== CSE COUNCIL =====
+        function populateCSESelects() {
+            const students = DataStore.getStudents().filter(s => s.type === 'student');
+            document.querySelectorAll('.cse-select').forEach(select => {
+                const currentVal = select.value;
+                select.innerHTML = '<option value="">-- Select --</option>' + 
+                    students.map(st => `<option value="${st.name}">${st.name}${st.star ? ' ★' : ''}</option>`).join('');
+                select.value = currentVal;
+            });
+        }
+        
+        function loadCSECouncil() {
+            const council = DataStore.getCSECouncil();
+            const headName = council.head || 'Miss Somia';
+            const headSelect = document.getElementById('cseHeadSelect');
+            const students = DataStore.getStudents();
+            headSelect.innerHTML = '<option value="">-- Select --</option>' + 
+                students.map(st => `<option value="${st.name}">${st.name}</option>`).join('');
+            headSelect.value = headName;
+            document.querySelectorAll('.cse-select').forEach(select => {
+                const stage = select.dataset.stage;
+                const role = select.dataset.role;
+                select.value = council.stages[stage][role] || '';
+            });
+        }
+        
+        function saveCSECouncil() {
+            DataStore.cseCouncil.head = document.getElementById('cseHeadSelect').value;
+            document.querySelectorAll('.cse-select').forEach(select => {
+                const stage = select.dataset.stage;
+                const role = select.dataset.role;
+                DataStore.updateCSEPosition(stage, role, select.value);
+            });
+            alert('CSE Council saved successfully!');
         }
 
         // ===== JSON =====

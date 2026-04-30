@@ -3,7 +3,7 @@
     {
       "id": "youssef-ahmed-sabry",
       "name": "Youssef Ahmed Sabry",
-      "role": "Science Rep, Newspaper/Magazine Creator & Editor",
+      "role": "Newspaper/Magazine Creator & Editor",
       "quote": "Working on the school magazine is such an honor for me, I will gladly try to make this magazine the best there ever was in all of future's schools",
       "image": "assets/images/Youssef.png",
       "star": true,
@@ -16,7 +16,7 @@
     {
       "id": "ahmed-alaadin-hassan",
       "name": "Ahmed Alaadin Hassan Darmelli",
-      "role": "President of Preparatory & Newspaper Writer",
+      "role": "Newspaper Writer",
       "quote": "You fell down so what? Get back up. For it is our destiny to rise, and in that there's no doubt",
       "image": "assets/images/31633.jpg",
       "star": true,
@@ -29,14 +29,15 @@
     {
       "id": "yassin-ahmed-sabry",
       "name": "Yassin Ahmed Sabry",
-      "role": "Social Rep, Reporter & Channel Manager",
+      "role": "Reporter & Channel Manager",
       "quote": "I suppose leadership at one time meant muscles, but today it means getting along with people.",
       "image": "assets/images/Yassin.webp",
       "star": true,
       "type": "student",
       "class": "Preparatory",
       "achievements": [
-        "Best Reporter"
+        "Best Reporter",
+        "Best Video Editor"
       ]
     },
     {
@@ -58,7 +59,7 @@
       "name": "Retaj Adel Abd Elhafeez",
       "role": "Profound Artist",
       "quote": "A great artist who never fails the school",
-      "image": "assets/images/32881 (2).jpg",
+      "image": "assets/images/IMG-20260429-WA0146.jpg",
       "star": false,
       "type": "student",
       "class": "Preparatory",
@@ -161,7 +162,7 @@
       "name": "Miss Sahar",
       "role": "English Supervisor",
       "quote": "Responsible for Organizing and Perfecting most events and competitions in the Rising Stars School",
-      "image": "assets/images/sahar.png",
+      "image": "assets/images/34497.jpg",
       "star": true,
       "type": "teacher",
       "class": "Teacher",
@@ -176,12 +177,12 @@
       "role": "The Principal of Rising Stars",
       "quote": "The principal of this incredible prestigious school, The reason the school keeps going forward and improving",
       "image": "assets/images/34209.jpg",
-      "star": true,
+      "star": false,
       "type": "teacher",
       "class": "Teacher",
       "achievements": [
         "School Principal",
-        "Ex Arabic Teacher"
+        "Doctor of Educational Administration and Institutional Developoment"
       ]
     },
     {
@@ -311,7 +312,7 @@
       "name": "Lily Ahmed",
       "role": "Excellent Student",
       "quote": "Great Academic Student",
-      "image": "assets/images/Lili.jpg",
+      "image": "assets/images/34614.jpg",
       "star": true,
       "type": "student",
       "class": "Secondary",
@@ -388,7 +389,7 @@
     {
       "id": "perpetua-gerges",
       "name": "Perpetua Gerges",
-      "role": "Arabic Rep",
+      "role": "",
       "quote": "",
       "image": "assets/images/33614.jpg",
       "star": false,
@@ -399,7 +400,7 @@
     {
       "id": "jasmine-ahmed-mohamed",
       "name": "Jasmine Ahmed Mohamed",
-      "role": "Vice Class Rep",
+      "role": "",
       "quote": "",
       "image": "assets/images/33330.jpg",
       "star": false,
@@ -410,7 +411,7 @@
     {
       "id": "asser-kareem-mohamed",
       "name": "Asser Kareem Mohamed",
-      "role": "Sports Rep",
+      "role": "",
       "quote": "",
       "image": "assets/images/33338.jpg",
       "star": false,
@@ -432,9 +433,9 @@
     {
       "id": "abdelrahman-mohamed-shahata",
       "name": "Abdelrahman Mohamed Shahata",
-      "role": "Culture & Religion Rep",
+      "role": "",
       "quote": "",
-      "image": "assets/images/blank.jpg",
+      "image": "assets/images/33363.jpg",
       "star": false,
       "type": "student",
       "class": "Preparatory",
@@ -443,7 +444,7 @@
     {
       "id": "youssef-ahmed-samy",
       "name": "Youssef Ahmed Samy",
-      "role": "Science Rep",
+      "role": "",
       "quote": "",
       "image": "assets/images/33422.jpg",
       "star": false,
@@ -454,9 +455,9 @@
     {
       "id": "fayrouz-alaa-mohamed",
       "name": "Fayrouz Alaa Mohamed",
-      "role": "Art Rep",
+      "role": "",
       "quote": "",
-      "image": "assets/images/33307.jpg",
+      "image": "assets/images/34270.jpg",
       "star": false,
       "type": "student",
       "class": "Primary",
@@ -465,10 +466,10 @@
     {
       "id": "mr-ahmed-ashour",
       "name": "Mr. Ahmed Ashour",
-      "role": "Vice Principal ",
+      "role": "Stage Deputy",
       "quote": "Responsible for organizing and planning out events with each supervisor of each department of the school, whether that's the Main subjects or the school trips and competitions etc ",
       "image": "assets/images/Screenshot_20260429_005439_Instagram.jpg",
-      "star": true,
+      "star": false,
       "type": "teacher",
       "class": "Teacher",
       "achievements": []
@@ -531,6 +532,61 @@
       "achievements": [
         "Vice Principal"
       ]
+    },
+    {
+      "id": "farida-amr",
+      "name": "Farida Amr",
+      "role": "",
+      "quote": "",
+      "image": "assets/images/IMG-20260429-WA0138.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Primary",
+      "achievements": []
+    },
+    {
+      "id": "yazan-mohammad",
+      "name": "Yazan Mohammad",
+      "role": "",
+      "quote": "",
+      "image": "assets/images/IMG-20260429-WA0148.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Preparatory",
+      "achievements": []
+    },
+    {
+      "id": "ahmed-raafat",
+      "name": "Ahmed Raafat",
+      "role": "",
+      "quote": "",
+      "image": "assets/images/IMG-20260429-WA0057.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Secondary",
+      "achievements": []
+    },
+    {
+      "id": "ms-amira",
+      "name": "Ms Amira",
+      "role": "Stage Deputy",
+      "quote": "Responsible for managing the primary stage",
+      "image": "assets/images/IMG-20260429-WA0047.jpg",
+      "star": false,
+      "type": "teacher",
+      "class": "Teacher",
+      "achievements": []
+    },
+    {
+      "id": "malek-ayman",
+      "name": "Malek Ayman",
+      "role": "Excellent Student",
+      "quote": "",
+      "image": "assets/images/34346.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Preparatory",
+      "achievements": []
     }
   ]
 }

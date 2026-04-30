@@ -6,6 +6,38 @@
 const DataStore = {
     events: { events: [] },
     students: { students: [] },
+    cseCouncil: {
+        head: "Miss Somia",
+        stages: {
+            secondary: {
+                president: "",
+                vicePresident: "",
+                science: "",
+                religiousCulture: "",
+                art: "",
+                social: "",
+                sports: ""
+            },
+            preparatory: {
+                president: "",
+                vicePresident: "",
+                science: "",
+                religiousCulture: "",
+                art: "",
+                social: "",
+                sports: ""
+            },
+            primary: {
+                president: "",
+                vicePresident: "",
+                science: "",
+                religiousCulture: "",
+                art: "",
+                social: "",
+                sports: ""
+            }
+        }
+    },
     _loaded: false,
 
 async load() {
@@ -77,7 +109,7 @@ async load() {
     },
 
     getStudentEvents(studentName) {
-        return this.getEvents().filter(event => {
+        const events = this.getEvents().filter(event => {
             if (event.elements) {
                 return event.elements.some(el => {
                     if (el.type === 'students' && el.students) {
@@ -91,6 +123,52 @@ async load() {
             }
             return false;
         });
+        
+        const council = this.getCSECouncil();
+        
+        let cseRole = null;
+        if (council.head && council.head.toLowerCase() === studentName.toLowerCase()) {
+            cseRole = { key: 'head', title: 'Council Head', icon: '👑' };
+        } else {
+            const roleMap = {
+                president: { title: 'Stage President', icon: '👑' },
+                vicePresident: { title: 'Vice President', icon: '⭐' },
+                science: { title: 'Science Representative', icon: '🔬' },
+                religiousCulture: { title: 'Religious & Culture Representative', icon: '🕌' },
+                art: { title: 'Art Representative', icon: '🎨' },
+                social: { title: 'Social Representative', icon: '🤝' },
+                sports: { title: 'Sports Representative', icon: '🏆' }
+            };
+            const stageLabelMap = {
+                secondary: 'Secondary',
+                preparatory: 'Preparatory',
+                primary: 'Primary'
+            };
+            for (const [stage, stageRoles] of Object.entries(council.stages)) {
+                for (const [roleKey, memberName] of Object.entries(stageRoles)) {
+                    if (memberName && memberName.toLowerCase() === studentName.toLowerCase()) {
+                        const roleInfo = roleMap[roleKey] || { title: 'Member', icon: '👤' };
+                        cseRole = { key: roleKey, title: stageLabelMap[stage] + ' ' + roleInfo.title, icon: roleInfo.icon, stage };
+                        break;
+                    }
+                }
+                if (cseRole) break;
+            }
+        }
+        
+        if (cseRole) {
+            const cseEvent = {
+                id: 'cse-council-event',
+                title: 'CSE Council',
+                featured: false,
+                elements: [{ type: 'text', content: 'CSE Council Member' }],
+                _isCSE: true,
+                _cseRole: cseRole
+            };
+            events.unshift(cseEvent);
+        }
+        
+        return events;
     },
 
     getEventPreviewImage(event) {
@@ -150,7 +228,8 @@ async load() {
     // --- JSON export ---
 
     getEventsJSON() {
-        return JSON.stringify(this.events, null, 2);
+        const council = this.getCSECouncil();
+        return JSON.stringify({ ...this.events, cseCouncil: council }, null, 2);
     },
 
     getStudentsJSON() {
@@ -183,7 +262,28 @@ async load() {
         this._loaded = false;
         localStorage.removeItem('magazine_events');
         localStorage.removeItem('magazine_students');
+        localStorage.removeItem('magazine_cse');
         return this.load();
+    },
+    
+    // --- CSE Council methods ---
+    
+    getCSECouncil() {
+        const stored = localStorage.getItem('magazine_cse');
+        if (stored) this.cseCouncil = JSON.parse(stored);
+        return this.cseCouncil;
+    },
+    
+    updateCSEPosition(stage, role, studentName) {
+        if (this.cseCouncil.stages[stage]) {
+            this.cseCouncil.stages[stage][role] = studentName;
+            localStorage.setItem('magazine_cse', JSON.stringify(this.cseCouncil));
+        }
+    },
+    
+    getCSEHead() {
+        const council = this.getCSECouncil();
+        return council.head || "Miss Somia";
     },
 
     // --- ID generation ---
