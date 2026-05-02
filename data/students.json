@@ -127,7 +127,7 @@
       "name": "Joy fady",
       "role": "profound Artist",
       "quote": "",
-      "image": "assets/images/32884.jpg",
+      "image": "assets/images/IMG-20260502-WA0051.jpg",
       "star": false,
       "type": "student",
       "class": "Preparatory",
@@ -586,6 +586,17 @@
       "star": false,
       "type": "student",
       "class": "Preparatory",
+      "achievements": []
+    },
+    {
+      "id": "miss-doha-emad",
+      "name": "Miss Doha Emad",
+      "role": "Art Teacher",
+      "quote": "",
+      "image": "",
+      "star": false,
+      "type": "teacher",
+      "class": "Secondary",
       "achievements": []
     }
   ]

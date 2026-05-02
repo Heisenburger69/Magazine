@@ -220,17 +220,17 @@
               "name": "Miss Eman Sabry",
               "role": "Art Teacher",
               "achievement": "Taught the students how to make crafts"
+            },
+            {
+              "name": "Miss Doha Emad",
+              "role": "Art Teacher",
+              "achievement": "Taught the students how to make crafts"
             }
           ]
         },
         {
           "type": "students",
           "students": [
-            {
-              "name": "Mina Maged",
-              "role": "",
-              "achievement": ""
-            },
             {
               "name": "Joy fady",
               "role": "",
@@ -286,6 +286,11 @@
           "organizers": [
             {
               "name": "Miss Eman Sabry",
+              "role": "Art Teacher",
+              "achievement": "Helped the students accomplish all those wonders"
+            },
+            {
+              "name": "Miss Doha Emad",
               "role": "Art Teacher",
               "achievement": "Helped the students accomplish all those wonders"
             }
@@ -355,13 +360,18 @@
           "organizers": [
             {
               "name": "Miss Eman Sabry",
-              "role": "Artist",
+              "role": "Art Teacher",
               "achievement": "Helped the students express their creativity with their drawings"
             },
             {
               "name": "Mr. Ahmed Ashour",
               "role": "History teacher/Director",
               "achievement": "Organized the event "
+            },
+            {
+              "name": "Miss Doha Emad",
+              "role": "Art Teacher",
+              "achievement": "Helped the students express their creativity with their drawings"
             }
           ]
         },
