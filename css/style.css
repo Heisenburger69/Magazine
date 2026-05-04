@@ -597,12 +597,6 @@ p {
     border-radius: 12px;
     object-fit: cover;
     box-shadow: var(--shadow-md);
-    transition: var(--transition);
-}
-
-.school-images img:hover {
-    transform: scale(1.02);
-    box-shadow: var(--shadow-lg);
 }
 
 /* ================================================================
@@ -612,6 +606,70 @@ p {
     text-align: center;
     padding: 24px;
     border: 2px solid rgba(201, 168, 76, 0.2);
+}
+
+.team-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 16px;
+    display: block;
+    border: 3px solid var(--primary-gold);
+    box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+}
+
+.team-card .class-badge {
+    display: inline-block;
+    background: #8B3A5C;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    width: fit-content;
+    margin: 0 auto 8px;
+    display: block;
+}
+
+.team-card .cse-role {
+    color: #6A1B9A;
+    font-size: 10px;
+    font-weight: 700;
+    margin: 4px 0;
+    background: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.team-card .star-badge {
+    display: inline-block;
+    background: var(--primary-gold);
+    color: var(--primary-black);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+    font-weight: 700;
+}
+
+.team-card .achievements {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.team-card .achievement-tag {
+    background: rgba(201,168,76,0.3);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
 }
 
 .team-avatar {
@@ -828,7 +886,10 @@ p {
 }
 
 /* --- TEAM CAROUSEL (Mobile) --- */
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.team-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+.team-grid .team-card { grid-column: span 2; }
+.team-grid .team-card:nth-child(4) { grid-column: 2 / span 2; }
+.team-grid .team-card:nth-child(5) { grid-column: 4 / span 2; }
 
 .team-carousel {
     display: none;
