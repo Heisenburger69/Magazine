@@ -14,6 +14,7 @@ const DataStore = {
             primary: { president: "", vicePresident: "", science: "", religiousCulture: "", art: "", social: "", sports: "" }
         }
     },
+    topStudents: [],
     _loaded: false,
 
 async load() {
@@ -30,6 +31,7 @@ async load() {
             const s = await fetch('data/students.json?_=' + Date.now());
             if (s.ok) {
                 this.students = await s.json();
+                this.topStudents = this.students.topStudents || [];
                 if (!this._offlineMode) localStorage.setItem('magazine_students', JSON.stringify(this.students));
             }
         } catch (err) {
@@ -142,6 +144,19 @@ async load() {
             events.unshift(cseEvent);
         }
         
+        const topStudent = this.topStudents?.find(ts => ts.name === studentName);
+        if (topStudent) {
+            const topEvent = {
+                id: 'top-students-competition',
+                title: 'Top Students',
+                featured: false,
+                elements: [{ type: 'text', content: 'Outstanding Student Achievement' }],
+                _isTopStudent: true,
+                _topRole: { title: topStudent.role, icon: '★' }
+            };
+            events.unshift(topEvent);
+        }
+        
         return events;
     },
 
@@ -207,7 +222,7 @@ async load() {
     },
 
     getStudentsJSON() {
-        return JSON.stringify(this.students, null, 2);
+        return JSON.stringify({ ...this.students, topStudents: this.topStudents || [] }, null, 2);
     },
 
     // --- JSON import ---
@@ -243,12 +258,10 @@ async load() {
     // --- CSE Council methods ---
     
     getCSECouncil() {
-        // Direct access to events.cseCouncil
-        console.log('getCSECouncil this.events:', this.events);
         if (this.events?.cseCouncil) {
             return this.events.cseCouncil;
         }
-        // Default fallback
+        this.topStudents = this.topStudents || [];
         return { 
             head: "Miss Somia", 
             stages: { 

@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/decorative.png?v=1">
     <link rel="icon" type="image/png" sizes="64x64" href="assets/images/decorative.png?v=1">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/decorative.png?v=1">
+    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </head>
 <body>
     <div class="bg-stars"></div>
@@ -78,6 +79,14 @@
             <div class="section-header">
                 <h2>About Us</h2>
             </div>
+            <div class="card" style="padding:30px;margin-bottom:30px;pointer-events:none;">
+                <p style="font-size:15px;color:#333;margin-bottom:16px;line-height:1.8;">
+                    This website was conceived and built by the <strong>Cultural, Scientific & Educational Council (CSE)</strong> of Rising Stars Language School. This digital magazine is to showcase our school's achievements & all of our students' perseverance to keep learning and getting better.
+                </p>
+                <div style="text-align:center;margin-top:8px;">
+                    <a href="cse-council.html" class="btn btn-primary" style="pointer-events:auto;">Visit CSE Council</a>
+                </div>
+            </div>
             <!-- Desktop: grid -->
             <div class="team-grid" id="teamGridDesktop"></div>
             <!-- Mobile: carousel -->
@@ -99,7 +108,7 @@
                 <h2>Our School</h2>
             </div>
             <div class="grid grid-2" style="gap:40px;align-items:center;">
-                <div class="card" style="padding:30px;">
+                <div class="card" style="padding:30px;pointer-events:none;">
                     <ul class="school-info-list">
                         <li>Private school owned by futures education system</li>
                         <li>Modern school with smart boards and science labs</li>
@@ -142,6 +151,7 @@
         
         async function init() {
             await DataStore.load();
+            DataStore.getCSECouncil();
             renderArticles();
             renderTeam();
         }
@@ -150,19 +160,67 @@
             const desktop = document.getElementById('teamGridDesktop');
             const carousel = document.getElementById('teamCarousel');
             const dots = document.getElementById('teamDots');
-            const students = DataStore.getStudents().filter(s => s.type === 'student').slice(0, 3);
-            const cardHtml = (student, showStarBadge) => `
-                <div class="card team-card" onclick="viewStudent('${student.name}')">
-                    <img src="${student.image || ''}" alt="${student.name}" class="team-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27120%27 height=%27120%27%3E%3Ccircle cx=%2760%27 cy=%2760%27 r=%2760%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
-                    <div class="team-name">${student.name}${showStarBadge ? '<span class="star-badge">★ Star</span>' : ''}</div>
-                    <div class="team-role">${student.role}</div>
-                    <div class="team-quote">"${student.quote}"</div>
-                </div>
-            `;
+            const students = DataStore.getStudents().filter(s => s.type === 'student');
             
-            desktop.innerHTML = students.map(s => cardHtml(s, s.star && s.type === 'student')).join('');
-            carousel.innerHTML = students.map((s, i) => `<div class="tc-slide ${i === 0 ? 'active' : ''}">${cardHtml(s, s.star && s.type === 'student')}</div>`).join('');
-            dots.innerHTML = students.length > 1 ? students.map((_, i) => `<span class="tc-dot ${i === 0 ? 'active' : ''}" onclick="goTeamSlide(${i})"></span>`).join('') : '';
+            // Reorder: Ahmed Alaa first, then Youssef, then third student
+            const ahmedAlaa = students.find(s => s.name === 'Ahmed Alaadin Hassan Darmelli');
+            const youssef = students.find(s => s.name === 'Youssef Ahmed Sabry');
+            const thirdStudent = students.find(s => s.name !== 'Ahmed Alaadin Hassan Darmelli' && s.name !== 'Youssef Ahmed Sabry');
+            const orderedStudents = [ahmedAlaa, youssef, thirdStudent].filter(Boolean);
+            
+            // Additional CSE members
+            const extraNames = ['Lily Ahmed', 'Ahmed Adel Abd Elhafeez'];
+            const extraMembers = extraNames.map(name => DataStore.getStudent(name)).filter(Boolean);
+            const allStudents = [...orderedStudents, ...extraMembers];
+            
+            const council = DataStore.getCSECouncil();
+            
+            const cardHtml = (student, showStarBadge) => {
+                const studentClass = student.class || 'Student';
+                const achievements = student.achievements ? student.achievements.map(a => `<span class="achievement-tag">${a}</span>`).join('') : '';
+                
+                let cseRoleHtml = '';
+                if (council && council.stages) {
+                    for (const stage of ['secondary', 'preparatory', 'primary']) {
+                        for (const [roleKey, roleName] of Object.entries(council.stages[stage])) {
+                            if (roleName === student.name) {
+                                const roleTitles = { president: 'President', vicePresident: 'Vice President', science: 'Science', religiousCulture: 'Religious & Culture', art: 'Art', social: 'Social', sports: 'Sports' };
+                                const stageLabel = stage.charAt(0).toUpperCase() + stage.slice(1);
+                                cseRoleHtml = `<p class="cse-role">${stageLabel} ${roleTitles[roleKey] || roleKey} Rep</p>`;
+                                break;
+                            }
+                        }
+                        if (cseRoleHtml) break;
+                    }
+                }
+                
+                let topRoleHtml = '';
+                const topStudent = DataStore.topStudents?.find(ts => ts.name === student.name);
+                if (topStudent) {
+                    topRoleHtml = `<p class="top-role">${topStudent.role}</p>`;
+                }
+                
+                return `
+                    <div class="card team-card" onclick="viewStudent('${student.name}')">
+                        <img src="${student.image || ''}" alt="${student.name}" class="team-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27120%27 height=%27120%27%3E%3Ccircle cx=%2760%27 cy=%2760%27 r=%2760%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
+                        <span class="class-badge">${studentClass}</span>
+                        <div class="team-name">${student.name}${showStarBadge ? '<span class="star-badge">★ Star</span>' : ''}</div>
+                        ${topRoleHtml}
+                        ${cseRoleHtml}
+                        <div class="team-role">${student.role}</div>
+                        ${achievements ? `<div class="achievements">${achievements}</div>` : ''}
+                        <div class="team-quote">"${student.quote}"</div>
+                    </div>
+                `;
+            };
+            
+            // Mobile: Youssef first
+            const mobileOrder = [youssef, ahmedAlaa, thirdStudent].filter(Boolean);
+            const mobileAll = [...mobileOrder, ...extraMembers];
+            
+            desktop.innerHTML = allStudents.map(s => cardHtml(s, s.star && s.type === 'student')).join('');
+            carousel.innerHTML = mobileAll.map((s, i) => `<div class="tc-slide ${i === 0 ? 'active' : ''}">${cardHtml(s, s.star && s.type === 'student')}</div>`).join('');
+            dots.innerHTML = mobileAll.length > 1 ? mobileAll.map((_, i) => `<span class="tc-dot ${i === 0 ? 'active' : ''}" onclick="goTeamSlide(${i})"></span>`).join('') : '';
         }
         
         function renderArticles() {

@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/decorative.png?v=1">
     <link rel="icon" type="image/png" sizes="64x64" href="assets/images/decorative.png?v=1">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/decorative.png?v=1">
+    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
     <style>
         .students-header { background: linear-gradient(135deg, var(--primary-black) 0%, #2a2520 100%); padding: 70px 20px; text-align: center; }
         .students-header h1 { color: var(--primary-gold); text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
@@ -61,6 +62,7 @@
         .student-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-gold); margin: 0 auto 12px; box-shadow: 0 4px 16px rgba(201,168,76,0.3); display: block; }
         .student-card h3 { font-size: 14px; margin-bottom: 4px; }
         .student-card .cse-role { color: #6A1B9A; font-size: 10px; font-weight: 700; margin-top: 4px; background: white; padding: 3px 8px; border-radius: 10px; display: inline-block; }
+        .student-card .top-role { color: #D4AF37; font-size: 10px; font-weight: 800; margin-top: 4px; background: white; padding: 3px 8px; border-radius: 10px; display: inline-block; text-transform: uppercase; }
         .student-card .role { font-size: 11px; color: rgba(255,255,255,0.7); font-style: italic; margin-bottom: 8px; }
         .student-card .class-badge { display: block; background: #8B3A5C; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin: 0 auto 8px; width: fit-content; }
         .achievements { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 8px; }
@@ -118,6 +120,7 @@
 
         async function init() {
             await DataStore.load();
+            DataStore.getCSECouncil();
             renderStudents();
         }
 
@@ -243,6 +246,7 @@
                 // Get CSE role if student is in CSE Council
                 let cseRoleHtml = '';
                 const council = DataStore.getCSECouncil();
+                const topStudents = DataStore.topStudents || [];
                 if (council && council.stages) {
                     for (const stage of ['secondary', 'preparatory', 'primary']) {
                         for (const [roleKey, roleName] of Object.entries(council.stages[stage])) {
@@ -257,11 +261,18 @@
                     }
                 }
                 
+                let topRoleHtml = '';
+                const topStudent = topStudents.find(ts => ts.name === s.name);
+                if (topStudent) {
+                    topRoleHtml = `<p class="top-role">${topStudent.role}</p>`;
+                }
+                
                 return `
                     <div class="${className}" onclick="viewStudent('${s.name}')">
                         <img src="${s.image || ''}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27140%27 height=%27140%27%3E%3Ccircle cx=%2770%27 cy=%2770%27 r=%2770%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
                         ${!isTeacher ? `<span class="class-badge">${studentClass}</span>` : ''}
                         <h3>${s.name}${isStar ? '<span class="star-badge">★ STAR</span>' : ''}</h3>
+                        ${topRoleHtml}
                         ${cseRoleHtml}
                         <p class="role">${s.role || ''}</p>
                         ${achievements ? `<div class="achievements">${achievements}</div>` : ''}

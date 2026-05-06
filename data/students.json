@@ -10,13 +10,13 @@
       "type": "student",
       "class": "Secondary",
       "achievements": [
-        "Academic Excellence"
+        "Website Maker"
       ]
     },
     {
       "id": "ahmed-alaadin-hassan",
       "name": "Ahmed Alaadin Hassan Darmelli",
-      "role": "Newspaper Writer",
+      "role": "Newspaper Writer & Spokesperson",
       "quote": "You fell down so what? Get back up. For it is our destiny to rise, and in that there's no doubt",
       "image": "assets/images/31633.jpg",
       "star": true,
@@ -43,7 +43,7 @@
     {
       "id": "ahmed-adel-abd-elhafeez",
       "name": "Ahmed Adel Abd Elhafeez",
-      "role": "Excellent Student",
+      "role": "Creative Decision Maker",
       "quote": "A perfect student that does his homework, and helps when he can.",
       "image": "assets/images/IMG-20260427-WA0024.jpg",
       "star": true,
@@ -310,13 +310,15 @@
     {
       "id": "lili-ahmed",
       "name": "Lily Ahmed",
-      "role": "Excellent Student",
-      "quote": "Great Academic Student",
+      "role": "Interviewer & School Insight Gatherer",
+      "quote": "Great Academic Student, always up for a challenge and very social",
       "image": "assets/images/34614.jpg",
       "star": true,
       "type": "student",
       "class": "Secondary",
-      "achievements": []
+      "achievements": [
+        "Great Reporter"
+      ]
     },
     {
       "id": "sama-alaa",
@@ -596,8 +598,14 @@
       "image": "assets/images/WhatsApp Image 2026-05-03 at 8.10.07 AM.jpeg",
       "star": false,
       "type": "teacher",
-      "class": "",
+      "class": "Teacher",
       "achievements": []
+    }
+  ],
+  "topStudents": [
+    {
+      "name": "Youssef Ahmed Sabry",
+      "role": "Math Competitior"
     }
   ]
 }
