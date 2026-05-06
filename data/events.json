@@ -1,6 +1,15 @@
 {
   "events": [
     {
+      "id": "top-students-competition",
+      "title": "Top Students Competition",
+      "type": "multi",
+      "category": "Academic",
+      "featured": false,
+      "date": "2026",
+      "elements": []
+    },
+    {
       "id": "english-day-2026",
       "title": "The International English Day",
       "type": "multi",

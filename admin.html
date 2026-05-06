@@ -244,6 +244,19 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Top Student</label>
+                                <select class="form-select" id="studentTopStudent">
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="topStudentRoleGroup" style="display:none;">
+                                <label class="form-label">Top Student Role</label>
+                                <input type="text" class="form-input" id="studentTopRole" placeholder="e.g., Math Genius, Best Writer">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="form-label">Achievements (comma separated)</label>
                             <input type="text" class="form-input" id="studentAchievements" placeholder="Academic Excellence, Science Innovation">
@@ -392,6 +405,7 @@
         // --- LOAD ---
         async function loadAdmin() {
             await DataStore.load();
+            DataStore.getCSECouncil();
             renderEventsList();
             renderStudentsList();
         }
@@ -795,6 +809,14 @@
                 document.getElementById('studentClass').value = studentData.class || 'Secondary';
                 document.getElementById('studentStar').value = studentData.star ? 'true' : 'false';
                 document.getElementById('studentAchievements').value = (studentData.achievements || []).join(', ');
+                
+                const topStudent = (DataStore.topStudents || []).find(ts => ts.name === studentData.name);
+                document.getElementById('studentTopStudent').value = topStudent ? 'true' : 'false';
+                document.getElementById('studentTopRole').value = topStudent ? topStudent.role : '';
+                document.getElementById('topStudentRoleGroup').style.display = topStudent ? 'block' : 'none';
+                document.getElementById('studentTopStudent').onchange = function() {
+                    document.getElementById('topStudentRoleGroup').style.display = this.value === 'true' ? 'block' : 'none';
+                };
             } else {
                 document.getElementById('studentEditorTitle').textContent = 'New Student';
                 document.getElementById('editStudentId').value = '';
@@ -805,6 +827,9 @@
                 document.getElementById('studentClass').value = 'Secondary';
                 document.getElementById('studentStar').value = 'false';
                 document.getElementById('studentAchievements').value = '';
+                document.getElementById('studentTopStudent').value = 'false';
+                document.getElementById('studentTopRole').value = '';
+                document.getElementById('topStudentRoleGroup').style.display = 'none';
             }
         }
 
@@ -857,9 +882,30 @@
             } else {
                 DataStore.addStudent(studentData);
             }
+            
+            const isTop = document.getElementById('studentTopStudent').value === 'true';
+            const topRole = document.getElementById('studentTopRole').value;
+            DataStore.topStudents = DataStore.topStudents || [];
+            const idx = DataStore.topStudents.findIndex(ts => ts.name === name);
+            if (isTop) {
+                if (idx >= 0) DataStore.topStudents[idx] = { name, role: topRole || 'Top Student' };
+                else DataStore.topStudents.push({ name, role: topRole || 'Top Student' });
+            } else if (idx >= 0) {
+                DataStore.topStudents.splice(idx, 1);
+            }
 
             cancelStudentEditor();
             renderStudentsList();
+            
+            // Download updated students.json
+            const jsonStr = JSON.stringify({ ...DataStore.students, topStudents: DataStore.topStudents }, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'students.json';
+            a.click();
+            URL.revokeObjectURL(url);
         }
         
         // ===== CSE COUNCIL =====

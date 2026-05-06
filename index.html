@@ -151,6 +151,7 @@
         
         async function init() {
             await DataStore.load();
+            DataStore.getCSECouncil();
             renderArticles();
             renderTeam();
         }
@@ -193,11 +194,18 @@
                     }
                 }
                 
+                let topRoleHtml = '';
+                const topStudent = DataStore.topStudents?.find(ts => ts.name === student.name);
+                if (topStudent) {
+                    topRoleHtml = `<p class="top-role">${topStudent.role}</p>`;
+                }
+                
                 return `
                     <div class="card team-card" onclick="viewStudent('${student.name}')">
                         <img src="${student.image || ''}" alt="${student.name}" class="team-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27120%27 height=%27120%27%3E%3Ccircle cx=%2760%27 cy=%2760%27 r=%2760%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
                         <span class="class-badge">${studentClass}</span>
                         <div class="team-name">${student.name}${showStarBadge ? '<span class="star-badge">★ Star</span>' : ''}</div>
+                        ${topRoleHtml}
                         ${cseRoleHtml}
                         <div class="team-role">${student.role}</div>
                         ${achievements ? `<div class="achievements">${achievements}</div>` : ''}

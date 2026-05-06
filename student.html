@@ -19,13 +19,16 @@
         .profile-achievements .achievement-tag { background: var(--primary-gold); color: var(--primary-black); padding: 6px 14px; border-radius: 16px; font-size: 12px; font-weight: 600; }
         .profile-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
         .profile-quote { background: var(--bg-white); padding: 24px; border-radius: 12px; font-size: 18px; font-style: italic; color: #333; border-left: 4px solid var(--primary-gold); margin-bottom: 30px; }
-        .event-mini { background: var(--bg-white); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm); cursor: pointer; transition: var(--transition); }
-        .event-mini:hover { transform: translateX(8px); box-shadow: var(--shadow-md); }
-        .event-mini-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-        .event-mini-excerpt { font-size: 13px; color: #555; margin-bottom: 12px; }
-        .achievement-tag { display: inline-block; background: var(--primary-gold); color: var(--primary-black); padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+        .event-mini { background: var(--bg-white); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); cursor: pointer; transition: var(--transition); }
+        .event-mini:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .event-mini-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+        .event-mini-excerpt { font-size: 11px; color: #555; margin-bottom: 8px; }
         .cse-event-mini { background: linear-gradient(135deg, rgba(155,89,182,0.15) 0%, rgba(142,68,173,0.1) 100%); border-left: 4px solid #9B59B6; border-radius: 12px; cursor: pointer; }
-        .cse-event-mini:hover { transform: none; box-shadow: none; }
+        .cse-event-mini:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .top-student-event-mini { background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(184,134,11,0.1) 100%); border-left: 4px solid #D4AF37; border-radius: 12px; cursor: pointer; }
+        .top-student-event-mini:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        #eventsList { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        @media (max-width: 768px) { #eventsList { grid-template-columns: 1fr; } }
         @media (max-width: 768px) { .profile-header img { width: 140px; height: 140px; } .profile-header h1 { font-size: 28px; } }
     </style>
 </head>
@@ -68,6 +71,7 @@
 
         async function init() {
             await DataStore.load();
+            DataStore.getCSECouncil();
             loadProfile();
         }
 
@@ -114,19 +118,26 @@
                     const roleText = studentInfo?.role ? studentInfo.role : 'Participant';
                     const achieveText = studentInfo?.achievement ? `- ${studentInfo.achievement}` : '';
                     const isCSE = event._isCSE;
+                    const isTopStudent = event._isTopStudent;
                     const cseRole = event._cseRole || {};
-                    const roleTitle = cseRole.title || 'CSE Council Member';
-                    const roleIcon = cseRole.icon || '👑';
-                    const onclickAttr = isCSE ? "window.location.href='cse-council.html'" : "viewArticle('" + event.id + "')";
+                    const topRole = event._topRole || {};
+                    const roleTitle = isTopStudent ? topRole.title : (cseRole.title || 'CSE Council Member');
+                    const roleIcon = isTopStudent ? topRole.icon : (cseRole.icon || '👑');
+                    const isSpecial = isCSE || isTopStudent;
+                    const onclickAttr = isCSE ? "window.location.href='cse-council.html'" : (isTopStudent ? "viewArticle('top-students-competition')" : "viewArticle('" + event.id + "')");
+                    const excerptText = isTopStudent ? 'Recognized for outstanding achievement' : (isCSE ? 'Cultural, Scientific & Educational Council' : excerpt);
+                    const accentColor = isTopStudent ? '#D4AF37' : (isCSE ? '#9B59B6' : '#DC143C');
+                    const thumbHtml = isCSE ? `<div style="width:60px;height:45px;min-width:60px;background:linear-gradient(135deg, #9B59B6, #8E44AD);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;">${roleIcon}</div>` : 
+                                       (isTopStudent ? `<div style="width:60px;height:45px;min-width:60px;background:linear-gradient(135deg, #D4AF37, #B8860B);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;">${roleIcon}</div>` : 
+                                       (thumb ? `<img src="${thumb}" style="width:60px;height:45px;object-fit:cover;border-radius:8px;flex-shrink:0;" onerror="this.style.display='none'">` : ''));
                     return `
-                        <div class="event-mini ${isCSE ? 'cse-event-mini' : ''}" onclick="${onclickAttr}">
+                        <div class="event-mini ${isCSE ? 'cse-event-mini' : ''} ${isTopStudent ? 'top-student-event-mini' : ''}" onclick="${onclickAttr}">
                             <div style="display:flex;gap:16px;align-items:flex-start;">
-                                ${isCSE ? `<div style="width:60px;height:45px;min-width:60px;background:linear-gradient(135deg, #9B59B6, #8E44AD);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;">${roleIcon}</div>` : ''}
-                                ${!isCSE && thumb ? `<img src="${thumb}" style="width:60px;height:45px;object-fit:cover;border-radius:8px;flex-shrink:0;" onerror="this.style.display='none'">` : ''}
+                                ${thumbHtml}
                                 <div style="flex:1;">
                                     <div class="event-mini-title">${event.title}</div>
-                                    <div style="font-size:11px;color:${isCSE ? '#9B59B6' : '#DC143C'};font-weight:600;margin:3px 0;">${isCSE ? roleTitle : roleText + ' ' + achieveText}</div>
-                                    <div class="event-mini-excerpt" style="font-size:10px;">${isCSE ? 'Cultural, Scientific & Educational Council' : excerpt}</div>
+                                    <div style="font-size:11px;color:${accentColor};font-weight:600;margin:3px 0;">${isSpecial ? roleTitle : roleText + ' ' + achieveText}</div>
+                                    <div class="event-mini-excerpt" style="font-size:10px;">${excerptText}</div>
                                 </div>
                             </div>
                         </div>`;
