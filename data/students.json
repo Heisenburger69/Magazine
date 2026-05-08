@@ -174,14 +174,14 @@
     {
       "id": "dr-raafat-omran",
       "name": "Dr. Raafat Omran",
-      "role": "The Principal of Rising Stars",
-      "quote": "The principal of this incredible prestigious school, The reason the school keeps going forward and improving",
+      "role": "The School Director of Rising Stars",
+      "quote": "The Director of this incredible prestigious school, The reason the school keeps going forward and improving",
       "image": "assets/images/34209.jpg",
       "star": false,
       "type": "teacher",
       "class": "Teacher",
       "achievements": [
-        "School Principal",
+        "School Director",
         "Doctor of Educational Administration and Institutional Developoment"
       ]
     },
@@ -427,7 +427,7 @@
       "role": "Diligent pupil",
       "quote": "Real appreciated by Miss Somia herself, he so cool",
       "image": "assets/images/33210.jpg",
-      "star": false,
+      "star": true,
       "type": "student",
       "class": "Secondary",
       "achievements": []
@@ -686,7 +686,7 @@
       "image": "assets/images/samia.jpg",
       "star": false,
       "type": "teacher",
-      "class": "",
+      "class": "Teacher",
       "achievements": []
     },
     {
@@ -697,7 +697,7 @@
       "image": "assets/images/omar.jpg",
       "star": false,
       "type": "teacher",
-      "class": "",
+      "class": "Teacher",
       "achievements": []
     },
     {
@@ -735,7 +735,7 @@
     },
     {
       "id": "youssef-mahmoud",
-      "name": "Youssef Mahmoud",
+      "name": "Youssif Mahmoud",
       "role": "Great Pupil",
       "quote": "",
       "image": "assets/images/blank.jpg",
@@ -756,5 +756,50 @@
       "achievements": []
     }
   ],
-  "topStudents": []
+  "topStudents": [
+    {
+      "name": "Youssef Ahmed Sabry",
+      "role": "Math Competitior"
+    },
+    {
+      "name": "Lily Ahmed",
+      "role": "English Competitior"
+    },
+    {
+      "name": "Sama Alaa",
+      "role": "Social Studies Competitor"
+    },
+    {
+      "name": "Sandra Sheriff",
+      "role": "Physics Competitor"
+    },
+    {
+      "name": "Perpetua Gerges",
+      "role": "Arabic Competitor"
+    },
+    {
+      "name": "Mohamed Bahaa",
+      "role": "Chemistry Competitor"
+    },
+    {
+      "name": "Mina Maged",
+      "role": "Science Competitor"
+    },
+    {
+      "name": "Eyad Bahaa",
+      "role": "Social Studies Competitor"
+    },
+    {
+      "name": "Maroshka Ayman",
+      "role": "Arabic Competitor"
+    },
+    {
+      "name": "Ahmed Mohamed",
+      "role": "English Competitor"
+    },
+    {
+      "name": "Bola Amir",
+      "role": "Math Competitor"
+    }
+  ]
 }
