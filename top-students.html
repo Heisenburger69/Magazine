@@ -110,7 +110,7 @@
         <div class="container">
             <p><strong>THE RISING TIMES NEWS</strong></p>
             <p>Rising Stars Language School</p>
-            <p>&copy; 2024 All Rights Reserved</p>
+            <p>&copy; 2026 All Rights Reserved</p>
         </div>
     </footer>
 
@@ -143,7 +143,9 @@
                 { name: 'youssef', match: s => s.name.toLowerCase().includes('youssef') && !s.name.toLowerCase().includes('samy') },
                 { name: 'ahmed alaa', match: s => s.name.toLowerCase().includes('alaadin') },
                 { name: 'yassin', match: s => s.name.toLowerCase().includes('yassin') && !s.name.toLowerCase().includes('youssef') },
-                { name: 'ahmed sabry', match: s => s.name.toLowerCase().includes('ahmed') && s.name.toLowerCase().includes('sabry') && !s.name.toLowerCase().includes('youssef') && !s.name.toLowerCase().includes('yassin') }
+                { name: 'ahmed sabry', match: s => s.name.toLowerCase().includes('ahmed') && s.name.toLowerCase().includes('sabry') && !s.name.toLowerCase().includes('youssef') && !s.name.toLowerCase().includes('yassin') },
+                { name: 'lily ahmed', match: s => s.name.toLowerCase().includes('lily') },
+                { name: 'ahmed adel', match: s => s.name.toLowerCase().includes('ahmed adel') }
             ];
             
             const getPriorityIndex = (name) => {
@@ -187,34 +189,56 @@
                 students = students.filter(s => s.class === currentFilter);
             }
             
-            const isPrincipal = (s) => s.type === 'teacher' && s.name.toLowerCase().includes('raafat') && s.name.toLowerCase().includes('omran');
+            const isHead = (s) => (s.type === 'teacher' && s.name.toLowerCase().includes('raafat') && s.name.toLowerCase().includes('omran')) || s.name === 'Miss Somia';
             
-            const sortByEventsAndName = (a, b) => {
+            const classOrder = { 'Secondary': 0, 'Preparatory': 1, 'Primary': 2 };
+            const sortByClassThenEventsAndName = (a, b) => {
+                const aClass = classOrder[a.class] ?? 3;
+                const bClass = classOrder[b.class] ?? 3;
+                if (aClass !== bClass) return aClass - bClass;
                 const aCount = countEvents(a.name);
                 const bCount = countEvents(b.name);
                 if (bCount !== aCount) return bCount - aCount;
                 return a.name.localeCompare(b.name);
             };
             
-            const principals = students.filter(s => isPrincipal(s));
-            const priorityStudents = students.filter(s => !isPrincipal(s) && getPriorityIndex(s.name) >= 0);
-            const otherStars = students.filter(s => !isPrincipal(s) && getPriorityIndex(s.name) < 0 && s.star && s.type === 'student');
-            const regularStudents = students.filter(s => !isPrincipal(s) && getPriorityIndex(s.name) < 0 && !s.star);
+            const topNames = new Set((DataStore.topStudents || []).map(ts => ts.name));
+            const heads = students.filter(s => isHead(s));
+            const priorityStudents = students.filter(s => !isHead(s) && getPriorityIndex(s.name) >= 0);
+            const topStudentsList = students.filter(s => !isHead(s) && getPriorityIndex(s.name) < 0 && topNames.has(s.name));
             
+            // Get CSE council members
+            const council = DataStore.getCSECouncil();
+            const cseNames = new Set();
+            if (council && council.stages) {
+                for (const stage of ['secondary', 'preparatory', 'primary']) {
+                    for (const [roleKey, memberName] of Object.entries(council.stages[stage])) {
+                        if (memberName) cseNames.add(memberName);
+                    }
+                }
+            }
+            const cseStudents = students.filter(s => !isHead(s) && getPriorityIndex(s.name) < 0 && !topNames.has(s.name) && cseNames.has(s.name));
+            const otherStars = students.filter(s => !isHead(s) && getPriorityIndex(s.name) < 0 && !topNames.has(s.name) && !cseNames.has(s.name) && s.star && s.type === 'student');
+            const starTeachers = students.filter(s => !isHead(s) && getPriorityIndex(s.name) < 0 && !topNames.has(s.name) && !cseNames.has(s.name) && s.star && s.type === 'teacher');
+            const regularStudents = students.filter(s => !isHead(s) && getPriorityIndex(s.name) < 0 && !topNames.has(s.name) && !cseNames.has(s.name) && !s.star);
+            
+            topStudentsList.sort(sortByClassThenEventsAndName);
             priorityStudents.sort((a, b) => {
                 const aIdx = getPriorityIndex(a.name);
                 const bIdx = getPriorityIndex(b.name);
                 if (aIdx !== bIdx) return aIdx - bIdx;
-                return sortByEventsAndName(a, b);
+                return sortByClassThenEventsAndName(a, b);
             });
             
-            otherStars.sort(sortByEventsAndName);
-            regularStudents.sort(sortByEventsAndName);
+            cseStudents.sort(sortByClassThenEventsAndName);
+            otherStars.sort(sortByClassThenEventsAndName);
+            starTeachers.sort(sortByClassThenEventsAndName);
+            regularStudents.sort(sortByClassThenEventsAndName);
             
             const teachers = [];
             const nonTeachers = [];
             
-            [...priorityStudents, ...otherStars, ...regularStudents].forEach(s => {
+            [...priorityStudents, ...topStudentsList, ...cseStudents, ...otherStars, ...starTeachers, ...regularStudents].forEach(s => {
                 if (s.type === 'teacher') {
                     teachers.push(s);
                 } else {
@@ -222,9 +246,9 @@
                 }
             });
             
-            const otherTeachers = teachers.filter(s => !isPrincipal(s));
+            const otherTeachers = teachers.filter(s => !isHead(s));
             
-            students = [...principals, ...nonTeachers, ...otherTeachers];
+            students = [...heads, ...nonTeachers, ...otherTeachers];
 
             const grid = document.getElementById('studentsGrid');
             if (!students.length) {

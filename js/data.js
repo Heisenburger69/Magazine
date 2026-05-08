@@ -86,6 +86,7 @@ async load() {
 
     getStudentEvents(studentName) {
         const events = this.getEvents().filter(event => {
+            if (event.id === 'top-students-competition') return false;
             if (event.elements) {
                 return event.elements.some(el => {
                     if (el.type === 'students' && el.students) {
