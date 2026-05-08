@@ -424,7 +424,7 @@
     {
       "id": "mohamed-bahaa",
       "name": "Mohamed Bahaa",
-      "role": "Chemistry Rep",
+      "role": "Diligent pupil",
       "quote": "Real appreciated by Miss Somia herself, he so cool",
       "image": "assets/images/33210.jpg",
       "star": false,
@@ -600,12 +600,153 @@
       "type": "teacher",
       "class": "Teacher",
       "achievements": []
+    },
+    {
+      "id": "sandra-sheriff",
+      "name": "Sandra Sheriff",
+      "role": "Prodigy Student",
+      "quote": "Phenomenal Grades Every Exam, Excellent Always",
+      "image": "assets/images/image (2).webp",
+      "star": true,
+      "type": "student",
+      "class": "Secondary",
+      "achievements": []
+    },
+    {
+      "id": "malek-ahmed-mostafa",
+      "name": "Malek Ahmed Mostafa",
+      "role": "",
+      "quote": "",
+      "image": "assets/images/blank.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Primary",
+      "achievements": []
+    },
+    {
+      "id": "malek-mohamed",
+      "name": "Malek Mohamed",
+      "role": "",
+      "quote": "",
+      "image": "assets/images/blank.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Primary",
+      "achievements": []
+    },
+    {
+      "id": "lina-hossam",
+      "name": "Lina Hossam",
+      "role": "",
+      "quote": "",
+      "image": "assets/images/blank.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Primary",
+      "achievements": []
+    },
+    {
+      "id": "rodaina-elsnosy",
+      "name": "Rodaina ElSnosy",
+      "role": "",
+      "quote": "",
+      "image": "assets/images/blank.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Primary",
+      "achievements": []
+    },
+    {
+      "id": "jody-amr-esmat",
+      "name": "Jody Amr Esmat",
+      "role": "",
+      "quote": "",
+      "image": "assets/images/blank.jpg",
+      "star": false,
+      "type": "student",
+      "class": "Primary",
+      "achievements": []
+    },
+    {
+      "id": "steven-essam-sobh",
+      "name": "Steven Essam Sobh",
+      "role": "Greatest Photographer/Documenter",
+      "quote": "Present in most events, Great Academically ",
+      "image": "assets/images/48757.jpg",
+      "star": true,
+      "type": "student",
+      "class": "Secondary",
+      "achievements": []
     }
   ],
   "topStudents": [
     {
       "name": "Youssef Ahmed Sabry",
       "role": "Math Competitior"
+    },
+    {
+      "name": "Mohamed Bahaa",
+      "role": "Chemistry Competitor"
+    },
+    {
+      "name": "Eyad Bahaa",
+      "role": "Social Studies Competitior"
+    },
+    {
+      "name": "Ahmed Mohamed",
+      "role": "English Competitor"
+    },
+    {
+      "name": "Mina Maged",
+      "role": "Science Competitor"
+    },
+    {
+      "name": "Bola Amir",
+      "role": "Math Competitior"
+    },
+    {
+      "name": "Maroshka Ayman",
+      "role": "Arabic Competitor"
+    },
+    {
+      "name": "Lily Ahmed",
+      "role": "English Competitor"
+    },
+    {
+      "name": "Perpetua Gerges",
+      "role": "Arabic Competitor"
+    },
+    {
+      "name": "Sandra Sheriff",
+      "role": "Physics Competitor"
+    },
+    {
+      "name": "Sama Alaa",
+      "role": "Social Studies Competitor"
+    },
+    {
+      "name": "Malek Ahmed Mostafa",
+      "role": "Competitor"
+    },
+    {
+      "name": "Malek Mohamed",
+      "role": "Competitor"
+    },
+    {
+      "name": "Rodaina ElSnosy",
+      "role": "Competitor"
+    },
+    {
+      "name": "Lina Hossam",
+      "role": "Competitor"
+    },
+    {
+      "name": "Jody Amr Esmat",
+      "role": "Competitior"
+    },
+    {
+      "name": "Miss Somia",
+      "role": "Organisor"
     }
   ]
 }

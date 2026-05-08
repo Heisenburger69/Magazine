@@ -53,7 +53,7 @@
             <img src="assets/images/logo1.png" alt="Logo" style="height:200px;margin-bottom:20px;">
             <h1>The Rising Times</h1>
             <p>Celebrating Excellence at Rising Stars Language School</p>
-            <a href="#articles" class="btn btn-primary">Read News</a>
+            <div style="display:flex;align-items:center;justify-content:center;"><div class="read-news-wrap"><a href="#articles" class="btn btn-primary">Read News</a><a href="https://youtu.be/VBsYzKxRdEA?si=A5tMzBfgJcRrWr9L" target="_blank" class="star-btn-hover dastar2-link"><img src="assets/images/dastar2.png" alt="Video" class="dastar2-img"></a></div></div>
         </div>
     </section>
 
@@ -129,7 +129,7 @@
         <div class="container">
             <p><strong>THE RISING TIMES NEWS</strong></p>
             <p>Rising Stars Language School | Futures Education System</p>
-            <p>&copy; 2024 All Rights Reserved</p>
+            <p>&copy; 2026 All Rights Reserved</p>
         </div>
     </footer>
 
@@ -226,7 +226,9 @@
         function renderArticles() {
             const grid = document.getElementById('articlesGrid');
             const events = DataStore.getEvents();
-            grid.innerHTML = events.slice(0, 6).map(event => {
+            const showAll = window._showAllEvents;
+            const displayed = showAll ? events : events.slice(0, 6);
+            grid.innerHTML = displayed.map(event => {
                 const previewImage = DataStore.getEventPreviewImage(event);
                 const excerpt = DataStore.getEventExcerpt(event);
                 return `
@@ -237,6 +239,25 @@
                     </div>
                 `;
             }).join('');
+            
+            let toggleBtn = document.getElementById('eventsToggle');
+            if (events.length > 6) {
+                if (!toggleBtn) {
+                    toggleBtn = document.createElement('div');
+                    toggleBtn.id = 'eventsToggle';
+                    toggleBtn.style.cssText = 'text-align:center;margin-top:24px;';
+                    grid.parentNode.appendChild(toggleBtn);
+                }
+                toggleBtn.innerHTML = `<button onclick="toggleEvents()" style="background:none;border:2px solid var(--primary-gold);color:var(--primary-gold);padding:10px 30px;border-radius:25px;cursor:pointer;font-size:14px;font-weight:700;transition:var(--transition);">${showAll ? 'Show Less ▲' : 'Show More ▼'}</button>`;
+                toggleBtn.style.display = 'block';
+            } else if (toggleBtn) {
+                toggleBtn.style.display = 'none';
+            }
+        }
+        
+        function toggleEvents() {
+            window._showAllEvents = !window._showAllEvents;
+            renderArticles();
         }
         
         function viewStudent(name) { window.location.href = 'student.html?name=' + encodeURIComponent(name); }
