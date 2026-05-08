@@ -763,7 +763,7 @@
                         if (el.organizers && el.organizers.length) {
                             const chips = el.organizers.filter(s => s.name).map(s => {
                                 const st = DataStore.getStudent(s.name);
-                                return `<span style="display:inline-block;background:#DC143C;color:white;padding:4px 12px;border-radius:16px;font-size:12px;font-weight:600;">${s.name}${st?.star?' ★':''}${s.role?' — '+s.role:''}${s.achievement?' — '+s.achievement:''}</span>`;
+                                return `<span style="display:inline-block;background:#DC143C;color:white;padding:4px 12px;border-radius:16px;font-size:12px;font-weight:600;">${s.name}${st?.star?' ★':''}${(s.role||st?.role)?' — '+(s.role||st.role):''}${s.achievement?' — '+s.achievement:''}</span>`;
                             }).join(' ');
                             if (chips) html += `<div style="background:rgba(220,20,60,0.15);padding:16px;border-radius:8px;margin-bottom:16px;border-left:4px solid #DC143C;"><strong style="font-size:12px;display:block;margin-bottom:8px;color:#DC143C;">ORGANIZERS / TEACHERS</strong><div style="display:flex;flex-wrap:wrap;gap:8px;">${chips}</div></div>`;
                         }
