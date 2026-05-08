@@ -2,7 +2,7 @@
   "events": [
     {
       "id": "top-students-competition",
-      "title": "Top Students Competition",
+      "title": "ESI Top Students' Contest",
       "type": "multi",
       "category": "Academic",
       "featured": true,
@@ -12,11 +12,15 @@
           "type": "image",
           "image": "assets/images/5184.jpg",
           "align": "left",
-          "caption": "Us winning in the competition \"as usual ;)\""
+          "caption": "Secondary 2 Class Winning First Place in the first ESI Stage"
         },
         {
           "type": "text",
-          "content": "Our school went up against Futures schools last semester, Our Secondary stage however managed to win first place by a staggering 4-point difference with the second place, we managed to impress and honor our humble school :-)"
+          "content": "Our school went up against Futures schools last semester, Our Secondary stage however managed to win first place by a staggering 4-point difference with the second place, we made it to the Final Round at ESI As well."
+        },
+        {
+          "type": "text",
+          "content": " Also our Preparatory and Primary stages got Second place in the First ESI Round. We managed to impress and honor our humble school :-)"
         },
         {
           "type": "slideshow",
