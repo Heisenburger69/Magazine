@@ -647,6 +647,86 @@
       ]
     },
     {
+      "id": "german-goethe-exam",
+      "title": "German Goethe Exam",
+      "type": "multi",
+      "category": "Academic",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/33118.jpg",
+          "align": "left",
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "Honoring the takers of the German Goethe exam 2026"
+        },
+        {
+          "type": "quote",
+          "quote": "I couldn't have done it without Frau Fatima, her being by our side is what made us pass with flying colors",
+          "author": "Ahmed Mohamed"
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Frau Fatima",
+              "role": "German Teacher",
+              "achievement": "Paved the students' path to success"
+            },
+            {
+              "name": "Mr. Ahmed Ashour",
+              "role": "Organizer",
+              "achievement": ""
+            },
+            {
+              "name": "Dr. Raafat Omran",
+              "role": "School Principal",
+              "achievement": ""
+            }
+          ]
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Ahmed Mohamed",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed"
+            },
+            {
+              "name": "Mostafa Ahmed",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed"
+            },
+            {
+              "name": "Jonier George",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed"
+            },
+            {
+              "name": "Maria Raif",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed"
+            },
+            {
+              "name": "Maroshka Ayman",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed"
+            },
+            {
+              "name": "Bola Amir",
+              "role": "Goethe Exam 2026 Taker",
+              "achievement": "Passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "custom-shirt-painting",
       "title": "Custom Shirt Painting",
       "type": "multi",
@@ -802,86 +882,6 @@
               "name": "Retaj Adel Abd Elhafeez",
               "role": "",
               "achievement": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "german-goethe-exam",
-      "title": "German Goethe Exam",
-      "type": "multi",
-      "category": "Academic",
-      "featured": false,
-      "date": "2026",
-      "elements": [
-        {
-          "type": "image",
-          "image": "assets/images/33118.jpg",
-          "align": "left",
-          "caption": ""
-        },
-        {
-          "type": "text",
-          "content": "Honoring the takers of the German Goethe exam 2026"
-        },
-        {
-          "type": "quote",
-          "quote": "I couldn't have done it without Frau Fatima, her being by our side is what made us pass with flying colors",
-          "author": "Ahmed Mohamed"
-        },
-        {
-          "type": "organizers",
-          "organizers": [
-            {
-              "name": "Frau Fatima",
-              "role": "German Teacher",
-              "achievement": "Paved the students' path to success"
-            },
-            {
-              "name": "Mr. Ahmed Ashour",
-              "role": "Organizer",
-              "achievement": ""
-            },
-            {
-              "name": "Dr. Raafat Omran",
-              "role": "School Principal",
-              "achievement": ""
-            }
-          ]
-        },
-        {
-          "type": "students",
-          "students": [
-            {
-              "name": "Ahmed Mohamed",
-              "role": "Goethe Exam 2026 Taker",
-              "achievement": "Passed"
-            },
-            {
-              "name": "Mostafa Ahmed",
-              "role": "Goethe Exam 2026 Taker",
-              "achievement": "Passed"
-            },
-            {
-              "name": "Jonier George",
-              "role": "Goethe Exam 2026 Taker",
-              "achievement": "Passed"
-            },
-            {
-              "name": "Maria Raif",
-              "role": "Goethe Exam 2026 Taker",
-              "achievement": "Passed"
-            },
-            {
-              "name": "Maroshka Ayman",
-              "role": "Goethe Exam 2026 Taker",
-              "achievement": "Passed"
-            },
-            {
-              "name": "Bola Amir",
-              "role": "Goethe Exam 2026 Taker",
-              "achievement": "Passed"
             }
           ]
         }
