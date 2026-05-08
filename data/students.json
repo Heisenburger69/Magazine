@@ -681,7 +681,7 @@
     {
       "id": "miss-samia",
       "name": "Miss Samia",
-      "role": "Chemistry/Biology Teacher",
+      "role": "Science HOD",
       "quote": "Excellent, Incredible teacher",
       "image": "assets/images/samia.jpg",
       "star": false,
@@ -692,7 +692,7 @@
     {
       "id": "mr-omar-khaled",
       "name": "Mr. Omar Khaled",
-      "role": "Physics/Integrated Science Teacher",
+      "role": "Science Teacher",
       "quote": "Great Science Teacher",
       "image": "assets/images/omar.jpg",
       "star": false,
@@ -708,7 +708,7 @@
       "image": "assets/images/Radwa.jpg",
       "star": false,
       "type": "teacher",
-      "class": "",
+      "class": "Teacher",
       "achievements": []
     },
     {
@@ -719,7 +719,7 @@
       "image": "assets/images/Sarah.jpg",
       "star": false,
       "type": "teacher",
-      "class": "",
+      "class": "Teacher",
       "achievements": []
     },
     {
