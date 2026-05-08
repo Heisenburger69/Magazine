@@ -324,6 +324,295 @@
       ]
     },
     {
+      "id": "the-exhibition-of-outstanding-students-at-the-sheraton-branch",
+      "title": "The exhibition of outstanding students at the Sheraton branch",
+      "type": "multi",
+      "category": "School",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/22 (3).jpg",
+          "align": "left",
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "This Crafts event was hosted by the ESI \n\nWhere in students made handcrafted bracelets and other accessories and listed them for sale in another Future's school"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/22 (3).jpg",
+            "assets/images/22 (2).jpg",
+            "assets/images/22 (1).jpg"
+          ],
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "The event helped teach students how to barter \nHow to make accessories \nAnd how to sell them \nAll in all it was a very enjoyable, yet useful event with many students loving the experience and meeting new people and students with shared interests"
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Eman Sabry",
+              "role": "Art Teacher",
+              "achievement": "Helped the students accomplish all those wonders"
+            },
+            {
+              "name": "Miss Doha Emad",
+              "role": "Art Teacher",
+              "achievement": "Helped the students accomplish all those wonders"
+            }
+          ]
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Joy fady",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Bola Beshoy",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Theodora Maged",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Mina Maged",
+              "role": "",
+              "achievement": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-crafts-exhibition",
+      "title": "The Crafts Exhibition",
+      "type": "multi",
+      "category": "School",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/32713.jpg",
+          "align": "left",
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "Students get to showcase their custom crafts and sell them to each other, learning life skills along the way"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/11 (1).jpg",
+            "assets/images/11 (2).jpg",
+            "assets/images/11 (3).jpg"
+          ],
+          "caption": "Students enjoying the day"
+        },
+        {
+          "type": "video",
+          "video": "mU1EPS0NXcI"
+        },
+        {
+          "type": "text",
+          "content": "This event helped students know the basics of craftsmanship and trading, before they went to the exhibition in Sheraton branch.\n It's a light-hearted, fun experience for the students to enjoy."
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Eman Sabry",
+              "role": "Art Teacher",
+              "achievement": "Taught the students how to make crafts"
+            },
+            {
+              "name": "Miss Doha Emad",
+              "role": "Art Teacher",
+              "achievement": "Taught the students how to make crafts"
+            }
+          ]
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Joy fady",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Bola Beshoy",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Theodora Maged",
+              "role": "",
+              "achievement": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "futures-uniform-competition",
+      "title": "Futures uniform competition",
+      "type": "multi",
+      "category": "Academic",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/uniforms.webp",
+          "align": "left",
+          "caption": "Maroshka's Drawing, Marcelino's design"
+        },
+        {
+          "type": "text",
+          "content": "Marcelino Reda's Incredible uniform designs that are currently facing Future's schools themselves\nAnd Maroshka's beautiful illustrations of how a uniform can be creative"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/marc (1).jpg",
+            "assets/images/marc (2).jpg",
+            "assets/images/marc (3).jpg"
+          ],
+          "caption": "Marcilino's winning design"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/maro (1).jpg",
+            "assets/images/maro (2).jpg",
+            "assets/images/maro (3).jpg"
+          ],
+          "caption": "Maroshka's beautiful illustrations"
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Marcelino Reda",
+              "role": "Designer",
+              "achievement": "Winner of the Rising Stars local uniform competition"
+            },
+            {
+              "name": "Maroshka Ayman",
+              "role": "Designer",
+              "achievement": "2nd place in the Rising Stars local uniform competition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "world-science-day-for-peace--development",
+      "title": "World Science Day for Peace & Development",
+      "type": "multi",
+      "category": "Cultural",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/science.jpg",
+          "align": "left",
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "Our science teachers celebrated that day by doing fun experiments and quizzes throughout the Morning School Assembly"
+        },
+        {
+          "type": "video",
+          "video": "7fianBSVOq8"
+        },
+        {
+          "type": "text",
+          "content": "Morning School Assembly Routine"
+        },
+        {
+          "type": "video",
+          "video": "yGysKTFHYB0"
+        },
+        {
+          "type": "text",
+          "content": "Enjoyable Chemistry (Qualitive Analysis) Experiments with Sec 2 \"Sec 3 Currently\""
+        },
+        {
+          "type": "image",
+          "image": "assets/images/WhatsApp Image 2026-05-06 at 1.10.59 PM.jpeg",
+          "align": "left",
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "Our Fabulous Science Teachers"
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Samia",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Mr. Omar Khaled",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Miss Radwa Mohamed",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Miss Sarah Ahmed",
+              "role": "",
+              "achievement": ""
+            }
+          ]
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Omar Osama",
+              "role": "Sec 3",
+              "achievement": ""
+            },
+            {
+              "name": "Youssef Mahmoud",
+              "role": "Sec 3",
+              "achievement": ""
+            },
+            {
+              "name": "Abdelrahman",
+              "role": "Sec 3",
+              "achievement": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "english-day-2026",
       "title": "The International English Day",
       "type": "multi",
@@ -449,204 +738,6 @@
       ]
     },
     {
-      "id": "futures-uniform-competition",
-      "title": "Futures uniform competition",
-      "type": "multi",
-      "category": "Academic",
-      "featured": false,
-      "date": "2026",
-      "elements": [
-        {
-          "type": "image",
-          "image": "assets/images/uniforms.webp",
-          "align": "left",
-          "caption": "Maroshka's Drawing, Marcelino's design"
-        },
-        {
-          "type": "text",
-          "content": "Marcelino Reda's Incredible uniform designs that are currently facing Future's schools themselves\nAnd Maroshka's beautiful illustrations of how a uniform can be creative"
-        },
-        {
-          "type": "slideshow",
-          "images": [
-            "assets/images/marc (1).jpg",
-            "assets/images/marc (2).jpg",
-            "assets/images/marc (3).jpg"
-          ],
-          "caption": "Marcilino's winning design"
-        },
-        {
-          "type": "slideshow",
-          "images": [
-            "assets/images/maro (1).jpg",
-            "assets/images/maro (2).jpg",
-            "assets/images/maro (3).jpg"
-          ],
-          "caption": "Maroshka's beautiful illustrations"
-        },
-        {
-          "type": "students",
-          "students": [
-            {
-              "name": "Marcelino Reda",
-              "role": "Designer",
-              "achievement": "Winner of the Rising Stars local uniform competition"
-            },
-            {
-              "name": "Maroshka Ayman",
-              "role": "Designer",
-              "achievement": "2nd place in the Rising Stars local uniform competition"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "the-crafts-exhibition",
-      "title": "The Crafts Exhibition",
-      "type": "multi",
-      "category": "School",
-      "featured": false,
-      "date": "2026",
-      "elements": [
-        {
-          "type": "image",
-          "image": "assets/images/32713.jpg",
-          "align": "left",
-          "caption": ""
-        },
-        {
-          "type": "text",
-          "content": "Students get to showcase their custom crafts and sell them to each other, learning life skills along the way"
-        },
-        {
-          "type": "slideshow",
-          "images": [
-            "assets/images/11 (1).jpg",
-            "assets/images/11 (2).jpg",
-            "assets/images/11 (3).jpg"
-          ],
-          "caption": "Students enjoying the day"
-        },
-        {
-          "type": "video",
-          "video": "mU1EPS0NXcI"
-        },
-        {
-          "type": "text",
-          "content": "This event helped students know the basics of craftsmanship and trading, before they went to the exhibition in Sheraton branch.\n It's a light-hearted, fun experience for the students to enjoy."
-        },
-        {
-          "type": "organizers",
-          "organizers": [
-            {
-              "name": "Miss Eman Sabry",
-              "role": "Art Teacher",
-              "achievement": "Taught the students how to make crafts"
-            },
-            {
-              "name": "Miss Doha Emad",
-              "role": "Art Teacher",
-              "achievement": "Taught the students how to make crafts"
-            }
-          ]
-        },
-        {
-          "type": "students",
-          "students": [
-            {
-              "name": "Joy fady",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Bola Beshoy",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Theodora Maged",
-              "role": "",
-              "achievement": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "the-exhibition-of-outstanding-students-at-the-sheraton-branch",
-      "title": "The exhibition of outstanding students at the Sheraton branch",
-      "type": "multi",
-      "category": "School",
-      "featured": false,
-      "date": "2026",
-      "elements": [
-        {
-          "type": "image",
-          "image": "assets/images/22 (3).jpg",
-          "align": "left",
-          "caption": ""
-        },
-        {
-          "type": "text",
-          "content": "This Crafts event was hosted by the ESI \n\nWhere in students made handcrafted bracelets and other accessories and listed them for sale in another Future's school"
-        },
-        {
-          "type": "slideshow",
-          "images": [
-            "assets/images/22 (3).jpg",
-            "assets/images/22 (2).jpg",
-            "assets/images/22 (1).jpg"
-          ],
-          "caption": ""
-        },
-        {
-          "type": "text",
-          "content": "The event helped teach students how to barter \nHow to make accessories \nAnd how to sell them \nAll in all it was a very enjoyable, yet useful event with many students loving the experience and meeting new people and students with shared interests"
-        },
-        {
-          "type": "organizers",
-          "organizers": [
-            {
-              "name": "Miss Eman Sabry",
-              "role": "Art Teacher",
-              "achievement": "Helped the students accomplish all those wonders"
-            },
-            {
-              "name": "Miss Doha Emad",
-              "role": "Art Teacher",
-              "achievement": "Helped the students accomplish all those wonders"
-            }
-          ]
-        },
-        {
-          "type": "students",
-          "students": [
-            {
-              "name": "Joy fady",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Bola Beshoy",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Theodora Maged",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Mina Maged",
-              "role": "",
-              "achievement": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "german-goethe-exam",
       "title": "German Goethe Exam",
       "type": "multi",
@@ -721,78 +812,6 @@
               "name": "Bola Amir",
               "role": "Goethe Exam 2026 Taker",
               "achievement": "Passed"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "custom-shirt-painting",
-      "title": "Custom Shirt Painting",
-      "type": "multi",
-      "category": "School",
-      "featured": false,
-      "date": "2026",
-      "elements": [
-        {
-          "type": "image",
-          "image": "assets/images/32733.jpg",
-          "align": "left",
-          "caption": ""
-        },
-        {
-          "type": "text",
-          "content": "This event had students express their creativity by making designs for clothes like shirts \nStudents used an assortment of colours and patterns which were painted on the shirts and later presented it "
-        },
-        {
-          "type": "text",
-          "content": "The event was overall very fun for the students as they got to slam everything and anything on the shirts"
-        },
-        {
-          "type": "slideshow",
-          "images": [
-            "assets/images/32731.jpg",
-            "assets/images/32733.jpg"
-          ],
-          "caption": ""
-        },
-        {
-          "type": "organizers",
-          "organizers": [
-            {
-              "name": "Miss Eman Sabry",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Miss Doha Emad",
-              "role": "",
-              "achievement": ""
-            }
-          ]
-        },
-        {
-          "type": "students",
-          "students": [
-            {
-              "name": "Perla",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Joy fady",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Jasmine Ahmed Mohamed",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Jonier George",
-              "role": "",
-              "achievement": ""
             }
           ]
         }
@@ -880,6 +899,78 @@
             },
             {
               "name": "Retaj Adel Abd Elhafeez",
+              "role": "",
+              "achievement": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom-shirt-painting",
+      "title": "Custom Shirt Painting",
+      "type": "multi",
+      "category": "School",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/32733.jpg",
+          "align": "left",
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "This event had students express their creativity by making designs for clothes like shirts \nStudents used an assortment of colours and patterns which were painted on the shirts and later presented it "
+        },
+        {
+          "type": "text",
+          "content": "The event was overall very fun for the students as they got to slam everything and anything on the shirts"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/32731.jpg",
+            "assets/images/32733.jpg"
+          ],
+          "caption": ""
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Eman Sabry",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Miss Doha Emad",
+              "role": "",
+              "achievement": ""
+            }
+          ]
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Perla",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Joy fady",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Jasmine Ahmed Mohamed",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Jonier George",
               "role": "",
               "achievement": ""
             }

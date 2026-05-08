@@ -235,7 +235,7 @@
                                             <img src="${img}" alt="${s.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27%3E%3Ccircle cx=%2725%27 cy=%2725%27 r=%2725%27 fill=%27%23ddd%27/%3E%3C/svg%3E'">
                                             <div class="student-card-mini-info">
                                                 <div class="student-card-mini-name">${s.name} ${isStar ? '★' : ''}</div>
-                                                <div class="student-card-mini-role">${s.role || 'Teacher'} ${s.achievement ? '- ' + s.achievement : ''}</div>
+                                                <div class="student-card-mini-role">${s.role || student?.role || 'Teacher'} ${s.achievement ? '- ' + s.achievement : ''}</div>
                                             </div>
                                         </div>`;
                                 });

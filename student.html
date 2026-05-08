@@ -102,6 +102,7 @@
                     const thumb = DataStore.getEventPreviewImage(event);
                     
                     let studentInfo = null;
+                    let foundAsOrganizer = false;
                     if (event.elements) {
                         for (const el of event.elements) {
                             if (el.type === 'students' && el.students) {
@@ -110,12 +111,13 @@
                             }
                             if (el.type === 'organizers' && el.organizers) {
                                 studentInfo = el.organizers.find(s => s.name === studentName);
-                                if (studentInfo) break;
+                                if (studentInfo) { foundAsOrganizer = true; break; }
                             }
                         }
                     }
                     
-                    const roleText = studentInfo?.role ? studentInfo.role : 'Participant';
+                    const st = DataStore.getStudent(studentName);
+                    const roleText = studentInfo?.role ? studentInfo.role : (foundAsOrganizer ? (st?.role || 'Teacher') : 'Participant');
                     const achieveText = studentInfo?.achievement ? `- ${studentInfo.achievement}` : '';
                     const isCSE = event._isCSE;
                     const isTopStudent = event._isTopStudent;
