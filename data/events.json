@@ -397,131 +397,6 @@
       ]
     },
     {
-      "id": "the-crafts-exhibition",
-      "title": "The Crafts Exhibition",
-      "type": "multi",
-      "category": "School",
-      "featured": false,
-      "date": "2026",
-      "elements": [
-        {
-          "type": "image",
-          "image": "assets/images/32713.jpg",
-          "align": "left",
-          "caption": ""
-        },
-        {
-          "type": "text",
-          "content": "Students get to showcase their custom crafts and sell them to each other, learning life skills along the way"
-        },
-        {
-          "type": "slideshow",
-          "images": [
-            "assets/images/11 (1).jpg",
-            "assets/images/11 (2).jpg",
-            "assets/images/11 (3).jpg"
-          ],
-          "caption": "Students enjoying the day"
-        },
-        {
-          "type": "video",
-          "video": "mU1EPS0NXcI"
-        },
-        {
-          "type": "text",
-          "content": "This event helped students know the basics of craftsmanship and trading, before they went to the exhibition in Sheraton branch.\n It's a light-hearted, fun experience for the students to enjoy."
-        },
-        {
-          "type": "organizers",
-          "organizers": [
-            {
-              "name": "Miss Eman Sabry",
-              "role": "Art Teacher",
-              "achievement": "Taught the students how to make crafts"
-            },
-            {
-              "name": "Miss Doha Emad",
-              "role": "Art Teacher",
-              "achievement": "Taught the students how to make crafts"
-            }
-          ]
-        },
-        {
-          "type": "students",
-          "students": [
-            {
-              "name": "Joy fady",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Bola Beshoy",
-              "role": "",
-              "achievement": ""
-            },
-            {
-              "name": "Theodora Maged",
-              "role": "",
-              "achievement": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "futures-uniform-competition",
-      "title": "Futures uniform competition",
-      "type": "multi",
-      "category": "Academic",
-      "featured": false,
-      "date": "2026",
-      "elements": [
-        {
-          "type": "image",
-          "image": "assets/images/uniforms.webp",
-          "align": "left",
-          "caption": "Maroshka's Drawing, Marcelino's design"
-        },
-        {
-          "type": "text",
-          "content": "Marcelino Reda's Incredible uniform designs that are currently facing Future's schools themselves\nAnd Maroshka's beautiful illustrations of how a uniform can be creative"
-        },
-        {
-          "type": "slideshow",
-          "images": [
-            "assets/images/marc (1).jpg",
-            "assets/images/marc (2).jpg",
-            "assets/images/marc (3).jpg"
-          ],
-          "caption": "Marcilino's winning design"
-        },
-        {
-          "type": "slideshow",
-          "images": [
-            "assets/images/maro (1).jpg",
-            "assets/images/maro (2).jpg",
-            "assets/images/maro (3).jpg"
-          ],
-          "caption": "Maroshka's beautiful illustrations"
-        },
-        {
-          "type": "students",
-          "students": [
-            {
-              "name": "Marcelino Reda",
-              "role": "Designer",
-              "achievement": "Winner of the Rising Stars local uniform competition"
-            },
-            {
-              "name": "Maroshka Ayman",
-              "role": "Designer",
-              "achievement": "2nd place in the Rising Stars local uniform competition"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "world-science-day-for-peace--development",
       "title": "World Science Day for Peace & Development",
       "type": "multi",
@@ -606,6 +481,131 @@
             {
               "name": "Abdelrahman",
               "role": "Sec 3",
+              "achievement": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "futures-uniform-competition",
+      "title": "Futures uniform competition",
+      "type": "multi",
+      "category": "Academic",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/uniforms.webp",
+          "align": "left",
+          "caption": "Maroshka's Drawing, Marcelino's design"
+        },
+        {
+          "type": "text",
+          "content": "Marcelino Reda's Incredible uniform designs that are currently facing Future's schools themselves\nAnd Maroshka's beautiful illustrations of how a uniform can be creative"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/marc (1).jpg",
+            "assets/images/marc (2).jpg",
+            "assets/images/marc (3).jpg"
+          ],
+          "caption": "Marcilino's winning design"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/maro (1).jpg",
+            "assets/images/maro (2).jpg",
+            "assets/images/maro (3).jpg"
+          ],
+          "caption": "Maroshka's beautiful illustrations"
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Marcelino Reda",
+              "role": "Designer",
+              "achievement": "Winner of the Rising Stars local uniform competition"
+            },
+            {
+              "name": "Maroshka Ayman",
+              "role": "Designer",
+              "achievement": "2nd place in the Rising Stars local uniform competition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-crafts-exhibition",
+      "title": "The Crafts Exhibition",
+      "type": "multi",
+      "category": "School",
+      "featured": false,
+      "date": "2026",
+      "elements": [
+        {
+          "type": "image",
+          "image": "assets/images/32713.jpg",
+          "align": "left",
+          "caption": ""
+        },
+        {
+          "type": "text",
+          "content": "Students get to showcase their custom crafts and sell them to each other, learning life skills along the way"
+        },
+        {
+          "type": "slideshow",
+          "images": [
+            "assets/images/11 (1).jpg",
+            "assets/images/11 (2).jpg",
+            "assets/images/11 (3).jpg"
+          ],
+          "caption": "Students enjoying the day"
+        },
+        {
+          "type": "video",
+          "video": "mU1EPS0NXcI"
+        },
+        {
+          "type": "text",
+          "content": "This event helped students know the basics of craftsmanship and trading, before they went to the exhibition in Sheraton branch.\n It's a light-hearted, fun experience for the students to enjoy."
+        },
+        {
+          "type": "organizers",
+          "organizers": [
+            {
+              "name": "Miss Eman Sabry",
+              "role": "Art Teacher",
+              "achievement": "Taught the students how to make crafts"
+            },
+            {
+              "name": "Miss Doha Emad",
+              "role": "Art Teacher",
+              "achievement": "Taught the students how to make crafts"
+            }
+          ]
+        },
+        {
+          "type": "students",
+          "students": [
+            {
+              "name": "Joy fady",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Bola Beshoy",
+              "role": "",
+              "achievement": ""
+            },
+            {
+              "name": "Theodora Maged",
+              "role": "",
               "achievement": ""
             }
           ]
