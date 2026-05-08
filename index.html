@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="google-site-verification" content="4g_o259BX8gdaa1YEjx_lQIO26_TCdaZ8YinJo0tOWc" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Rising Times News - Rising Stars Language School</title>
@@ -138,8 +139,8 @@
         let teamSlide = 0;
         
         function moveTeamSlide(n) {
-            const students = DataStore.getStudents();
-            teamSlide = (teamSlide + n + students.length) % students.length;
+            const total = document.querySelectorAll('.tc-slide').length;
+            teamSlide = (teamSlide + n + total) % total;
             goTeamSlide(teamSlide);
         }
         
