@@ -391,13 +391,15 @@
     {
       "id": "perpetua-gerges",
       "name": "Perpetua Gerges",
-      "role": "",
-      "quote": "",
+      "role": "Incredible Student",
+      "quote": "Master of the Arabic & Math subject, Great at everything. School is easy for her",
       "image": "assets/images/33614.jpg",
-      "star": false,
+      "star": true,
       "type": "student",
       "class": "Secondary",
-      "achievements": []
+      "achievements": [
+        "Arabic Subject Excellence"
+      ]
     },
     {
       "id": "jasmine-ahmed-mohamed",
